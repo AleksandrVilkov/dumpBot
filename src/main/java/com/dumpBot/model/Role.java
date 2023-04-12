@@ -1,4 +1,4 @@
-package model;
+package com.dumpBot.model;
 
 public enum Role {
     ADMIN_ROLE,  //пользователь является админ;

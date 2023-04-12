@@ -1,4 +1,4 @@
-package model;
+package com.dumpBot.model;
 
 import lombok.Getter;
 import lombok.Setter;

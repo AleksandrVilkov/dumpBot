@@ -1,10 +1,11 @@
-package model;
+package com.dumpBot.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Engine {
+public class Region {
+    int id;
     String name;
 }

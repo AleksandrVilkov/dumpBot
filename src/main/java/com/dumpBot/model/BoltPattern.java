@@ -1,10 +1,10 @@
-package model;
+package com.dumpBot.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Model {
+public class BoltPattern {
     String name;
 }

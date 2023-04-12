@@ -1,4 +1,4 @@
-package com.dumpBot.cmd;
+package com.dumpBot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

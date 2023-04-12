@@ -1,4 +1,4 @@
-package model;
+package com.dumpBot.model;
 
 public enum CallbackType {
     START_REGISTER,

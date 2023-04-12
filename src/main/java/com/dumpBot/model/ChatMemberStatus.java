@@ -1,4 +1,4 @@
-package model;
+package com.dumpBot.model;
 
 public enum ChatMemberStatus {
     MEMBER,      //пользователь является подписчиком;
