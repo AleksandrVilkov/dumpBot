@@ -1,0 +1,9 @@
+package model;
+
+public enum Action {
+    REGISTRATION_ACTION,
+    SALE_ACTION,
+    SEARCH_REQUEST_ACTION,
+    SUBSCRIBE_ACTION,
+    RULES_ACTION
+}
