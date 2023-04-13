@@ -9,17 +9,17 @@ import lombok.SneakyThrows;
 import java.io.File;
 
 public class Resources {
-    private Buttonstext buttonstext;
+    private ButtonsText buttonsText;
     private Msgs msgs;
     private Errors errors;
     private Success success;
 
-    public Buttonstext getButtonstext() {
-        return buttonstext;
+    public ButtonsText getButtonsText() {
+        return buttonsText;
     }
 
-    public void setButtonstext(Buttonstext value) {
-        this.buttonstext = value;
+    public void setButtonsText(ButtonsText value) {
+        this.buttonsText = value;
     }
 
     public Msgs getMsgs() {

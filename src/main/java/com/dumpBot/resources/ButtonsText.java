@@ -1,7 +1,7 @@
 package com.dumpBot.resources;
 
-// Buttonstext.java
-public class Buttonstext {
+// ButtonsText.java
+public class ButtonsText {
     private String registration;
     private String searchRequest;
     private String placeAnAd;

@@ -1,6 +1,6 @@
 package com.dumpBot.config;
 
-class ValidateData {
+public class ValidateData {
     private long channelID;
     private String channelURL;
 
