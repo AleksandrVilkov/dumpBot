@@ -1,36 +1,48 @@
 package com.dumpBot.bot;
 
+import com.dumpBot.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-@Component
 public class Bot extends TelegramLongPollingBot {
 
 
-//    @Autowired
+    //    @Autowired
 //    ICallBackProcessor callBackProcessor;
-//    @Autowired
-//    IMessageProcessor messageProcessor;
+    @Autowired
+    IMessageProcessor messageProcessor;
+    Config config;
 
-    public Bot() {
-
+    public Bot(Config config) {
+        this.config = config;
     }
 
     @Override
     public String getBotUsername() {
-        return "psa_dump_dev";
+        return config.getBot().getName();
     }
 
     @Override
     public String getBotToken() {
-        return "5990503214:AAGAlWdWPbKQCSvZsRfR9l48tAkuqTcFdws";
+        return config.getBot().getToken();
     }
 
     @Override
     public void onUpdateReceived(Update update) {
+        if (!Validator.validateUser(update,this,config)) {
+            try {
+                execute(messageProcessor.createErrAuthMsg());
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
+            }
+            return;
+        }
+
+        System.out.println();
 //        try {
 //            if (update.hasMessage() && update.getMessage().hasText()) {
 //                execute(messageProcessor.startMessageProcessor());

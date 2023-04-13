@@ -8,19 +8,19 @@ commands:
   subscription: /subscription
   sale: /sale
 
-internalcommands:
+internalCommands:
   enterCarBrand: /carBrand
   enterCarModel: /carModel
   enterCarEngine: /carEngine
 
-validatedata:
+validateData:
   channelID: -1001773791815
-  channelUrl: "https://t.me/dumpChenDev"
+  channelURL: "https://t.me/dumpChenDev"
 
-psql:
+storageConfig:
   login: autodump_user
   password: root
-  ssl_mode: disable
-  driver_name: postgres
-  database_name: autodump
-  attempts_connection: 3
+  sslMode: disable
+  driverName: postgres
+  databaseName: autodump
+  attemptsConnection: 3
