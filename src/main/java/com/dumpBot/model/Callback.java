@@ -11,6 +11,14 @@ public class Callback {
     Action Action;
     UserData userData;
     CarData carData;
+
+    public Callback() {
+    }
+
+    public Callback(String userId, com.dumpBot.model.Action action) {
+        this.userId = userId;
+        Action = action;
+    }
 }
 
 @Getter
