@@ -1,5 +1,6 @@
-token: 5990503214:AAGAlWdWPbKQCSvZsRfR9l48tAkuqTcFdws
-
+bot:
+  token: 5990503214:AAGAlWdWPbKQCSvZsRfR9l48tAkuqTcFdws
+  name: psa_dump_dev
 commands:
   start: /start
   rules: /rules
