@@ -1,7 +1,8 @@
-package com.dumpBot.msgProcessor;
+package com.dumpBot.processor.msgProcessor.process;
 
 public enum Command {
-    START("/start");
+    START("/start"),
+    MAIN_MENU("/main_menu");
     final String name;
 
     Command(String name) {

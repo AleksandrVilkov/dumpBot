@@ -46,7 +46,7 @@ public class Bot extends TelegramLongPollingBot {
                 return;
             }
             if (update.hasCallbackQuery()) {
-                execute(callBackProcessor.startCallbackProcessor());
+                execute(callBackProcessor.startCallbackProcessor(update));
             }
 
         } catch (TelegramApiException e) {
