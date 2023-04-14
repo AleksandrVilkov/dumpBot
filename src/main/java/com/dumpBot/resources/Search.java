@@ -2,8 +2,8 @@ package com.dumpBot.resources;
 
 public class Search {
     private String choiceConcern;
-    private String arBrandEnter;
-    private String arModelEnter;
+    private String carBrandEnter;
+    private String carModelEnter;
 
     public String getChoiceConcern() {
         return choiceConcern;
@@ -13,19 +13,19 @@ public class Search {
         this.choiceConcern = value;
     }
 
-    public String getArBrandEnter() {
-        return arBrandEnter;
+    public String getCarBrandEnter() {
+        return carBrandEnter;
     }
 
-    public void setArBrandEnter(String value) {
-        this.arBrandEnter = value;
+    public void setCarBrandEnter(String value) {
+        this.carBrandEnter = value;
     }
 
-    public String getArModelEnter() {
-        return arModelEnter;
+    public String getCarModelEnter() {
+        return carModelEnter;
     }
 
-    public void setArModelEnter(String value) {
-        this.arModelEnter = value;
+    public void setCarModelEnter(String value) {
+        this.carModelEnter = value;
     }
 }

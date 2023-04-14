@@ -1,10 +1,13 @@
 package com.dumpBot.buttonMaker;
 
 import com.dumpBot.common.Util;
+import com.dumpBot.config.Config;
 import com.dumpBot.model.Action;
 import com.dumpBot.model.Callback;
 import com.dumpBot.model.CallbackSubsection;
 import com.dumpBot.resources.Resources;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -13,13 +16,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class ButtonMaker {
     Resources resources;
+
+    @Autowired
     IStorage storage;
 
 
     public ButtonMaker() {
-        this.resources = Resources.init();
+      this.resources = Resources.init();
     }
 
     public InlineKeyboardMarkup createRegistrationButton(String userId) {

@@ -13,14 +13,17 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class MessageProcessor implements IMessageProcessor {
     Config config;
 
+    public MessageProcessor() {
+        this.config = Config.init();
+    }
+
     @Override
     public SendMessage startMessageProcessor(Update update) {
         //TODO проверяем пользователя, если не зарегистрирован - предлагаем регистрацию.
-        config = Config.init();
         ProcessFactory processFactory = new ProcessFactory();
-        Command command = Util.findEnumConstant(Command.class, update.getMessage().getText());
+        Command command = Util.findEnumConstant(Command.class, update.getMessage().getText().toUpperCase().replace("/", ""));
         Process process = processFactory.getProcess(command);
-        return process.execute();
+        return process.execute(update);
     }
 
     @Override

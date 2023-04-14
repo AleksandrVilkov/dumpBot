@@ -2,9 +2,9 @@ package com.dumpBot.resources;
 
 public class Registration {
     private String choiceConcern;
-    private String arBrandEnter;
-    private String arModelEnter;
-    private String arEngineEnter;
+    private String carBrandEnter;
+    private String carModelEnter;
+    private String carEngineEnter;
     private String carBoltPatternEnter;
     private String regionEnter;
     private String successReservation;
@@ -17,28 +17,28 @@ public class Registration {
         this.choiceConcern = value;
     }
 
-    public String getArBrandEnter() {
-        return arBrandEnter;
+    public String getCarBrandEnter() {
+        return carBrandEnter;
     }
 
-    public void setArBrandEnter(String value) {
-        this.arBrandEnter = value;
+    public void setCarBrandEnter(String value) {
+        this.carBrandEnter = value;
     }
 
-    public String getArModelEnter() {
-        return arModelEnter;
+    public String getCarModelEnter() {
+        return carModelEnter;
     }
 
-    public void setArModelEnter(String value) {
-        this.arModelEnter = value;
+    public void setCarModelEnter(String value) {
+        this.carModelEnter = value;
     }
 
-    public String getArEngineEnter() {
-        return arEngineEnter;
+    public String getCarEngineEnter() {
+        return carEngineEnter;
     }
 
-    public void setArEngineEnter(String value) {
-        this.arEngineEnter = value;
+    public void setCarEngineEnter(String value) {
+        this.carEngineEnter = value;
     }
 
     public String getCarBoltPatternEnter() {

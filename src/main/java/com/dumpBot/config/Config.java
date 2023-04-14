@@ -4,15 +4,22 @@ import com.dumpBot.config.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.SneakyThrows;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
 
-public class Config {
+@Component
+public class Config  {
     private BotConfig bot;
     private CommandsConfig commands;
     private InternalCommands internalCommands;
     private ValidateData validateData;
     private StorageConfig storageConfig;
+
+    public Config() {
+    }
 
     public BotConfig getBot() { return bot; }
     public void setBot(BotConfig value) { this.bot = value; }

@@ -4,21 +4,19 @@ import com.dumpBot.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+@Component
 public class Bot extends TelegramLongPollingBot {
-
-
-    //    @Autowired
-//    ICallBackProcessor callBackProcessor;
+    @Autowired
+    ICallBackProcessor callBackProcessor;
     @Autowired
     IMessageProcessor messageProcessor;
     Config config;
 
-    public Bot(Config config) {
-        this.config = config;
+    public Bot() {
+       this.config = Config.init();
     }
 
     @Override
@@ -33,7 +31,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        if (!Validator.validateUser(update,this,config)) {
+        if (!Validator.validateUser(update, this, config)) {
             try {
                 execute(messageProcessor.createErrAuthMsg());
             } catch (TelegramApiException e) {
@@ -42,19 +40,18 @@ public class Bot extends TelegramLongPollingBot {
             return;
         }
 
-        System.out.println();
-//        try {
-//            if (update.hasMessage() && update.getMessage().hasText()) {
-//                execute(messageProcessor.startMessageProcessor());
-//                return;
-//            }
-//            if (update.hasCallbackQuery()) {
-//                execute(callBackProcessor.startCallbackProcessor());
-//            }
-//
-//        } catch (TelegramApiException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            if (update.hasMessage() && update.getMessage().hasText()) {
+                execute(messageProcessor.startMessageProcessor(update));
+                return;
+            }
+            if (update.hasCallbackQuery()) {
+                execute(callBackProcessor.startCallbackProcessor());
+            }
+
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

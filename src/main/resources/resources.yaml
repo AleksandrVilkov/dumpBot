@@ -1,4 +1,4 @@
-buttonstext:
+buttonsText:
   registration: "Регистрация"
   searchRequest: "Найти"
   placeAnAd: "Продать"
@@ -17,9 +17,9 @@ msgs:
   #Регистрация
   registration:
     choiceConcern: "Сначала укажи концерн, к которому относится твой автомобиль:"
-    сarBrandEnter: "Отлично, а теперь скажи, какой у тебя бренд?"
-    сarModelEnter: "Прекрасно, а какая модель?"
-    сarEngineEnter: "Давай определимся с мотором: "
+    carBrandEnter: "Отлично, а теперь скажи, какой у тебя бренд?"
+    carModelEnter: "Прекрасно, а какая модель?"
+    carEngineEnter: "Давай определимся с мотором: "
     carBoltPatternEnter: "Укажи свою разболтовку колес: "
     regionEnter: "И наконец, из какого ты региона?"
     successReservation: "Отлично, данные отправлены для сохранения!"
@@ -27,8 +27,8 @@ msgs:
   #запрос на поиск ЗЧ
   search:
     choiceConcern: "К какому концерну пренадлежит автомобиль, на который требуется деталь?"
-    сarBrandEnter: "Давай уточним:"
-    сarModelEnter: "Прекрасно, а модель?"
+    carBrandEnter: "Давай уточним:"
+    carModelEnter: "Прекрасно, а модель?"
 
 errors:
   errorReservation: "Ошибка сохранения! Попробуй еще раз, или свяжись с владельцем бота, он обязательно поможет"

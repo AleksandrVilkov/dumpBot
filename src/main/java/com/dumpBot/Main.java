@@ -1,18 +1,28 @@
 package com.dumpBot;
 
-import com.dumpBot.bot.BotInitializer;
+import com.dumpBot.bot.Bot;
 import com.dumpBot.config.Config;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@Component
 public class Main {
-	public static void main(String[] args) {
-		Config config = Config.init();
-		new BotInitializer().init(config);
-		SpringApplication.run(Main.class, args);
-	}
-
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
+        Bot bot = (Bot) context.getBean("bot");
+        try {
+            TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+            telegramBotsApi.registerBot(bot);
+        } catch (TelegramApiException e) {
+            //TODO createLogger
+        }
+    }
 
 }

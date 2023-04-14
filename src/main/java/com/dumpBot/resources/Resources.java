@@ -1,18 +1,22 @@
 package com.dumpBot.resources;
-// Welcome3.java
 
 import com.dumpBot.config.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 
+@Component
 public class Resources {
     private ButtonsText buttonsText;
     private Msgs msgs;
     private Errors errors;
     private Success success;
+
+    public Resources() {
+    }
 
     public ButtonsText getButtonsText() {
         return buttonsText;
