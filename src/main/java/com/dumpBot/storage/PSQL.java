@@ -15,7 +15,6 @@ public class PSQL implements IStorage {
     public Callback getTempData(String token) {
         return null;
     }
-
     @Override
     public boolean CheckUser(String id) {
         return false;
