@@ -1,12 +1,16 @@
 package com.dumpBot.bot;
 
 import com.dumpBot.config.Config;
+import com.dumpBot.storage.entity.Car;
+import com.dumpBot.storage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.Optional;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
