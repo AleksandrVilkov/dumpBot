@@ -15,7 +15,6 @@ import java.util.Optional;
 @Component
 public class Bot extends TelegramLongPollingBot {
 
-
     @Autowired
     ICallBackProcessor callBackProcessor;
     @Autowired

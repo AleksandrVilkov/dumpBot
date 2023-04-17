@@ -6,9 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CarData {
-    String Concern;
-    String Brand;
-    String Model;
-    String EngineName;
-    String BoltPatternSize;
+    String concern;
+    String brand;
+    String model;
+    String engineName;
+    String boltPatternSize;
 }

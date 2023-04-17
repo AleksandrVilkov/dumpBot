@@ -3,18 +3,15 @@ package com.dumpBot.processor.callBackProceccor.process.register;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.model.callback.CarData;
+import com.dumpBot.model.callback.UserData;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,45 +54,56 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
     }
 
     private SendMessage choiceModel(Update update, ResourcesHelper resourcesHelper, Callback callback) {
-        List<Model> models = resourcesHelper.getStorage().getModels();
+        List<Model> models = resourcesHelper.getStorage().getModels(callback.getCarData().getBrand());
         Map<String, String> data = new HashMap<>();
 
         for (Model model : models) {
             callback.setSubsection(CallbackSubsection.CHOOSE_MODEL);
-            data.put(model.getName(), callback.toString());
+            callback.getCarData().setModel(model.getName());
+            String token = resourcesHelper.saveTempWithToken(callback);
+            data.put(model.getName(), resourcesHelper.getButtonData(token));
+            resourcesHelper.getStorage().saveTempData(token,callback);
         }
 
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarModelEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
 
     private SendMessage choiceEngine(Update update, ResourcesHelper resourcesHelper, Callback callback) {
-        List<Engine> engines = resourcesHelper.getStorage().getEngines();
+        List<Engine> engines = resourcesHelper.getStorage().getEngines(callback.getCarData().getBrand(),
+                callback.getCarData().getModel());
         Map<String, String> data = new HashMap<>();
 
         for (Engine engine : engines) {
             callback.setSubsection(CallbackSubsection.CHOOSE_ENGINE);
-            data.put(engine.getName(), callback.toString());
+            callback.getCarData().setEngineName(engine.getName());
+            String token = resourcesHelper.saveTempWithToken(callback);
+            data.put(engine.getName(), resourcesHelper.getButtonData(token));
+            resourcesHelper.getStorage().saveTempData(token,callback);
         }
 
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarEngineEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
 
     private SendMessage choiceBoltPattern(Update update, ResourcesHelper resourcesHelper, Callback callback) {
-        List<BoltPattern> boltPatterns = resourcesHelper.getStorage().getBoltPattern();
+        List<BoltPattern> boltPatterns = resourcesHelper.getStorage().getBoltPattern(callback.getCarData().getBrand(),
+                callback.getCarData().getModel());
         Map<String, String> data = new HashMap<>();
 
         for (BoltPattern boltPattern : boltPatterns) {
             callback.setSubsection(CallbackSubsection.CHOOSE_BOLT_PATTERN);
-            data.put(boltPattern.getName(), callback.toString());
+            callback.getCarData().setEngineName(boltPattern.getName());
+            String token = resourcesHelper.saveTempWithToken(callback);
+            data.put(boltPattern.getName(), resourcesHelper.getButtonData(token));
+            resourcesHelper.getStorage().saveTempData(token,callback);
         }
 
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarBoltPatternEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
@@ -107,10 +115,16 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
 
         for (City city : cities) {
             callback.setSubsection(CallbackSubsection.CHOOSE_CITY);
-            data.put(city.getName(), callback.toString());
+            if (callback.getUserData() == null) {
+                callback.setUserData(new UserData());
+            }
+            callback.getUserData().setRegionName(city.getName());
+            String token = resourcesHelper.saveTempWithToken(callback);
+            data.put(city.getName(), resourcesHelper.getButtonData(token));
+            resourcesHelper.getStorage().saveTempData(token,callback);
         }
 
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getRegionEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
@@ -122,26 +136,26 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
     }
 
     private SendMessage choiceBrand(Update update, ResourcesHelper resourcesHelper, Callback callback) {
-        List<Brand> brands = resourcesHelper.getStorage().getBrands();
+        List<Brand> brands = resourcesHelper.getStorage().getBrands(callback.getCarData().getConcern());
         Map<String, String> data = new HashMap<>();
 
         for (Brand brand : brands) {
             callback.setSubsection(CallbackSubsection.CHOOSE_BRAND);
-            data.put(brand.getName(), callback.toString());
+            callback.getCarData().setBrand(brand.getName());
+            String token = resourcesHelper.saveTempWithToken(callback);
+            data.put(brand.getName(), resourcesHelper.getButtonData(token));
+            resourcesHelper.getStorage().saveTempData(token,callback);
         }
 
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarBrandEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
 
     private SendMessage choiceConcern(Update update, ResourcesHelper resourcesHelper, Callback callback) {
-        List<Concern> concerns = new ArrayList<>();//resourcesHelper.getStorage().getConcerns();
+        List<Concern> concerns = resourcesHelper.getStorage().getConcerns();
         Map<String, String> data = new HashMap<>();
-        Concern c1 = new Concern();
-        c1.setName("PSA");
-        concerns.add(c1);
         for (Concern concern : concerns) {
             callback.setSubsection(CallbackSubsection.CHOOSE_CONCERN);
             CarData carData = new CarData();
@@ -149,6 +163,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             callback.setCarData(carData);
             String token = resourcesHelper.saveTempWithToken(callback);
             data.put(concern.getName(), resourcesHelper.getButtonData(token));
+            resourcesHelper.getStorage().saveTempData(token,callback);
         }
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getChoiceConcern());

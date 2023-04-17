@@ -11,14 +11,16 @@ public interface IStorage {
 
     List<City> getCities();
 
-    List<Brand> getBrands();
+    List<Brand> getBrands(String concern);
 
-    List<Model> getModels();
 
-    List<Engine> getEngines();
+    List<Model> getModels(String brand);
 
-    List<BoltPattern> getBoltPattern();
 
+    List<Engine> getEngines(String brand, String model);
+
+
+    List<BoltPattern> getBoltPattern(String brand, String model);
 
     boolean saveTempData(String token, Callback callback);
 

@@ -35,10 +35,3 @@ public class Callback {
     }
 }
 
-@Getter
-@Setter
-class UserData {
-    String regionName;
-    int regionId;
-}
-
