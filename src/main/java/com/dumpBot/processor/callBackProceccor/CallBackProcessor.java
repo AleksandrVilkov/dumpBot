@@ -5,12 +5,14 @@ import com.dumpBot.model.Callback;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcessFactory;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
+@NoArgsConstructor
 public class CallBackProcessor implements ICallBackProcessor {
     @Autowired
     ResourcesHelper resourcesHelper;

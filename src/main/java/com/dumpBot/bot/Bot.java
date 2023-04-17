@@ -47,7 +47,6 @@ public class Bot extends TelegramLongPollingBot {
             return;
         }
 
-        System.out.println();
         try {
             if (update.hasMessage() && update.getMessage().hasText()) {
                 execute(messageProcessor.startMessageProcessor(update));

@@ -2,10 +2,12 @@ package com.dumpBot.storage.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "REGION")
+@NoArgsConstructor
 @Getter
 @Setter
 public class Region {

@@ -3,12 +3,14 @@ package com.dumpBot.storage.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "TEMPDATA")
+@NoArgsConstructor
 @Getter
 @Setter
 public class TempData {
