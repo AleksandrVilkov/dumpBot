@@ -46,9 +46,9 @@ public class PSQL implements IStorage {
 
     @Override
     public List<City> getCities() {
-        List<com.dumpBot.storage.entity.Region> result = regionRepository.findAll();
+        List<Region> result = regionRepository.findAll();
         List<City> cities = new ArrayList<>();
-        for (com.dumpBot.storage.entity.Region c : result) {
+        for (Region c : result) {
             City city = new City();
             city.setRegionId(c.getId());
             city.setName(c.getName());
@@ -146,7 +146,7 @@ public class PSQL implements IStorage {
 
     @Override
     public boolean checkUser(String id) {
-        return false;
+        return true;
     }
 
     @Override
@@ -172,12 +172,10 @@ public class PSQL implements IStorage {
         Region region = new Region();
         region.setId(user.getRegion().getRegionId());
         region.setName(user.getRegion().getName());
-        client.setRegion(region);
-
+       // client.setRegion(region);
         com.dumpBot.storage.entity.Car car = new com.dumpBot.storage.entity.Car();
-
         client.setLogin(user.getLogin());
-        client.setCar(car);
+       // client.setCar(car);
         return client;
     }
 }

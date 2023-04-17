@@ -48,10 +48,10 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
                 return finishRegistration(update, resourcesHelper, callback);
             }
             default -> {
-
+                //TODO отдавать ошибку
+                return null;
             }
         }
-        return null;
     }
 
     private SendMessage choiceModel(Update update, ResourcesHelper resourcesHelper, Callback callback) {
