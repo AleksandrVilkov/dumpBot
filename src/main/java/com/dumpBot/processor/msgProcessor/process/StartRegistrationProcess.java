@@ -2,7 +2,7 @@ package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.common.Util;
 import com.dumpBot.model.Action;
-import com.dumpBot.model.Callback;
+import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.ResourcesHelper;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

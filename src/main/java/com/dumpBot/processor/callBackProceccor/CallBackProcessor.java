@@ -1,8 +1,7 @@
 package com.dumpBot.processor.callBackProceccor;
 
 import com.dumpBot.bot.ICallBackProcessor;
-import com.dumpBot.common.Util;
-import com.dumpBot.model.Callback;
+import com.dumpBot.model.callback.Callback;
 import com.dumpBot.model.Token;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;

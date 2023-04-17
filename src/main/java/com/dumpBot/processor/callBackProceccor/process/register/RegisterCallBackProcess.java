@@ -1,16 +1,29 @@
 package com.dumpBot.processor.callBackProceccor.process.register;
 
 import com.dumpBot.model.*;
+import com.dumpBot.model.callback.Callback;
+import com.dumpBot.model.callback.CarData;
+import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RegisterCallBackProcess implements CallBackProcess {
+
+@Component
+@NoArgsConstructor
+public class RegisterCallBackProcess extends BaseProcess implements CallBackProcess {
+
     @Override
     public SendMessage execute(Update update, ResourcesHelper resourcesHelper, Callback callback) {
 
@@ -53,7 +66,7 @@ public class RegisterCallBackProcess implements CallBackProcess {
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
-                resourcesHelper.getResources().getRegistration().getCarModelEnter());
+                resourcesHelper.getResources().getMsgs().getRegistration().getCarModelEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
@@ -68,7 +81,7 @@ public class RegisterCallBackProcess implements CallBackProcess {
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
-                resourcesHelper.getResources().getRegistration().getCarEngineEnter());
+                resourcesHelper.getResources().getMsgs().getRegistration().getCarEngineEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
@@ -83,7 +96,7 @@ public class RegisterCallBackProcess implements CallBackProcess {
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
-                resourcesHelper.getResources().getRegistration().getCarBoltPatternEnter());
+                resourcesHelper.getResources().getMsgs().getRegistration().getCarBoltPatternEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
@@ -98,7 +111,7 @@ public class RegisterCallBackProcess implements CallBackProcess {
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
-                resourcesHelper.getResources().getRegistration().getRegionEnter());
+                resourcesHelper.getResources().getMsgs().getRegistration().getRegionEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
@@ -118,21 +131,27 @@ public class RegisterCallBackProcess implements CallBackProcess {
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
-                resourcesHelper.getResources().getRegistration().getCarBrandEnter());
+                resourcesHelper.getResources().getMsgs().getRegistration().getCarBrandEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
 
     private SendMessage choiceConcern(Update update, ResourcesHelper resourcesHelper, Callback callback) {
-        List<Concern> concerns = resourcesHelper.getStorage().getConcerns();
+        List<Concern> concerns = new ArrayList<>();//resourcesHelper.getStorage().getConcerns();
         Map<String, String> data = new HashMap<>();
-
+        Concern c1 = new Concern();
+        c1.setName("PSA");
+        concerns.add(c1);
         for (Concern concern : concerns) {
             callback.setSubsection(CallbackSubsection.CHOOSE_CONCERN);
-            data.put(concern.getName(), callback.toString());
+            CarData carData = new CarData();
+            carData.setConcern(concern.getName());
+            callback.setCarData(carData);
+            String token = resourcesHelper.saveTempWithToken(callback);
+            data.put(concern.getName(), resourcesHelper.getButtonData(token));
         }
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
-                resourcesHelper.getResources().getRegistration().getChoiceConcern());
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                resourcesHelper.getResources().getMsgs().getRegistration().getChoiceConcern());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }

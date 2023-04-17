@@ -1,6 +1,7 @@
 package com.dumpBot.storage;
 
 import com.dumpBot.model.*;
+import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.storage.entity.TempData;
 import com.dumpBot.storage.exception.MoreOneResultException;

@@ -1,15 +1,12 @@
 package com.dumpBot.processor;
 
 import com.dumpBot.common.Util;
-import com.dumpBot.model.Action;
-import com.dumpBot.model.Callback;
-import com.dumpBot.model.CallbackSubsection;
-import com.dumpBot.model.Concern;
+import com.dumpBot.model.callback.Callback;
 import com.dumpBot.resources.Resources;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -18,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Component
 @Getter
 @Setter
 public class ResourcesHelper {
@@ -54,5 +51,11 @@ public class ResourcesHelper {
 
     public String getButtonData(String token) {
         return "{\"token\" : \"" + token + "\"}";
+    }
+
+    public String saveTempWithToken(Callback callback) {
+        String token = Util.newMd5FromCalBack(callback);
+        storage.saveTempData(token, callback);
+        return token;
     }
 }

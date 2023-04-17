@@ -1,5 +1,6 @@
-package com.dumpBot.model;
+package com.dumpBot.model.callback;
 
+import com.dumpBot.model.CallbackSubsection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -11,7 +12,7 @@ import lombok.Setter;
 public class Callback {
     String userId;
     CallbackSubsection subsection;
-    Action Action;
+    com.dumpBot.model.Action Action;
     UserData userData;
     CarData carData;
 
@@ -39,15 +40,5 @@ public class Callback {
 class UserData {
     String regionName;
     int regionId;
-}
-
-@Getter
-@Setter
-class CarData {
-    String Concern;
-    String Brand;
-    String Model;
-    String EngineName;
-    String BoltPatternSize;
 }
 

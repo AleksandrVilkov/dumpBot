@@ -14,7 +14,6 @@ import java.io.File;
 @NoArgsConstructor
 public class Resources {
     private ButtonsText buttonsText;
-    private Registration registration;
     private Msgs msgs;
     private Errors errors;
     private Success success;

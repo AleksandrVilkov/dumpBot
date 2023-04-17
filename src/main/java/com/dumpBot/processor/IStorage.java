@@ -1,6 +1,7 @@
 package com.dumpBot.processor;
 
 import com.dumpBot.model.*;
+import com.dumpBot.model.callback.Callback;
 
 import java.util.List;
 

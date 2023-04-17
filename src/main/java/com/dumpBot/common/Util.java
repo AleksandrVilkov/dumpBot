@@ -1,6 +1,6 @@
 package com.dumpBot.common;
 
-import com.dumpBot.model.Callback;
+import com.dumpBot.model.callback.Callback;
 import org.apache.commons.codec.digest.Md5Crypt;
 
 public class Util {
