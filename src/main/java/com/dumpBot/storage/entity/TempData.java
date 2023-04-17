@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "TEMPDATA")
+@Table(name = "tempdata")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -20,9 +20,8 @@ public class TempData {
     private Integer id;
     @Column(name = "token")
     private String token;
-    @Column(name = "createdDate")
+    @Column(name = "createddate")
     private Date createdDate;
     @Column(name = "callback")
     private String callback;
-
 }

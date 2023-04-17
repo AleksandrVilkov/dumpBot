@@ -1,54 +1,23 @@
 package com.dumpBot.resources;
 
-import com.dumpBot.config.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 
 @Component
+@Getter
+@NoArgsConstructor
 public class Resources {
     private ButtonsText buttonsText;
+    private Registration registration;
     private Msgs msgs;
     private Errors errors;
     private Success success;
-
-    public Resources() {
-    }
-
-    public ButtonsText getButtonsText() {
-        return buttonsText;
-    }
-
-    public void setButtonsText(ButtonsText value) {
-        this.buttonsText = value;
-    }
-
-    public Msgs getMsgs() {
-        return msgs;
-    }
-
-    public void setMsgs(Msgs value) {
-        this.msgs = value;
-    }
-
-    public Errors getErrors() {
-        return errors;
-    }
-
-    public void setErrors(Errors value) {
-        this.errors = value;
-    }
-
-    public Success getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Success value) {
-        this.success = value;
-    }
 
     @SneakyThrows
     public static Resources init() {
