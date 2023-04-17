@@ -26,7 +26,7 @@ public interface IStorage {
 
     Callback getTempData(String token);
 
-    boolean CheckUser(String id);
+    boolean checkUser(String id);
 
-    boolean SaveUser(User user);
+    boolean saveUser(User user);
 }

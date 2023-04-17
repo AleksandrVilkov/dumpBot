@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
                 return choiceCity(update, resourcesHelper, callback);
             }
             case CHOOSE_CITY -> {
-                return finishRegistration(update, resourcesHelper, update);
+                return finishRegistration(update, resourcesHelper, callback);
             }
             default -> {
 
@@ -62,7 +63,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             callback.getCarData().setModel(model.getName());
             String token = resourcesHelper.saveTempWithToken(callback);
             data.put(model.getName(), resourcesHelper.getButtonData(token));
-            resourcesHelper.getStorage().saveTempData(token,callback);
+            resourcesHelper.getStorage().saveTempData(token, callback);
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
@@ -81,7 +82,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             callback.getCarData().setEngineName(engine.getName());
             String token = resourcesHelper.saveTempWithToken(callback);
             data.put(engine.getName(), resourcesHelper.getButtonData(token));
-            resourcesHelper.getStorage().saveTempData(token,callback);
+            resourcesHelper.getStorage().saveTempData(token, callback);
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
@@ -97,10 +98,10 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
 
         for (BoltPattern boltPattern : boltPatterns) {
             callback.setSubsection(CallbackSubsection.CHOOSE_BOLT_PATTERN);
-            callback.getCarData().setEngineName(boltPattern.getName());
+            callback.getCarData().setBoltPatternSize(boltPattern.getName());
             String token = resourcesHelper.saveTempWithToken(callback);
             data.put(boltPattern.getName(), resourcesHelper.getButtonData(token));
-            resourcesHelper.getStorage().saveTempData(token,callback);
+            resourcesHelper.getStorage().saveTempData(token, callback);
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
@@ -118,10 +119,11 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             if (callback.getUserData() == null) {
                 callback.setUserData(new UserData());
             }
+            callback.getUserData().setRegionId(city.getRegionId());
             callback.getUserData().setRegionName(city.getName());
             String token = resourcesHelper.saveTempWithToken(callback);
             data.put(city.getName(), resourcesHelper.getButtonData(token));
-            resourcesHelper.getStorage().saveTempData(token,callback);
+            resourcesHelper.getStorage().saveTempData(token, callback);
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
@@ -130,7 +132,14 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
         return sendMessage;
     }
 
-    private SendMessage finishRegistration(Update update, ResourcesHelper resourcesHelper, Update update1) {
+    private SendMessage finishRegistration(Update update, ResourcesHelper resourcesHelper, Callback callback) {
+        City region = new City(callback.getUserData().getRegionId(), callback.getUserData().getRegionName());
+        User user = new User(LocalDate.now(),
+                Role.USER_ROLE,
+                String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                region,
+                convertCarData(callback.getCarData()));
+        resourcesHelper.getStorage().saveUser(user);
 //TODO  сохраняем в базу
         return null;
     }
@@ -144,7 +153,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             callback.getCarData().setBrand(brand.getName());
             String token = resourcesHelper.saveTempWithToken(callback);
             data.put(brand.getName(), resourcesHelper.getButtonData(token));
-            resourcesHelper.getStorage().saveTempData(token,callback);
+            resourcesHelper.getStorage().saveTempData(token, callback);
         }
 
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
@@ -163,7 +172,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             callback.setCarData(carData);
             String token = resourcesHelper.saveTempWithToken(callback);
             data.put(concern.getName(), resourcesHelper.getButtonData(token));
-            resourcesHelper.getStorage().saveTempData(token,callback);
+            resourcesHelper.getStorage().saveTempData(token, callback);
         }
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getChoiceConcern());
@@ -172,4 +181,13 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
     }
 
 
+    private Car convertCarData(CarData carData) {
+        Car car = new Car();
+        car.setBrand(new Brand(carData.getBrand()));
+        car.setModel(new Model(carData.getModel()));
+        car.setEngine(new Engine(carData.getEngineName()));
+        car.setBoltPattern(new BoltPattern(carData.getBoltPatternSize()));
+        car.setConcern(new Concern(carData.getConcern()));
+        return car;
+    }
 }

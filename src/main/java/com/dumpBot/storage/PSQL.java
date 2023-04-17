@@ -3,9 +3,12 @@ package com.dumpBot.storage;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
+import com.dumpBot.storage.entity.Client;
+import com.dumpBot.storage.entity.Region;
 import com.dumpBot.storage.entity.TempData;
 import com.dumpBot.storage.repository.CarRepository;
-import com.dumpBot.storage.repository.CityRepository;
+import com.dumpBot.storage.repository.ClientRepository;
+import com.dumpBot.storage.repository.RegionRepository;
 import com.dumpBot.storage.repository.TempDataRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,9 +25,10 @@ public class PSQL implements IStorage {
     TempDataRepository tempDataRepository;
     @Autowired
     CarRepository carRepository;
-
     @Autowired
-    CityRepository cityRepository;
+    ClientRepository clientRepository;
+    @Autowired
+    RegionRepository regionRepository;
 
     @Override
     public List<Concern> getConcerns() {
@@ -42,10 +46,11 @@ public class PSQL implements IStorage {
 
     @Override
     public List<City> getCities() {
-        List<com.dumpBot.storage.entity.City> result = cityRepository.findAll();
+        List<com.dumpBot.storage.entity.Region> result = regionRepository.findAll();
         List<City> cities = new ArrayList<>();
-        for (com.dumpBot.storage.entity.City c : result) {
+        for (com.dumpBot.storage.entity.Region c : result) {
             City city = new City();
+            city.setRegionId(c.getId());
             city.setName(c.getName());
             cities.add(city);
         }
@@ -140,12 +145,39 @@ public class PSQL implements IStorage {
     }
 
     @Override
-    public boolean CheckUser(String id) {
+    public boolean checkUser(String id) {
         return false;
     }
 
     @Override
-    public boolean SaveUser(User user) {
+    public boolean saveUser(User user) {
+        Car car = user.getCar();
+        List<Object[]> o = carRepository.getCar(car.getBrand().getName(), car.getModel().getName(), car.getEngine().getName(), car.getBoltPattern().getName());
+        if (o.size() == 1) {
+            Integer index = (Integer) o.get(0)[0];
+            Client client = convertUserToClient(user, index);
+            clientRepository.save(client);
+        } else {
+            throw new RuntimeException("Result size not equals 1!");
+        }
+
         return false;
+    }
+
+    private Client convertUserToClient(User user, Integer carId) {
+        Client client = new Client();
+        client.setCreatedDate(new Date());
+        client.setRole(user.getRole().name());
+
+        Region region = new Region();
+        region.setId(user.getRegion().getRegionId());
+        region.setName(user.getRegion().getName());
+        client.setRegion(region);
+
+        com.dumpBot.storage.entity.Car car = new com.dumpBot.storage.entity.Car();
+
+        client.setLogin(user.getLogin());
+        client.setCar(car);
+        return client;
     }
 }

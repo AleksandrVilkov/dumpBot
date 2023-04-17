@@ -29,7 +29,7 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
 
         MsgProcess process;
-        if (!resourcesHelper.getStorage().CheckUser(userId)) {
+        if (!resourcesHelper.getStorage().checkUser(userId)) {
             Command command = Util.findEnumConstant(Command.class, update.getMessage().getText().toUpperCase().replace("/", ""));
             process = MsgProcessFactory.getProcess(command);
         } else {
