@@ -1,5 +1,6 @@
 package com.dumpBot.storage;
 
+import com.dumpBot.common.Util;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
@@ -15,9 +16,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PSQL implements IStorage {
@@ -146,36 +149,75 @@ public class PSQL implements IStorage {
 
     @Override
     public boolean checkUser(String id) {
-        return true;
+        List<Client> c = clientRepository.findByLogin(id);
+        return c.size() != 0;
     }
+
+    public User getUser(String id) {
+        List<Client> c = clientRepository.findByLogin(id);
+        Client client = c.get(0);
+        Region region = regionRepository.findById(client.getRegionId()).get();
+
+        com.dumpBot.storage.entity.Car car = carRepository.findById(client.getCarid()).get();
+
+        return new User(
+                client.getId(),
+                client.getCreatedDate(),
+                Util.findEnumConstant(Role.class, client.getRole()),
+                client.getLogin(),
+                region.toCity(),
+                car.toCarModel(),
+                client.isWaitingMessages(),
+                client.getClientAction(),
+                client.getLastCallback()
+        );
+    }
+
 
     @Override
     public boolean saveUser(User user) {
         Car car = user.getCar();
-        List<Object[]> o = carRepository.getCar(car.getBrand().getName(), car.getModel().getName(), car.getEngine().getName(), car.getBoltPattern().getName());
-        if (o.size() == 1) {
-            Integer index = (Integer) o.get(0)[0];
-            Client client = convertUserToClient(user, index);
-            clientRepository.save(client);
+        int carId;
+
+        if (car.getId() == 0) {
+            carId = getCarId(car);
         } else {
-            throw new RuntimeException("Result size not equals 1!");
+            carId = car.getId();
         }
 
-        return false;
+        Client client = convertUserToClient(user, carId);
+        try {
+            Object o1 = clientRepository.save(client);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
+    private int getCarId(Car car) {
+        List<Object[]> o = carRepository.getCar(car.getBrand().getName(), car.getModel().getName(), car.getEngine().getName(), car.getBoltPattern().getName());
+        if (o.size() == 1) {
+            return (Integer) o.get(0)[0];
+        }
+        return 0;
     }
 
     private Client convertUserToClient(User user, Integer carId) {
         Client client = new Client();
+        client.setId(user.getId());
         client.setCreatedDate(new Date());
         client.setRole(user.getRole().name());
-
-        Region region = new Region();
-        region.setId(user.getRegion().getRegionId());
-        region.setName(user.getRegion().getName());
-       // client.setRegion(region);
-        com.dumpBot.storage.entity.Car car = new com.dumpBot.storage.entity.Car();
+        client.setRegionId(user.getRegion().getRegionId());
+        if (user.getCar().getId() != 0) {
+            client.setCarid(user.getCar().getId());
+        } else {
+            client.setCarid(carId);
+        }
+        client.setLastCallback(user.getLastCallback());
         client.setLogin(user.getLogin());
-       // client.setCar(car);
+        client.setClientAction(user.getClientAction());
+        client.setWaitingMessages(user.isWaitingMessages());
         return client;
     }
 }

@@ -14,6 +14,6 @@ public class Registration {
     private String carEngineEnter;
     private String carBoltPatternEnter;
     private String regionEnter;
-    private String successReservation;
-
+    private String successRegistration;
+    private String errorRegistration;
 }

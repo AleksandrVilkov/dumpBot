@@ -2,6 +2,7 @@ package com.dumpBot.processor;
 
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
+import com.dumpBot.storage.entity.Client;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public interface IStorage {
     Callback getTempData(String token);
 
     boolean checkUser(String id);
+    User getUser(String id);
 
     boolean saveUser(User user);
 }

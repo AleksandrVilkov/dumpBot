@@ -38,14 +38,24 @@ public class SearchCallBackProcess implements CallBackProcess {
             case CHOOSE_BOLT_PATTERN -> {
                 return choiceCity(update, resourcesHelper, callback);
             }
-//            case CHOOSE_CITY -> {
-//                return finishRegistration(update, resourcesHelper, callback);
-//            }
+            case UNEVERSAL -> {
+                return enterDescription(update, resourcesHelper, callback);
+            }
             default -> {
                 //TODO отдавать ошибку
                 return null;
             }
         }
+    }
+
+    private SendMessage enterDescription(Update update, ResourcesHelper resourcesHelper, Callback callback) {
+        User usr = resourcesHelper.getStorage().getUser(String.valueOf(update.getCallbackQuery().getFrom().getId()));
+        usr.setWaitingMessages(true);
+        usr.setClientAction(Action.SEARCH_REQUEST_ACTION.toString());
+        usr.setLastCallback(callback.toString());
+        resourcesHelper.getStorage().saveUser(usr);
+        return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                resourcesHelper.getResources().getMsgs().getSearch().getEnterDescription());
     }
 
     private SendMessage choiceModel(Update update, ResourcesHelper resourcesHelper, Callback callback) {
@@ -59,7 +69,7 @@ public class SearchCallBackProcess implements CallBackProcess {
             data.put(model.getName(), resourcesHelper.getButtonData(token));
             resourcesHelper.getStorage().saveTempData(token, callback);
         }
-
+        insertUniversalDataButton(data, callback, resourcesHelper);
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarModelEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
@@ -78,7 +88,7 @@ public class SearchCallBackProcess implements CallBackProcess {
             data.put(engine.getName(), resourcesHelper.getButtonData(token));
             resourcesHelper.getStorage().saveTempData(token, callback);
         }
-
+        insertUniversalDataButton(data, callback, resourcesHelper);
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarEngineEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
@@ -97,7 +107,7 @@ public class SearchCallBackProcess implements CallBackProcess {
             data.put(boltPattern.getName(), resourcesHelper.getButtonData(token));
             resourcesHelper.getStorage().saveTempData(token, callback);
         }
-
+        insertUniversalDataButton(data, callback, resourcesHelper);
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarBoltPatternEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
@@ -119,7 +129,7 @@ public class SearchCallBackProcess implements CallBackProcess {
             data.put(city.getName(), resourcesHelper.getButtonData(token));
             resourcesHelper.getStorage().saveTempData(token, callback);
         }
-
+        insertUniversalDataButton(data, callback, resourcesHelper);
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getRegionEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
@@ -138,10 +148,9 @@ public class SearchCallBackProcess implements CallBackProcess {
             resourcesHelper.getStorage().saveTempData(token, callback);
         }
 
-
-
+        insertUniversalDataButton(data, callback, resourcesHelper);
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
-                resourcesHelper.getResources().getMsgs().getRegistration().getCarBrandEnter());
+                resourcesHelper.getResources().getMsgs().getSearch().getCarBrandEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
@@ -158,12 +167,19 @@ public class SearchCallBackProcess implements CallBackProcess {
             data.put(concern.getName(), resourcesHelper.getButtonData(token));
             resourcesHelper.getStorage().saveTempData(token, callback);
         }
-        data.put("Не важно", "{}");
+        insertUniversalDataButton(data, callback, resourcesHelper);
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getChoiceConcern());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
 
+    private void insertUniversalDataButton(Map<String, String> data, Callback callback, ResourcesHelper resourcesHelper) {
+        Callback newCb = callback.clone();
+        newCb.setSubsection(CallbackSubsection.UNEVERSAL);
+        String token = resourcesHelper.saveTempWithToken(newCb);
+        data.put(resourcesHelper.getResources().getButtonsText().getUniversal(), resourcesHelper.getButtonData(token));
+        resourcesHelper.getStorage().saveTempData(token, newCb);
+    }
 
 }

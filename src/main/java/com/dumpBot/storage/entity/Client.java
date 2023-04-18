@@ -28,4 +28,10 @@ public class Client {
     private int regionId;
     @Column(name = "carid")
     private int carid;
+    @Column(name = "waiting_messages")
+    private boolean waitingMessages;
+    @Column(name = "clientAction")
+    private String clientAction;
+    @Column(name = "lastCallback")
+    private String lastCallback;
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Callback {
+public class Callback implements Cloneable {
     String userId;
     CallbackSubsection subsection;
     com.dumpBot.model.Action Action;
@@ -31,6 +31,15 @@ public class Callback {
             return ow.writeValueAsString(this);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Callback clone() {
+        try {
+            return (Callback) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
         }
     }
 }

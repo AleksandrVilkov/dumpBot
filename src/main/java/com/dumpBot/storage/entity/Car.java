@@ -1,5 +1,6 @@
 package com.dumpBot.storage.entity;
 
+import com.dumpBot.model.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,4 +42,15 @@ public class Car {
 
     @Column(name = "class")
     private String autoClass;
+
+    public com.dumpBot.model.Car toCarModel() {
+        com.dumpBot.model.Car result = new com.dumpBot.model.Car();
+        result.setId(id);
+        result.setConcern(new Concern(concern));
+        result.setModel(new Model(model));
+        result.setEngine(new Engine(engine));
+        result.setBrand(new Brand(brand));
+        result.setBoltPattern(new BoltPattern(boltPattern));
+        return result;
+    }
 }

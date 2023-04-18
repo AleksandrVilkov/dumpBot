@@ -13,6 +13,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,14 +135,22 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
 
     private SendMessage finishRegistration(Update update, ResourcesHelper resourcesHelper, Callback callback) {
         City region = new City(callback.getUserData().getRegionId(), callback.getUserData().getRegionName());
-        User user = new User(LocalDate.now(),
+        User user = new User(new Date(),
                 Role.USER_ROLE,
                 String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 region,
                 convertCarData(callback.getCarData()));
-        resourcesHelper.getStorage().saveUser(user);
-//TODO  сохраняем в базу
-        return null;
+        user.setWaitingMessages(false);
+        boolean result = resourcesHelper.getStorage().saveUser(user);
+        if (result) {
+            return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                    resourcesHelper.getResources().getMsgs().getRegistration().getSuccessRegistration()
+            );
+        } else {
+            return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                    resourcesHelper.getResources().getMsgs().getRegistration().getErrorRegistration()
+            );
+        }
     }
 
     private SendMessage choiceBrand(Update update, ResourcesHelper resourcesHelper, Callback callback) {
