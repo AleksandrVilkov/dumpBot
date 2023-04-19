@@ -1,16 +1,12 @@
 package com.dumpBot.bot;
 
 import com.dumpBot.config.Config;
-import com.dumpBot.storage.entity.Car;
-import com.dumpBot.storage.repository.CarRepository;
+import com.dumpBot.loger.ILogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import java.util.Optional;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
@@ -19,6 +15,8 @@ public class Bot extends TelegramLongPollingBot {
     ICallBackProcessor callBackProcessor;
     @Autowired
     IMessageProcessor messageProcessor;
+    @Autowired
+    ILogger logger;
     Config config;
 
     public Bot() {
@@ -37,10 +35,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        logger.writeInfo("new update received");
         if (!Validator.validateUser(update, this, config)) {
             try {
                 execute(messageProcessor.createErrAuthMsg());
             } catch (TelegramApiException e) {
+                logger.writeError(e.getMessage());
                 throw new RuntimeException(e);
             }
             return;
@@ -48,14 +48,17 @@ public class Bot extends TelegramLongPollingBot {
 
         try {
             if (update.hasMessage() && update.getMessage().hasText()) {
+                logger.writeInfo("new update is message");
                 execute(messageProcessor.startMessageProcessor(update));
                 return;
             }
             if (update.hasCallbackQuery()) {
+                logger.writeInfo("new update is callback");
                 execute(callBackProcessor.startCallbackProcessor(update));
             }
 
         } catch (TelegramApiException e) {
+            logger.writeError(e.getMessage());
             throw new RuntimeException(e);
         }
     }

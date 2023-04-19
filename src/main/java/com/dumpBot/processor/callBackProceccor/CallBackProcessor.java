@@ -1,8 +1,10 @@
 package com.dumpBot.processor.callBackProceccor;
 
 import com.dumpBot.bot.ICallBackProcessor;
-import com.dumpBot.model.callback.Callback;
+import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.Token;
+import com.dumpBot.model.callback.Callback;
+import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcessFactory;
@@ -20,25 +22,36 @@ public class CallBackProcessor implements ICallBackProcessor {
     @Autowired
     ResourcesHelper resourcesHelper;
 
+    @Autowired
+    IStorage storage;
+    @Autowired
+    ILogger logger;
+
     @Override
     public SendMessage startCallbackProcessor(Update update) {
         Callback callback = getCallBackByUpdate(update);
         CallBackProcess process = CallBackProcessFactory.getProcess(callback.getAction());
-        return process.execute(update,resourcesHelper, callback);
+        return process.execute(update, callback);
     }
 
     private Callback getCallBackByUpdate(Update update) {
         String callBack = update.getCallbackQuery().getData();
+        logger.writeInfo("Received the following callback from user update "
+                + update.getCallbackQuery().getFrom().getId() + ": " + callBack);
+
         String token = parseToken(callBack);
-        return resourcesHelper.getStorage().getTempData(token);
+        Callback callback = storage.getTempData(token);
+        logger.writeInfo("Found callback from temp :" + callback.toString());
+        return callback;
     }
 
 
     private String parseToken(String callBack) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-           return objectMapper.readValue(callBack, Token.class).getToken();
+            return objectMapper.readValue(callBack, Token.class).getToken();
         } catch (JsonProcessingException e) {
+            logger.writeError(e.getMessage());
             throw new RuntimeException(e);
         }
 

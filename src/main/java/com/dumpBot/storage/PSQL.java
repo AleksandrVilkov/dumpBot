@@ -1,6 +1,7 @@
 package com.dumpBot.storage;
 
 import com.dumpBot.common.Util;
+import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
@@ -16,11 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class PSQL implements IStorage {
@@ -32,6 +31,9 @@ public class PSQL implements IStorage {
     ClientRepository clientRepository;
     @Autowired
     RegionRepository regionRepository;
+
+    @Autowired
+    ILogger logger;
 
     @Override
     public List<Concern> getConcerns() {
@@ -127,7 +129,7 @@ public class PSQL implements IStorage {
             TempData result = tempDataRepository.save(tempData);
             return true;
         } catch (Exception e) {
-            //TODO логировать эту историю
+            logger.writeError(e.getMessage());
             return false;
         }
     }
@@ -143,6 +145,7 @@ public class PSQL implements IStorage {
         try {
             return objectMapper.readValue(stringCallBack, Callback.class);
         } catch (JsonProcessingException e) {
+            logger.writeError(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -157,9 +160,7 @@ public class PSQL implements IStorage {
         List<Client> c = clientRepository.findByLogin(id);
         Client client = c.get(0);
         Region region = regionRepository.findById(client.getRegionId()).get();
-
         com.dumpBot.storage.entity.Car car = carRepository.findById(client.getCarid()).get();
-
         return new User(
                 client.getId(),
                 client.getCreatedDate(),
@@ -178,25 +179,27 @@ public class PSQL implements IStorage {
     public boolean saveUser(User user) {
         Car car = user.getCar();
         int carId;
-
         if (car.getId() == 0) {
             carId = getCarId(car);
         } else {
             carId = car.getId();
         }
-
         Client client = convertUserToClient(user, carId);
         try {
             Object o1 = clientRepository.save(client);
             return true;
         } catch (Exception e) {
+            logger.writeError(e.getMessage());
             return false;
         }
     }
 
 
     private int getCarId(Car car) {
-        List<Object[]> o = carRepository.getCar(car.getBrand().getName(), car.getModel().getName(), car.getEngine().getName(), car.getBoltPattern().getName());
+        List<Object[]> o = carRepository.getCar(car.getBrand().getName(),
+                car.getModel().getName(),
+                car.getEngine().getName(),
+                car.getBoltPattern().getName());
         if (o.size() == 1) {
             return (Integer) o.get(0)[0];
         }

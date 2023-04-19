@@ -1,9 +1,12 @@
 package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.common.Util;
+import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.Action;
 import com.dumpBot.model.callback.Callback;
+import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -12,27 +15,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainMenuProcess implements MsgProcess {
+    @Autowired
+    ILogger logger;
+    @Autowired
+    IStorage storage;
+    @Autowired
+    ResourcesHelper resourcesHelper;
+
     @Override
-    public SendMessage execute(Update update, ResourcesHelper resourcesHelper) {
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
-                resourcesHelper.getResources().getMsgs().getWelcomeRegistered());
+    public SendMessage execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
+        logger.writeInfo("start main menu process for user " + userId);
+
+        SendMessage sendMessage = new SendMessage(userId,
+                resourcesHelper.getResources().getMsgs().getWelcomeRegistered());
+
         Map<String, String> data = new HashMap<>();
 
         Callback searchCallback = new Callback(userId, Action.SEARCH_REQUEST_ACTION);
-        String tokenSearchCallback = saveTempWithToken(searchCallback, resourcesHelper);
+        String tokenSearchCallback = saveTempWithToken(searchCallback);
         data.put(resourcesHelper.getResources().getButtonsText().getSearchRequest(),
                 resourcesHelper.getButtonData(tokenSearchCallback));
 
-
         Callback saleCallback = new Callback(userId, Action.SALE_ACTION);
-        String tokenSaleCallback = saveTempWithToken(saleCallback, resourcesHelper);
+        String tokenSaleCallback = saveTempWithToken(saleCallback);
         data.put(resourcesHelper.getResources().getButtonsText().getPlaceAnAd(),
                 resourcesHelper.getButtonData(tokenSaleCallback));
 
         Callback ruleCallback = new Callback(userId, Action.RULES_ACTION);
-        String tokenRuleCallback = saveTempWithToken(ruleCallback, resourcesHelper);
-
+        String tokenRuleCallback = saveTempWithToken(ruleCallback);
 
         data.put(resourcesHelper.getResources().getButtonsText().getRules(),
                 resourcesHelper.getButtonData(tokenRuleCallback));
@@ -42,9 +53,10 @@ public class MainMenuProcess implements MsgProcess {
         sendMessage.setReplyMarkup(buttons);
         return sendMessage;
     }
-    private String saveTempWithToken(Callback callback, ResourcesHelper resourcesHelper) {
+
+    private String saveTempWithToken(Callback callback) {
         String token = Util.newMd5FromCalBack(callback);
-        resourcesHelper.getStorage().saveTempData(token, callback);
+        storage.saveTempData(token, callback);
         return token;
     }
 }
