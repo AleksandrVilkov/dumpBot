@@ -1,11 +1,15 @@
-package com.dumpBot.processor.msgProcessor.process;
+package com.dumpBot.processor.msgProcessor;
 
 import com.dumpBot.common.Util;
+import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.Action;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
+import com.dumpBot.processor.msgProcessor.process.BaseProcess;
+import com.dumpBot.processor.msgProcessor.process.MsgProcess;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,12 +19,12 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class StartRegistrationProcess extends BaseProcess implements MsgProcess {
     @Autowired
     ResourcesHelper resourcesHelper;
-
     @Autowired
     ILogger logger;
-
     @Autowired
     IStorage storage;
+    public StartRegistrationProcess() {
+    }
 
     @Override
     public SendMessage execute(Update update) {

@@ -1,25 +1,51 @@
 package com.dumpBot.processor.callBackProceccor.process;
 
 import com.dumpBot.model.Action;
+import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.callBackProceccor.process.defaultProcess.DefaultCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.sale.SaleCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.search.SearchCallBackProcess;
+import com.dumpBot.processor.msgProcessor.StartRegistrationProcess;
+import com.dumpBot.processor.msgProcessor.process.DefaultProcess;
+import com.dumpBot.processor.msgProcessor.process.MainMenuProcess;
+import com.dumpBot.processor.msgProcessor.process.MsgProcessFactory;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CallBackProcessFactory {
+
+    static CallBackProcess registerCallBackProcess;
+    static CallBackProcess saleCallBackProcess;
+    static CallBackProcess searchCallBackProcess;
+    static CallBackProcess defaultCallBackProcess;
+
+    @Autowired
+    public CallBackProcessFactory(RegisterCallBackProcess rcp,
+                                  SaleCallBackProcess sacp,
+                                  SearchCallBackProcess scp,
+                                  DefaultCallBackProcess dcp) {
+        CallBackProcessFactory.registerCallBackProcess = rcp;
+        CallBackProcessFactory.saleCallBackProcess = sacp;
+        CallBackProcessFactory.searchCallBackProcess = scp;
+        CallBackProcessFactory.defaultCallBackProcess = dcp;
+    }
+
     public static CallBackProcess getProcess(Action action) {
         switch (action) {
             case REGISTRATION_ACTION -> {
-                return new RegisterCallBackProcess();
+                return registerCallBackProcess;
             }
             case SALE_ACTION -> {
-                return new SaleCallBackProcess();
+                return saleCallBackProcess;
             }
             case SEARCH_REQUEST_ACTION -> {
-                return new SearchCallBackProcess();
+                return searchCallBackProcess;
             }
             default -> {
-                return new DefaultCallBackProcess();
+                return defaultCallBackProcess;
             }
         }
     }

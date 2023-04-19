@@ -31,7 +31,7 @@ public class Car {
     @Column(name = "engine")
     private String engine;
 
-    @Column(name = "boltPattern")
+    @Column(name = "bolt_pattern")
     private String boltPattern;
 
     @Column(name = "yearFrom")

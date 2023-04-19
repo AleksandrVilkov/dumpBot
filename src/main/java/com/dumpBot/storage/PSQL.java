@@ -107,16 +107,21 @@ public class PSQL implements IStorage {
 
     @Override
     public List<BoltPattern> getBoltPattern(String brand, String model) {
-        List<Object[]> response = carRepository.getUniqueCarBoltPattern(brand, model);
-        List<BoltPattern> bps = new ArrayList<>();
-        for (Object[] object : response) {
-            for (Object o : object) {
-                BoltPattern bp = new BoltPattern();
-                bp.setName((String) o);
-                bps.add(bp);
+        try {
+            List<Object[]> response = carRepository.getUniqueCarBoltPattern(brand, model);
+            List<BoltPattern> bps = new ArrayList<>();
+            for (Object[] object : response) {
+                for (Object o : object) {
+                    BoltPattern bp = new BoltPattern();
+                    bp.setName((String) o);
+                    bps.add(bp);
+                }
             }
+            return bps;
+        } catch (Exception e) {
+            logger.writeStackTrace(e);
+            throw e;
         }
-        return bps;
     }
 
     @Override
