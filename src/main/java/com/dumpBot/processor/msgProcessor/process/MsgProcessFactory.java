@@ -11,12 +11,15 @@ public class MsgProcessFactory {
     private static MsgProcess startRegistrationProcess;
     private static MsgProcess mainMenuProcess;
     private static MsgProcess defaultProcess;
+    private static MsgProcess searchProcess;
 
     @Autowired
-    public MsgProcessFactory(StartRegistrationProcess srp, MainMenuProcess mmp, DefaultProcess df) {
+    public MsgProcessFactory(StartRegistrationProcess srp, MainMenuProcess mmp, DefaultProcess df,
+                             SearchProcess sp) {
         MsgProcessFactory.startRegistrationProcess = srp;
         MsgProcessFactory.mainMenuProcess = mmp;
         MsgProcessFactory.defaultProcess = df;
+        MsgProcessFactory.searchProcess = sp;
     }
 
     public static MsgProcess getProcess(Command command) {
@@ -36,10 +39,10 @@ public class MsgProcessFactory {
     public static MsgProcess getProcess(Action action) {
         switch (action) {
             case SEARCH_REQUEST_ACTION -> {
-                return new SearchProcess();
+                return searchProcess;
             }
             default -> {
-                return new DefaultProcess();
+                return defaultProcess;
             }
         }
     }
