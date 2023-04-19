@@ -129,15 +129,22 @@ public class PSQL implements IStorage {
             TempData result = tempDataRepository.save(tempData);
             return true;
         } catch (Exception e) {
-            logger.writeError(e.getMessage());
+            logger.writeStackTrace(e);
             return false;
         }
     }
 
     @Override
     public Callback getTempData(String token) {
-        List<TempData> result = tempDataRepository.findByToken(token);
-        if (result.size() != 1) {
+        List<TempData> result = new ArrayList<>();
+        try {
+            result = tempDataRepository.findByToken(token);
+        } catch (Exception e) {
+            logger.writeStackTrace(e);
+        }
+
+        if (result == null || result.size() != 1) {
+            logger.writeError("Result size in getTempData not equals 1!");
             throw new RuntimeException("Result size not equals 1!");
         }
         String stringCallBack = result.get(0).getCallback();
@@ -145,15 +152,20 @@ public class PSQL implements IStorage {
         try {
             return objectMapper.readValue(stringCallBack, Callback.class);
         } catch (JsonProcessingException e) {
-            logger.writeError(e.getMessage());
+            logger.writeStackTrace(e);
             throw new RuntimeException(e);
         }
     }
 
     @Override
     public boolean checkUser(String id) {
-        List<Client> c = clientRepository.findByLogin(id);
-        return c.size() != 0;
+        try {
+            List<Client> c = clientRepository.findByLogin(id);
+            return c.size() != 0;
+        } catch (Exception e) {
+            logger.writeStackTrace(e);
+            throw e;
+        }
     }
 
     public User getUser(String id) {
@@ -189,7 +201,7 @@ public class PSQL implements IStorage {
             Object o1 = clientRepository.save(client);
             return true;
         } catch (Exception e) {
-            logger.writeError(e.getMessage());
+            logger.writeStackTrace(e);
             return false;
         }
     }

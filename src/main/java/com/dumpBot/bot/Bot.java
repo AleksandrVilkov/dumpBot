@@ -40,7 +40,7 @@ public class Bot extends TelegramLongPollingBot {
             try {
                 execute(messageProcessor.createErrAuthMsg());
             } catch (TelegramApiException e) {
-                logger.writeError(e.getMessage());
+                logger.writeStackTrace(e);
                 throw new RuntimeException(e);
             }
             return;
@@ -58,7 +58,7 @@ public class Bot extends TelegramLongPollingBot {
             }
 
         } catch (TelegramApiException e) {
-            logger.writeError(e.getMessage());
+            logger.writeStackTrace(e);
             throw new RuntimeException(e);
         }
     }

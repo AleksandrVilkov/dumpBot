@@ -6,4 +6,5 @@ public interface ILogger {
     void writeWarning(String msg);
 
     void writeError(String msg);
+    void writeStackTrace(Exception e);
 }

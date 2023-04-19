@@ -50,7 +50,7 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
                 callback = objectMapper.readValue(stringCallBack, Callback.class);
                 logger.writeInfo("callback " + callback.toString() + " was found by user " + userId);
             } catch (Exception e) {
-                logger.writeError(e.getMessage());
+                logger.writeStackTrace(e);
             }
 
             if (user.isWaitingMessages()) {

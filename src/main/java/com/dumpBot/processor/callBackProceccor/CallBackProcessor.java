@@ -51,7 +51,7 @@ public class CallBackProcessor implements ICallBackProcessor {
         try {
             return objectMapper.readValue(callBack, Token.class).getToken();
         } catch (JsonProcessingException e) {
-            logger.writeError(e.getMessage());
+            logger.writeStackTrace(e);
             throw new RuntimeException(e);
         }
 
