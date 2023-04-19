@@ -9,6 +9,7 @@ import com.dumpBot.model.User;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IStorage;
+import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.msgProcessor.process.Command;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.dumpBot.processor.msgProcessor.process.MsgProcessFactory;
@@ -29,6 +30,8 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     IStorage storage;
     @Autowired
     ILogger logger;
+    @Autowired
+    ResourcesHelper resourcesHelper;
 
     public MessageProcessor() {
         super();
@@ -95,7 +98,9 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     }
 
     @Override
-    public SendMessage createErrAuthMsg() {
-        return null;
+    public SendMessage createErrAuthMsg(Update update) {
+        String chatId = String.valueOf(update.getMessage() != null ? update.getMessage().getFrom().getId() :
+                update.getCallbackQuery().getFrom().getId());
+        return new SendMessage(chatId, resourcesHelper.getResources().getErrors().getAuthError());
     }
 }

@@ -6,5 +6,5 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public interface IMessageProcessor {
     SendMessage startMessageProcessor(Update update);
     SendMessage createError();
-    SendMessage createErrAuthMsg();
+    SendMessage createErrAuthMsg(Update update);
 }

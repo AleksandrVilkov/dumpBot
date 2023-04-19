@@ -38,7 +38,7 @@ public class Bot extends TelegramLongPollingBot {
         logger.writeInfo("new update received");
         if (!Validator.validateUser(update, this, config)) {
             try {
-                execute(messageProcessor.createErrAuthMsg());
+                execute(messageProcessor.createErrAuthMsg(update));
             } catch (TelegramApiException e) {
                 logger.writeStackTrace(e);
                 throw new RuntimeException(e);
