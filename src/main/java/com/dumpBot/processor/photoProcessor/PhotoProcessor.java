@@ -18,6 +18,7 @@ import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -33,16 +34,7 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
     public SendMessage startPhotoProcessor(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         logger.writeInfo("start photo processor for " + userId);
-        SendMediaGroup smgb = new SendMediaGroup();
-
-        List<String> photos = new ArrayList<>();
-        List<InputMedia> medias = new ArrayList<>();
-        for (PhotoSize photoSize : update.getMessage().getPhoto()) {
-            InputMedia inputMedia = new InputMediaPhoto(photoSize.getFileId());
-            medias.add(inputMedia);
-            photos.add(photoSize.getFileId());
-        }
-
+        List<String> photos = Collections.singletonList(String.valueOf(update.getMessage().getPhoto().get(0).getFileId()));
         User user = storage.getUser(userId);
         if (user == null) {
             return new SendMessage(userId, resourcesHelper.getResources().getMsgs().getPhoto().getNoRegistration());
@@ -55,7 +47,12 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
         try {
             callback = Util.readCallBack(lastCallback);
             logger.writeInfo("callback " + callback.toString() + " was found by user " + userId);
-            callback.setPhotos(photos);
+            if (callback.getPhotos() == null) {
+                callback.setPhotos(photos);
+            } else {
+                callback.getPhotos().addAll(photos);
+            }
+
             user.setLastCallback(callback.toString());
             storage.saveUser(user);
         } catch (Exception e) {

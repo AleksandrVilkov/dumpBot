@@ -1,16 +1,10 @@
 package com.dumpBot.processor.callBackProceccor.process;
 
 import com.dumpBot.model.Action;
-import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.callBackProceccor.process.defaultProcess.DefaultCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.sale.SaleCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.search.SearchCallBackProcess;
-import com.dumpBot.processor.msgProcessor.StartRegistrationProcess;
-import com.dumpBot.processor.msgProcessor.process.DefaultProcess;
-import com.dumpBot.processor.msgProcessor.process.MainMenuProcess;
-import com.dumpBot.processor.msgProcessor.process.MsgProcessFactory;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

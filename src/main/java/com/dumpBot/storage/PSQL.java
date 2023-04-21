@@ -12,9 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class PSQL implements IStorage {
@@ -27,7 +25,7 @@ public class PSQL implements IStorage {
     @Autowired
     RegionRepository regionRepository;
     @Autowired
-    SearchTermsRepository searchTermsRepository;
+    UserAccommodationRepository searchTermsRepository;
 
     @Autowired
     ILogger logger;
@@ -210,26 +208,27 @@ public class PSQL implements IStorage {
     }
 
     @Override
-    public boolean saveSearchTerms(UserSearchRequest userSearchRequest) {
-        SearchTermsEntity searchTerms = new SearchTermsEntity();
-        searchTerms.setCreatedDate(userSearchRequest.getCreatedDate());
-        searchTerms.setClientLogin(userSearchRequest.getClientLogin());
-        searchTerms.setClientId(userSearchRequest.getClientId());
-        searchTerms.setMinPrice(userSearchRequest.getMinPrice());
-        searchTerms.setMaxPrice(userSearchRequest.getMaxPrice());
-        searchTerms.setApproved(userSearchRequest.isApproved());
-        searchTerms.setRejected(userSearchRequest.isRejected());
-        searchTerms.setTopical(userSearchRequest.isTopical());
-        searchTerms.setDescription(userSearchRequest.getDescription());
-        List<SearchTermsPhotoEntity> photo = new ArrayList<>();
-        for (String id : userSearchRequest.getPhotos()) {
-            SearchTermsPhotoEntity searchTermsPhotoEntity = new SearchTermsPhotoEntity();
-            searchTermsPhotoEntity.setTelegramId(id);
-            searchTermsPhotoEntity.setSearchTermsEntity(searchTerms);
+    public boolean saveUserAccommodation(UserAccommodation userAccommodation) {
+        UserAccommodationEntity accommodation = new UserAccommodationEntity();
+        accommodation.setType(userAccommodation.getType().toString());
+        accommodation.setCreatedDate(userAccommodation.getCreatedDate());
+        accommodation.setClientLogin(userAccommodation.getClientLogin());
+        accommodation.setClientId(userAccommodation.getClientId());
+        accommodation.setMinPrice(userAccommodation.getMinPrice());
+        accommodation.setMaxPrice(userAccommodation.getMaxPrice());
+        accommodation.setApproved(userAccommodation.isApproved());
+        accommodation.setRejected(userAccommodation.isRejected());
+        accommodation.setTopical(userAccommodation.isTopical());
+        accommodation.setDescription(userAccommodation.getDescription());
+        Set<PhotoEntity> photo = new HashSet<>();
+        for (String id : userAccommodation.getPhotos()) {
+            PhotoEntity photoEntity = new PhotoEntity();
+            photoEntity.setTelegramId(id);
+            photoEntity.setUserAccommodationEntity(accommodation);
+            photo.add(photoEntity);
         }
-        //TODO фото не сохраняется
-        searchTerms.setPhoto(photo);
-        searchTermsRepository.save(searchTerms);
+        accommodation.setPhoto(photo);
+        searchTermsRepository.save(accommodation);
         return true;
     }
 

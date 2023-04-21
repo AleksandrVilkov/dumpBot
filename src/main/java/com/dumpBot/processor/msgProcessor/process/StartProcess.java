@@ -16,13 +16,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class MainMenuProcess implements MsgProcess {
+public class StartProcess implements MsgProcess {
     @Autowired
     ILogger logger;
     @Autowired
     IStorage storage;
     @Autowired
     ResourcesHelper resourcesHelper;
+
+    @Override
+    public void processResultPreviousStep() {
+        //no use
+    }
+
+    @Override
+    public void preparationCurrentProcess() {
+        //no use
+    }
 
     @Override
     public SendMessage execute(Update update) {

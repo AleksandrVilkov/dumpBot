@@ -8,13 +8,14 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "SEARCHTERMS")
+@Table(name = "user_accommodation")
 @NoArgsConstructor
 @Getter
 @Setter
-public class SearchTermsEntity {
+public class UserAccommodationEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,8 +47,10 @@ public class SearchTermsEntity {
 
     @Column(name = "description")
     private String description;
+    @Column(name = "type")
+    private String type;
 
-    @OneToMany(mappedBy = "SearchTermsEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    List<SearchTermsPhotoEntity> photo;
+    @OneToMany(mappedBy = "userAccommodationEntity",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    Set<PhotoEntity> photo;
 
 }

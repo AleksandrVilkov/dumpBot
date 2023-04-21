@@ -58,7 +58,7 @@ public class SearchCallBackProcess implements CallBackProcess {
                 logger.writeInfo("user " + userId + "chooses city for search request");
                 return choiceCity(update, callback);
             }
-            case UNEVERSAL -> {
+            case UNIVERSAL -> {
                 logger.writeInfo("user " + userId + "enter description for search request");
                 return enterDescription(update, callback);
             }
@@ -193,7 +193,7 @@ public class SearchCallBackProcess implements CallBackProcess {
 
     private void insertUniversalDataButton(Map<String, String> data, Callback callback) {
         Callback newCb = callback.clone();
-        newCb.setSubsection(CallbackSubsection.UNEVERSAL);
+        newCb.setSubsection(CallbackSubsection.UNIVERSAL);
         String token = Util.newMd5FromCalBack(newCb);
         data.put(resourcesHelper.getResources().getButtonsText().getUniversal(), resourcesHelper.getButtonData(token));
         storage.saveTempData(token, newCb);

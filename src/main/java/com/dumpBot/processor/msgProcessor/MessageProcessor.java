@@ -44,20 +44,23 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         logger.writeInfo("start message processor for " + userId);
         List<MessageEntity> messageEntityList = update.getMessage().getEntities();
         MsgProcess process;
-        boolean isCommand = messageEntityList != null && messageEntityList.size() > 0;//Если это команда - получаем MessageEntity bot_command,если команды нет - то лист пустой
+        //Если это команда - получаем MessageEntity bot_command,если команды нет - то лист пустой
+        boolean isCommand = messageEntityList != null && messageEntityList.size() > 0;
         boolean userCreated = storage.checkUser(userId);
-        if (isCommand) {
-            process = handleCommand(update, userCreated);
-        } else {
-            process = handleMessageText(update, userCreated);
+        if (!userCreated) {
+            process = MsgProcessFactory.getProcess(Command.REGISTRATION);
+            process.processResultPreviousStep();
+            process.preparationCurrentProcess();
+            return process.execute(update);
         }
+        process = isCommand ? handleCommand(update) : handleMessageText(update);
+        process.processResultPreviousStep();
+        process.preparationCurrentProcess();
         return process.execute(update);
     }
 
-    private MsgProcess handleMessageText(Update update, boolean userCreated) {
-        if (!userCreated) {
-            return MsgProcessFactory.getProcess(Command.START);
-        }
+    private MsgProcess handleMessageText(Update update) {
+
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         //находим пользователя и смотрим его последний колбек
         User user = storage.getUser(userId);
@@ -79,16 +82,13 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         return MsgProcessFactory.getProcess(Command.START); //Если все мимо - то показываем меню
     }
 
-    private MsgProcess handleCommand(Update update, boolean userCreated) {
+    private MsgProcess handleCommand(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         String stringCommand = update.getMessage().getText().toUpperCase().replace("/", "");
         Command command = Util.findEnumConstant(Command.class, stringCommand);
         logger.writeInfo("Сommand " + command.getName() + " recognized by user " + userId);
-        if (userCreated && Command.START.equals(command)) {
-            return MsgProcessFactory.getProcess(Command.MAIN_MENU);
-        } else {
-            return MsgProcessFactory.getProcess(command);
-        }
+        return MsgProcessFactory.getProcess(command);
+
     }
 
     @Override

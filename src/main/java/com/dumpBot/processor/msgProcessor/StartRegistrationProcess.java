@@ -27,6 +27,16 @@ public class StartRegistrationProcess extends BaseProcess implements MsgProcess 
     }
 
     @Override
+    public void processResultPreviousStep() {
+        //no use
+    }
+
+    @Override
+    public void preparationCurrentProcess() {
+        //no use
+    }
+
+    @Override
     public SendMessage execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         logger.writeInfo("start registration process for user " + userId);

@@ -1,17 +1,17 @@
-package com.dumpBot.processor.msgProcessor.process;
+package com.dumpBot.processor.msgProcessor.process.search;
 
 import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.User;
 import com.dumpBot.model.callback.Callback;
-import com.dumpBot.model.callback.CarData;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
+import com.dumpBot.processor.msgProcessor.process.BaseProcess;
+import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
@@ -20,9 +20,18 @@ public class SearchProcess extends BaseProcess implements MsgProcess {
     IStorage storage;
     @Autowired
     ILogger logger;
-
     @Autowired
     ResourcesHelper resourcesHelper;
+
+    @Override
+    public void processResultPreviousStep() {
+
+    }
+
+    @Override
+    public void preparationCurrentProcess() {
+
+    }
 
     @Override
     public SendMessage execute(Update update) {

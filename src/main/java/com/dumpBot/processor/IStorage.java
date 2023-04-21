@@ -29,5 +29,5 @@ public interface IStorage {
 
     boolean saveUser(User user);
 
-    boolean saveSearchTerms(UserSearchRequest userSearchRequest);
+    boolean saveUserAccommodation(UserAccommodation userAccommodation);
 }

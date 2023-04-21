@@ -17,5 +17,6 @@ public class Msgs {
     private Registration registration;
     private Search search;
     private Photo photo;
+    private Sale sale;
 
 }

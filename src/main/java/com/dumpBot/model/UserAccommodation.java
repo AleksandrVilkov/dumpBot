@@ -13,8 +13,9 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserSearchRequest {
+public class UserAccommodation {
     private int id;
+    private AccommodationType type;
     private Date createdDate;
     private String clientLogin;
     private int clientId;

@@ -7,19 +7,17 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "searchtermsphoto")
+@Table(name = "user_accommodation_photo")
 @NoArgsConstructor
 @Getter
 @Setter
-public class SearchTermsPhotoEntity {
+public class PhotoEntity {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int photoId;
     @Column(name = "telegram_id")
     private String telegramId;
     @ManyToOne
-    @JoinColumn(name="search_terms_id", nullable = false)
-    private SearchTermsEntity SearchTermsEntity;
-
+    @JoinColumn(name="user_accommodation_id", nullable = false)
+    private UserAccommodationEntity userAccommodationEntity;
 }

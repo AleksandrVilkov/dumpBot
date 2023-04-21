@@ -13,13 +13,15 @@ import java.util.List;
 @Getter
 @Setter
 public class Callback implements Cloneable {
-    String userId;
-    CallbackSubsection subsection;
-    com.dumpBot.model.Action Action;
-    UserData userData;
-    CarData carData;
-    List<String> photos;
-    String description;
+    private String userId;
+    private CallbackSubsection subsection;
+
+    private String price;
+    private com.dumpBot.model.Action Action;
+    private UserData userData;
+    private CarData carData;
+    private List<String> photos;
+    private String description;
 
     public Callback() {
         this.photos = new ArrayList<>();
