@@ -8,11 +8,11 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Car {
-    int id;
-    LocalDate createDate;
-    Concern concern;
-    Model model;
-    Engine engine;
-    BoltPattern boltPattern;
-    Brand brand;
+    private int id;
+    private LocalDate createDate;
+    private Concern concern;
+    private  Model model;
+    private Engine engine;
+    private BoltPattern boltPattern;
+    private Brand brand;
 }

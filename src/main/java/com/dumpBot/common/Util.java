@@ -9,8 +9,7 @@ public class Util {
 
     public static Callback readCallBack(String stringCallback) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-           return objectMapper.readValue(stringCallback, Callback.class);
-
+        return objectMapper.readValue(stringCallback, Callback.class);
     }
 
     public static <T extends Enum<T>> T findEnumConstant(final Class<T> cls, final String name) {

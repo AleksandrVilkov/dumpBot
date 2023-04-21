@@ -1,11 +1,11 @@
 package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.model.Action;
-import com.dumpBot.processor.msgProcessor.StartRegistrationProcess;
+import com.dumpBot.processor.msgProcessor.StartRegistrationMsgProcess;
 import com.dumpBot.processor.msgProcessor.process.defaultProcess.DefaultProcess;
-import com.dumpBot.processor.msgProcessor.process.sale.SaleDescriptionProcess;
-import com.dumpBot.processor.msgProcessor.process.sale.SalePriceProcess;
-import com.dumpBot.processor.msgProcessor.process.search.SearchProcess;
+import com.dumpBot.processor.msgProcessor.process.sale.SaleDescriptionMsgProcess;
+import com.dumpBot.processor.msgProcessor.process.sale.SalePriceMsgProcess;
+import com.dumpBot.processor.msgProcessor.process.search.SearchMsgProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +20,8 @@ public class MsgProcessFactory {
     private static MsgProcess saleDescription;
 
     @Autowired
-    public MsgProcessFactory(StartRegistrationProcess srp, StartProcess mmp, DefaultProcess df,
-                             SearchProcess sp, ReadyProcess rp, SalePriceProcess spp, SaleDescriptionProcess sdp) {
+    public MsgProcessFactory(StartRegistrationMsgProcess srp, StartProcess mmp, DefaultProcess df,
+                             SearchMsgProcess sp, ReadyMsgProcess rp, SalePriceMsgProcess spp, SaleDescriptionMsgProcess sdp) {
         MsgProcessFactory.registration = srp;
         MsgProcessFactory.start = mmp;
         MsgProcessFactory.defaultProcess = df;

@@ -20,7 +20,8 @@ public class Validator {
         chatMember.setChatId(String.valueOf(config.getValidateData().getChannelID()));
         try {
             String status = bot.execute(chatMember).getStatus();
-            return !status.equalsIgnoreCase(ChatMemberStatus.KICKED.getName()) && !status.equalsIgnoreCase(ChatMemberStatus.LEFT.getName());
+            return !status.equalsIgnoreCase(ChatMemberStatus.KICKED.getName())
+                    && !status.equalsIgnoreCase(ChatMemberStatus.LEFT.getName());
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

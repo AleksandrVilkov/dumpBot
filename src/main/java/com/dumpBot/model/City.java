@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class City {
-    int regionId;
-    String name;
+    private  int regionId;
+    private  String name;
 }

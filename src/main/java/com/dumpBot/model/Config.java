@@ -16,27 +16,27 @@ public class Config {
 @Getter
 @Setter
 class Command {
-    String start;
-    String rules;
-    String registration;
-    String subscription;
-    String sale;
+    private String start;
+    private String rules;
+    private String registration;
+    private String subscription;
+    private String sale;
 
 }
 
 @Getter
 @Setter
 class InternalCommands {
-    String enterCarBrand;
-    String enterCarModel;
-    String enterCarEngine;
+    private String enterCarBrand;
+    private String enterCarModel;
+    private String enterCarEngine;
 }
 
 @Getter
 @Setter
 class ValidateData {
-    int channelID;
-    String channelUrl;
+    private int channelID;
+    private String channelUrl;
 }
 
 @Getter

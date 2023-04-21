@@ -8,11 +8,6 @@ commands:
   subscription: /subscription
   sale: /sale
 
-internalCommands:
-  enterCarBrand: /carBrand
-  enterCarModel: /carModel
-  enterCarEngine: /carEngine
-
 validateData:
   channelID: -1001773791815
   channelURL: "https://t.me/dumpChenDev"

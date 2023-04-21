@@ -7,7 +7,7 @@ import com.dumpBot.model.User;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
-import com.dumpBot.processor.msgProcessor.process.BaseProcess;
+import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public class SaleDescriptionProcess extends BaseProcess implements MsgProcess {
+public class SaleDescriptionMsgProcess extends BaseMsgProcess implements MsgProcess {
 
     @Autowired
     IStorage storage;

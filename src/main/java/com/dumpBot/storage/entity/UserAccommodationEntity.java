@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,7 +49,7 @@ public class UserAccommodationEntity {
     @Column(name = "type")
     private String type;
 
-    @OneToMany(mappedBy = "userAccommodationEntity",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userAccommodationEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Set<PhotoEntity> photo;
 
 }

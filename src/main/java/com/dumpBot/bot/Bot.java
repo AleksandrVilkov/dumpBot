@@ -60,15 +60,14 @@ public class Bot extends TelegramLongPollingBot {
                     execute(messageProcessor.startMessageProcessor(update));
                     return;
                 }
-
-                if (update.getMessage().getPhoto().size() > 0) {
                     //смотрим фото
+                if (update.getMessage().getPhoto().size() > 0) {
                     logger.writeInfo("new update is photo from " + update.getMessage().getFrom().getId());
                     execute(photoProcessor.startPhotoProcessor(update));
                     return;
                 }
             }
-
+            //смотрим колбек - когда кнопка нажимается
             if (update.hasCallbackQuery()) {
                 logger.writeInfo("new update is callback");
                 execute(callBackProcessor.startCallbackProcessor(update));

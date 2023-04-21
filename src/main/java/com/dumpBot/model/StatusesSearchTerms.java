@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StatusesSearchTerms {
-    boolean approved;
-    boolean rejected;
-    boolean topical;
+    private boolean approved;
+    private  boolean rejected;
+    private boolean topical;
 }

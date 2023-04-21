@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class StartProcess implements MsgProcess {
+public class StartProcess extends BaseMsgProcess implements MsgProcess {
     @Autowired
     ILogger logger;
     @Autowired

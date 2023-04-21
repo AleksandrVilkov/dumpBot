@@ -1,13 +1,10 @@
 package com.dumpBot.resources;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Success {
     private String successReservation;
-
-    public String getSuccessReservation() {
-        return successReservation;
-    }
-
-    public void setSuccessReservation(String value) {
-        this.successReservation = value;
-    }
 }

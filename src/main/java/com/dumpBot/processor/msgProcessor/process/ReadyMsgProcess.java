@@ -31,7 +31,7 @@ import java.util.List;
 @Component
 @Getter
 @Setter
-public class ReadyProcess extends BaseProcess implements MsgProcess {
+public class ReadyMsgProcess extends BaseMsgProcess implements MsgProcess {
     @Autowired
     private IStorage storage;
     @Autowired

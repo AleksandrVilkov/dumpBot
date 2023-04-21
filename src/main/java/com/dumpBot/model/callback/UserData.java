@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserData {
-    String regionName;
-    int regionId;
+    private String regionName;
+    private int regionId;
 }

@@ -4,6 +4,7 @@ import com.dumpBot.bot.ICallBackProcessor;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.Token;
 import com.dumpBot.model.callback.Callback;
+import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
@@ -18,7 +19,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
 @NoArgsConstructor
-public class CallBackProcessor implements ICallBackProcessor {
+public class CallBackProcessor extends BaseProcess implements ICallBackProcessor {
     @Autowired
     ResourcesHelper resourcesHelper;
 

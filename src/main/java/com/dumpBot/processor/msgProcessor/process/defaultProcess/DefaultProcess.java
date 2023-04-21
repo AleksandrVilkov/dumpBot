@@ -1,12 +1,13 @@
 package com.dumpBot.processor.msgProcessor.process.defaultProcess;
 
+import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public class DefaultProcess implements MsgProcess {
+public class DefaultProcess extends BaseMsgProcess implements MsgProcess {
     @Override
     public void processResultPreviousStep() {
 

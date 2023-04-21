@@ -13,8 +13,6 @@ import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.msgProcessor.process.Command;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.dumpBot.processor.msgProcessor.process.MsgProcessFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.dynalink.linker.LinkerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
