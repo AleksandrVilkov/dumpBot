@@ -1,7 +1,6 @@
 package com.dumpBot.storage.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,7 @@ import java.util.Date;
 @Table(name = "ANNOUNCEMENT")
 @Getter
 @Setter
-public class Announcement {
+public class AnnouncementEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
 package com.dumpBot;
 
-import com.dumpBot.storage.entity.TempData;
+import com.dumpBot.storage.entity.TempDataEntity;
 import com.dumpBot.storage.repository.TempDataRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ class DumpBotApplicationTests {
     @Test
     @Transactional
     void testTempData() {
-        TempData tempData = new TempData();
-        Object a = tempDataRepository.save(tempData);
+        TempDataEntity tempDataEntity = new TempDataEntity();
+        Object a = tempDataRepository.save(tempDataEntity);
         System.out.println(a);
     }
 

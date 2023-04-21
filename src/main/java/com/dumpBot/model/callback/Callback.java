@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 public class Callback implements Cloneable {
@@ -15,8 +18,11 @@ public class Callback implements Cloneable {
     com.dumpBot.model.Action Action;
     UserData userData;
     CarData carData;
+    List<String> photos;
+    String description;
 
     public Callback() {
+        this.photos = new ArrayList<>();
     }
 
     public Callback(String userId, com.dumpBot.model.Action action) {

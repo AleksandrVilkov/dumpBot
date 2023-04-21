@@ -11,4 +11,5 @@ public class Search {
     private String carBrandEnter;
     private String carModelEnter;
     private String enterDescription;
+    private String addPhoto;
 }

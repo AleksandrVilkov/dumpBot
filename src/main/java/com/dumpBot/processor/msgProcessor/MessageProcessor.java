@@ -61,11 +61,10 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         //находим пользователя и смотрим его последний колбек
         User user = storage.getUser(userId);
-        ObjectMapper objectMapper = new ObjectMapper();
         String stringCallBack = user.getLastCallback();
         Callback callback;
         try {
-            callback = objectMapper.readValue(stringCallBack, Callback.class);
+            callback = Util.readCallBack(stringCallBack);
             logger.writeInfo("callback " + callback.toString() + " was found by user " + userId);
         } catch (Exception e) {
             logger.writeStackTrace(e);
@@ -85,7 +84,7 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         String stringCommand = update.getMessage().getText().toUpperCase().replace("/", "");
         Command command = Util.findEnumConstant(Command.class, stringCommand);
         logger.writeInfo("Сommand " + command.getName() + " recognized by user " + userId);
-        if (userCreated) {
+        if (userCreated && Command.START.equals(command)) {
             return MsgProcessFactory.getProcess(Command.MAIN_MENU);
         } else {
             return MsgProcessFactory.getProcess(command);
@@ -93,8 +92,10 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     }
 
     @Override
-    public SendMessage createError() {
-        return null;
+    public SendMessage createError(Update update) {
+        String chatId = String.valueOf(update.getMessage() != null ? update.getMessage().getFrom().getId() :
+                update.getCallbackQuery().getFrom().getId());
+        return new SendMessage(chatId, resourcesHelper.getResources().getErrors().getCommonError());
     }
 
     @Override

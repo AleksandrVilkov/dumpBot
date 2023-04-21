@@ -7,41 +7,33 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "SEARCHTERMS")
 @NoArgsConstructor
 @Getter
 @Setter
-public class SearchTerms {
+public class SearchTermsEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "createdDate")
+    @Column(name = "created_date")
     private Date createdDate;
 
-    @Column(name = "clientLogin")
+    @Column(name = "client_login")
     private String clientLogin;
 
-    @Column(name = "clientId")
+    @Column(name = "client_id")
     private int clientId;
 
-    @Column(name = "carId")
-    private int carId;
-
-    @Column(name = "minPrice")
+    @Column(name = "min_price")
     private int minPrice;
 
-    @Column(name = "maxPrice")
+    @Column(name = "max_price")
     private int maxPrice;
-
-    @Column(name = "desiredPartNumber")
-    private String desiredPartNumber;
-
-    @Column(name = "currencyId")
-    private int currencyId;
 
     @Column(name = "approved")
     private boolean approved;
@@ -54,4 +46,8 @@ public class SearchTerms {
 
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "SearchTermsEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    List<SearchTermsPhotoEntity> photo;
+
 }

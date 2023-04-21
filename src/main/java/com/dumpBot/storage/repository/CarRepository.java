@@ -1,6 +1,6 @@
 package com.dumpBot.storage.repository;
 
-import com.dumpBot.storage.entity.Car;
+import com.dumpBot.storage.entity.CarEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CarRepository extends CrudRepository<Car, Integer> {
+public interface CarRepository extends CrudRepository<CarEntity, Integer> {
     @Query(value = "select distinct c.concern from car c", nativeQuery = true)
     public List<Object[]> getUniqueCarConcern();
     @Query(value = "select distinct c.brand from car c WHERE c.concern = ?1", nativeQuery = true)

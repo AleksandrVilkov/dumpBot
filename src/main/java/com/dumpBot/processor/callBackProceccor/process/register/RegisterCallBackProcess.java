@@ -149,6 +149,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
                 region,
                 convertCarData(callback.getCarData()));
         user.setWaitingMessages(false);
+        user.setUserName(update.getCallbackQuery().getFrom().getUserName());
         boolean result = storage.saveUser(user);
         if (result) {
             return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),

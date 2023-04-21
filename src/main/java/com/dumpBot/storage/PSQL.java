@@ -5,13 +5,8 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
-import com.dumpBot.storage.entity.Client;
-import com.dumpBot.storage.entity.Region;
-import com.dumpBot.storage.entity.TempData;
-import com.dumpBot.storage.repository.CarRepository;
-import com.dumpBot.storage.repository.ClientRepository;
-import com.dumpBot.storage.repository.RegionRepository;
-import com.dumpBot.storage.repository.TempDataRepository;
+import com.dumpBot.storage.entity.*;
+import com.dumpBot.storage.repository.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +26,8 @@ public class PSQL implements IStorage {
     ClientRepository clientRepository;
     @Autowired
     RegionRepository regionRepository;
+    @Autowired
+    SearchTermsRepository searchTermsRepository;
 
     @Autowired
     ILogger logger;
@@ -51,9 +48,9 @@ public class PSQL implements IStorage {
 
     @Override
     public List<City> getCities() {
-        List<Region> result = regionRepository.findAll();
+        List<RegionEntity> result = regionRepository.findAll();
         List<City> cities = new ArrayList<>();
-        for (Region c : result) {
+        for (RegionEntity c : result) {
             City city = new City();
             city.setRegionId(c.getId());
             city.setName(c.getName());
@@ -126,12 +123,12 @@ public class PSQL implements IStorage {
 
     @Override
     public boolean saveTempData(String token, Callback callback) {
-        TempData tempData = new TempData();
-        tempData.setCallback(callback.toString());
-        tempData.setToken(token);
-        tempData.setCreatedDate(new Date());
+        TempDataEntity tempDataEntity = new TempDataEntity();
+        tempDataEntity.setCallback(callback.toString());
+        tempDataEntity.setToken(token);
+        tempDataEntity.setCreatedDate(new Date());
         try {
-            TempData result = tempDataRepository.save(tempData);
+            TempDataEntity result = tempDataRepository.save(tempDataEntity);
             return true;
         } catch (Exception e) {
             logger.writeStackTrace(e);
@@ -141,7 +138,7 @@ public class PSQL implements IStorage {
 
     @Override
     public Callback getTempData(String token) {
-        List<TempData> result = new ArrayList<>();
+        List<TempDataEntity> result = new ArrayList<>();
         try {
             result = tempDataRepository.findByToken(token);
         } catch (Exception e) {
@@ -165,7 +162,7 @@ public class PSQL implements IStorage {
     @Override
     public boolean checkUser(String id) {
         try {
-            List<Client> c = clientRepository.findByLogin(id);
+            List<ClientEntity> c = clientRepository.findByLogin(id);
             return c.size() != 0;
         } catch (Exception e) {
             logger.writeStackTrace(e);
@@ -174,20 +171,21 @@ public class PSQL implements IStorage {
     }
 
     public User getUser(String id) {
-        List<Client> c = clientRepository.findByLogin(id);
-        Client client = c.get(0);
-        Region region = regionRepository.findById(client.getRegionId()).get();
-        com.dumpBot.storage.entity.Car car = carRepository.findById(client.getCarid()).get();
+        List<ClientEntity> c = clientRepository.findByLogin(id);
+        ClientEntity clientEntity = c.get(0);
+        RegionEntity regionEntity = regionRepository.findById(clientEntity.getRegionId()).get();
+        CarEntity carEntity = carRepository.findById(clientEntity.getCarid()).get();
         return new User(
-                client.getId(),
-                client.getCreatedDate(),
-                Util.findEnumConstant(Role.class, client.getRole()),
-                client.getLogin(),
-                region.toCity(),
-                car.toCarModel(),
-                client.isWaitingMessages(),
-                client.getClientAction(),
-                client.getLastCallback()
+                clientEntity.getId(),
+                clientEntity.getUserName(),
+                clientEntity.getCreatedDate(),
+                Util.findEnumConstant(Role.class, clientEntity.getRole()),
+                clientEntity.getLogin(),
+                regionEntity.toCity(),
+                carEntity.toCarModel(),
+                clientEntity.isWaitingMessages(),
+                clientEntity.getClientAction(),
+                clientEntity.getLastCallback()
         );
     }
 
@@ -201,14 +199,38 @@ public class PSQL implements IStorage {
         } else {
             carId = car.getId();
         }
-        Client client = convertUserToClient(user, carId);
+        ClientEntity clientEntity = convertUserToClient(user, carId);
         try {
-            Object o1 = clientRepository.save(client);
+            Object o1 = clientRepository.save(clientEntity);
             return true;
         } catch (Exception e) {
             logger.writeStackTrace(e);
             return false;
         }
+    }
+
+    @Override
+    public boolean saveSearchTerms(UserSearchRequest userSearchRequest) {
+        SearchTermsEntity searchTerms = new SearchTermsEntity();
+        searchTerms.setCreatedDate(userSearchRequest.getCreatedDate());
+        searchTerms.setClientLogin(userSearchRequest.getClientLogin());
+        searchTerms.setClientId(userSearchRequest.getClientId());
+        searchTerms.setMinPrice(userSearchRequest.getMinPrice());
+        searchTerms.setMaxPrice(userSearchRequest.getMaxPrice());
+        searchTerms.setApproved(userSearchRequest.isApproved());
+        searchTerms.setRejected(userSearchRequest.isRejected());
+        searchTerms.setTopical(userSearchRequest.isTopical());
+        searchTerms.setDescription(userSearchRequest.getDescription());
+        List<SearchTermsPhotoEntity> photo = new ArrayList<>();
+        for (String id : userSearchRequest.getPhotos()) {
+            SearchTermsPhotoEntity searchTermsPhotoEntity = new SearchTermsPhotoEntity();
+            searchTermsPhotoEntity.setTelegramId(id);
+            searchTermsPhotoEntity.setSearchTermsEntity(searchTerms);
+        }
+        //TODO фото не сохраняется
+        searchTerms.setPhoto(photo);
+        searchTermsRepository.save(searchTerms);
+        return true;
     }
 
 
@@ -223,21 +245,22 @@ public class PSQL implements IStorage {
         return 0;
     }
 
-    private Client convertUserToClient(User user, Integer carId) {
-        Client client = new Client();
-        client.setId(user.getId());
-        client.setCreatedDate(new Date());
-        client.setRole(user.getRole().name());
-        client.setRegionId(user.getRegion().getRegionId());
+    private ClientEntity convertUserToClient(User user, Integer carId) {
+        ClientEntity clientEntity = new ClientEntity();
+        clientEntity.setId(user.getId());
+        clientEntity.setUserName(user.getUserName());
+        clientEntity.setCreatedDate(new Date());
+        clientEntity.setRole(user.getRole().name());
+        clientEntity.setRegionId(user.getRegion().getRegionId());
         if (user.getCar().getId() != 0) {
-            client.setCarid(user.getCar().getId());
+            clientEntity.setCarid(user.getCar().getId());
         } else {
-            client.setCarid(carId);
+            clientEntity.setCarid(carId);
         }
-        client.setLastCallback(user.getLastCallback());
-        client.setLogin(user.getLogin());
-        client.setClientAction(user.getClientAction());
-        client.setWaitingMessages(user.isWaitingMessages());
-        return client;
+        clientEntity.setLastCallback(user.getLastCallback());
+        clientEntity.setLogin(user.getLogin());
+        clientEntity.setClientAction(user.getClientAction());
+        clientEntity.setWaitingMessages(user.isWaitingMessages());
+        return clientEntity;
     }
 }

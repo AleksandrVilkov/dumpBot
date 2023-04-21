@@ -8,11 +8,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Msgs {
+    private String noSendingModeration;
+    private String sendingModeration;
     private String welcomeMessage;
     private String welcomeRegistered;
     private String startSale;
     private String rules;
     private Registration registration;
     private Search search;
+    private Photo photo;
 
 }

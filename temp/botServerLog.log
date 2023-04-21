@@ -306,7 +306,7 @@ Wed Apr 19 21:49:31 MSK 2023: INFO: Found callback from temp :{
   },
   "action" : "REGISTRATION_ACTION"
 }
-Wed Apr 19 21:49:31 MSK 2023: ERROR!: JDBC exception executing SQL [select distinct c.boltPattern from car c WHERE c.brand = ? and c.model = ?]; SQL [n/a]
+Wed Apr 19 21:49:31 MSK 2023: ERROR!: JDBC exception executing SQL [select distinct c.boltPattern from carEntity c WHERE c.brand = ? and c.model = ?]; SQL [n/a]
 org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
 org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
 org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
@@ -344,7 +344,7 @@ Wed Apr 19 21:49:50 MSK 2023: INFO: Found callback from temp :{
   },
   "action" : "REGISTRATION_ACTION"
 }
-Wed Apr 19 21:49:50 MSK 2023: ERROR!: JDBC exception executing SQL [select distinct c.boltPattern from car c WHERE c.brand = ? and c.model = ?]; SQL [n/a]
+Wed Apr 19 21:49:50 MSK 2023: ERROR!: JDBC exception executing SQL [select distinct c.boltPattern from carEntity c WHERE c.brand = ? and c.model = ?]; SQL [n/a]
 org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
 org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
 org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
@@ -382,7 +382,7 @@ Wed Apr 19 21:50:16 MSK 2023: INFO: Found callback from temp :{
   },
   "action" : "REGISTRATION_ACTION"
 }
-Wed Apr 19 21:50:16 MSK 2023: ERROR!: JDBC exception executing SQL [select distinct c.boltPattern from car c WHERE c.brand = ? and c.model = ?]; SQL [n/a]
+Wed Apr 19 21:50:16 MSK 2023: ERROR!: JDBC exception executing SQL [select distinct c.boltPattern from carEntity c WHERE c.brand = ? and c.model = ?]; SQL [n/a]
 org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
 org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
 org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
@@ -2514,5 +2514,1742 @@ Wed Apr 19 23:16:32 MSK 2023: INFO: callback {
     "engineName" : "TU5JP4",
     "boltPatternSize" : null
   },
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 14:34:24 MSK 2023: INFO: new update received
+Fri Apr 21 14:34:25 MSK 2023: INFO: new update is message
+Fri Apr 21 14:34:25 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:34:25 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 14:34:25 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 14:34:27 MSK 2023: INFO: new update received
+Fri Apr 21 14:34:27 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:34:27 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$MR/dNkFs$vnKaZwH.SyLxygsp.LAEe1"}
+Fri Apr 21 14:34:27 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:35:20 MSK 2023: INFO: new update received
+Fri Apr 21 14:35:20 MSK 2023: INFO: new update is message
+Fri Apr 21 14:35:20 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:35:20 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 14:35:20 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 14:35:21 MSK 2023: INFO: new update received
+Fri Apr 21 14:35:21 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:35:21 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$daMfV3aA$4wNmY7FKy11jwu4oHaGl20"}
+Fri Apr 21 14:35:21 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:35:21 MSK 2023: ERROR!: could not execute statement; SQL [n/a]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:272)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
+com.dumpBot.storage.PSQL.saveTempData(PSQL.java:134)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
+com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:57)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 14:35:25 MSK 2023: INFO: new update received
+Fri Apr 21 14:35:25 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:35:25 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$4WrIsq1O$I7La3Tm/EiauE/sHEMPYg."}
+Fri Apr 21 14:35:25 MSK 2023: ERROR!: Result size in getTempData not equals 1!
+Fri Apr 21 14:36:17 MSK 2023: INFO: new update received
+Fri Apr 21 14:36:17 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:36:17 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$4WrIsq1O$I7La3Tm/EiauE/sHEMPYg."}
+Fri Apr 21 14:36:17 MSK 2023: ERROR!: Result size in getTempData not equals 1!
+Fri Apr 21 14:37:09 MSK 2023: INFO: new update received
+Fri Apr 21 14:37:09 MSK 2023: INFO: new update is message
+Fri Apr 21 14:37:09 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:37:09 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 14:37:09 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 14:37:10 MSK 2023: INFO: new update received
+Fri Apr 21 14:37:10 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:37:10 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$LcJYdLLG$kW9vFQjZnrv8agu1rEn8T0"}
+Fri Apr 21 14:37:10 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:37:10 MSK 2023: ERROR!: could not execute statement; SQL [n/a]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:272)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
+com.dumpBot.storage.PSQL.saveTempData(PSQL.java:134)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
+com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:57)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 14:37:14 MSK 2023: INFO: new update received
+Fri Apr 21 14:37:14 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:37:14 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$tb1YX7vE$TUylW4cbhIiZg.mODe/il0"}
+Fri Apr 21 14:37:14 MSK 2023: ERROR!: Result size in getTempData not equals 1!
+Fri Apr 21 14:37:35 MSK 2023: INFO: new update received
+Fri Apr 21 14:37:35 MSK 2023: INFO: new update is message
+Fri Apr 21 14:37:35 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:37:35 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 14:37:35 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 14:37:36 MSK 2023: INFO: new update received
+Fri Apr 21 14:37:36 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:37:36 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$GOtgk0ij$CvrcxvzOFeySrR.ibe05H0"}
+Fri Apr 21 14:37:36 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:37:36 MSK 2023: ERROR!: could not execute statement; SQL [n/a]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:272)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
+com.dumpBot.storage.PSQL.saveTempData(PSQL.java:134)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
+com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:57)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 14:37:40 MSK 2023: INFO: new update received
+Fri Apr 21 14:37:40 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:37:40 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$DNRnOF91$DKxpA1iSV6E7CwRJnZRu60"}
+Fri Apr 21 14:37:40 MSK 2023: ERROR!: Result size in getTempData not equals 1!
+Fri Apr 21 14:38:28 MSK 2023: INFO: new update received
+Fri Apr 21 14:38:28 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:38:28 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$DNRnOF91$DKxpA1iSV6E7CwRJnZRu60"}
+Fri Apr 21 14:38:28 MSK 2023: ERROR!: Result size in getTempData not equals 1!
+Fri Apr 21 14:38:30 MSK 2023: INFO: new update received
+Fri Apr 21 14:38:30 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:38:30 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$GOtgk0ij$CvrcxvzOFeySrR.ibe05H0"}
+Fri Apr 21 14:38:30 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:57:02 MSK 2023: ERROR!: could not execute statement; SQL [n/a]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:272)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
+com.dumpBot.storage.PSQL.saveTempData(PSQL.java:134)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
+com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
+com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:57)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 14:57:02 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:02 MSK 2023: INFO: new update is message
+Fri Apr 21 14:57:02 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:57:02 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 14:57:02 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 14:57:02 MSK 2023: ERROR!: Could not roll back JPA transaction
+org.springframework.orm.jpa.JpaTransactionManager.doRollback(JpaTransactionManager.java:592)
+org.springframework.transaction.support.AbstractPlatformTransactionManager.processRollback(AbstractPlatformTransactionManager.java:835)
+org.springframework.transaction.support.AbstractPlatformTransactionManager.rollback(AbstractPlatformTransactionManager.java:809)
+org.springframework.transaction.interceptor.TransactionAspectSupport.completeTransactionAfterThrowing(TransactionAspectSupport.java:678)
+org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:395)
+org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
+com.dumpBot.storage.PSQL.saveTempData(PSQL.java:134)
+com.dumpBot.processor.msgProcessor.StartRegistrationProcess.saveTempWithToken(StartRegistrationProcess.java:43)
+com.dumpBot.processor.msgProcessor.StartRegistrationProcess.execute(StartRegistrationProcess.java:36)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:54)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:52)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 14:57:05 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:05 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:57:05 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$ntg4uarK$0R16EtSx30MaRH73H8UnG1"}
+Fri Apr 21 14:57:05 MSK 2023: ERROR!: Result size in getTempData not equals 1!
+Fri Apr 21 14:57:42 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:42 MSK 2023: INFO: new update is message
+Fri Apr 21 14:57:42 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:57:43 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 14:57:43 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 14:57:43 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:43 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:57:43 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$cAcVsU0X$5tNfqeAl95ipMZGOEYsdI0"}
+Fri Apr 21 14:57:44 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:57:45 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:45 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:57:45 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$SOzwpMA8$OCUbeQlX0w5048lVHDQRA1"}
+Fri Apr 21 14:57:45 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:57:46 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:46 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:57:46 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$awIOWC6A$cANp.rb0P/1UOKMmKU7LF0"}
+Fri Apr 21 14:57:46 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:57:47 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:47 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:57:47 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$FtwRoxpN$v6gVyU7ZEkYd7UDwg5n9R0"}
+Fri Apr 21 14:57:47 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_MODEL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:57:48 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:48 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:57:48 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$V9IspqAN$ahC70alEwy1b/azisxWDC1"}
+Fri Apr 21 14:57:48 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_ENGINE",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : "TU5",
+    "boltPatternSize" : null
+  },
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:57:49 MSK 2023: INFO: new update received
+Fri Apr 21 14:57:49 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:57:49 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$rXyg4gNZ$.8L7AcmaR1YqaKDjHDi6K/"}
+Fri Apr 21 14:57:49 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BOLT_PATTERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : "TU5",
+    "boltPatternSize" : "4*108"
+  },
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:58:12 MSK 2023: INFO: new update received
+Fri Apr 21 14:58:12 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:58:12 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$rXyg4gNZ$.8L7AcmaR1YqaKDjHDi6K/"}
+Fri Apr 21 14:58:12 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BOLT_PATTERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : "TU5",
+    "boltPatternSize" : "4*108"
+  },
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:58:13 MSK 2023: INFO: new update received
+Fri Apr 21 14:58:13 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:58:13 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$mBZ88ICM$GMhp330T1dfWuhsukY7yD0"}
+Fri Apr 21 14:58:13 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CITY",
+  "userData" : {
+    "regionName" : "Москва",
+    "regionId" : 1
+  },
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : "TU5",
+    "boltPatternSize" : "4*108"
+  },
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 14:58:23 MSK 2023: INFO: new update received
+Fri Apr 21 14:58:23 MSK 2023: INFO: new update is message
+Fri Apr 21 14:58:23 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:58:23 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 14:58:23 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 14:58:24 MSK 2023: INFO: new update received
+Fri Apr 21 14:58:24 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:58:24 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$7DKAZHpy$Ihlj55tV3qx1yyYi31rxN/"}
+Fri Apr 21 14:58:24 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 14:58:24 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 14:58:24 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 14:58:26 MSK 2023: INFO: new update received
+Fri Apr 21 14:58:26 MSK 2023: INFO: new update is callback
+Fri Apr 21 14:58:26 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$QSmUY4zF$lyX0Jj5OU/dZ7ONBtYdbp0"}
+Fri Apr 21 14:58:26 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 14:58:26 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 14:58:26 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 14:58:30 MSK 2023: INFO: new update received
+Fri Apr 21 14:58:30 MSK 2023: INFO: new update is message
+Fri Apr 21 14:58:30 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 14:58:30 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 14:58:30 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH_REQUEST_ACTION
+Fri Apr 21 14:58:30 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 15:02:32 MSK 2023: INFO: new update received
+Fri Apr 21 15:05:04 MSK 2023: INFO: new update received
+Fri Apr 21 15:25:32 MSK 2023: INFO: new update received
+Fri Apr 21 15:25:42 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 15:30:49 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 15:30:50 MSK 2023: ERROR!: Parameter method can not be null
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:62)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:66)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 15:31:13 MSK 2023: INFO: new update received
+Fri Apr 21 15:31:19 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 15:31:19 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 15:31:58 MSK 2023: ERROR!: Parameter method can not be null
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:62)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:66)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 15:39:52 MSK 2023: INFO: new update received
+Fri Apr 21 15:39:52 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 15:39:52 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 15:40:07 MSK 2023: INFO: new update received
+Fri Apr 21 15:40:07 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 15:40:07 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 15:51:31 MSK 2023: INFO: new update received
+Fri Apr 21 15:51:31 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 15:51:31 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 15:51:37 MSK 2023: ERROR!: Parameter sendMediaGroup can not be null
+org.telegram.telegrambots.bots.DefaultAbsSender.assertParamNotNull(DefaultAbsSender.java:1117)
+org.telegram.telegrambots.bots.DefaultAbsSender.execute(DefaultAbsSender.java:543)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:66)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 15:51:48 MSK 2023: INFO: new update received
+Fri Apr 21 15:51:48 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 15:51:48 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 15:52:02 MSK 2023: ERROR!: Parameter sendMediaGroup can not be null
+org.telegram.telegrambots.bots.DefaultAbsSender.assertParamNotNull(DefaultAbsSender.java:1117)
+org.telegram.telegrambots.bots.DefaultAbsSender.execute(DefaultAbsSender.java:543)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:66)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 15:52:06 MSK 2023: INFO: new update received
+Fri Apr 21 15:52:06 MSK 2023: INFO: new update is callback
+Fri Apr 21 15:52:06 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$7DKAZHpy$Ihlj55tV3qx1yyYi31rxN/"}
+Fri Apr 21 15:52:06 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : [ ],
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 15:52:06 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 15:52:06 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 15:52:13 MSK 2023: INFO: new update received
+Fri Apr 21 15:52:13 MSK 2023: INFO: new update is callback
+Fri Apr 21 15:52:13 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$BTFq1gxs$vMIKWWyn4WmqX.kLAn7vx0"}
+Fri Apr 21 15:52:13 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "photos" : [ ],
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 15:52:13 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 15:52:13 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 15:52:14 MSK 2023: INFO: new update received
+Fri Apr 21 15:52:15 MSK 2023: INFO: new update is callback
+Fri Apr 21 15:52:15 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$kjei32eN$fOTumeBqEmj05sUZsMpAk."}
+Fri Apr 21 15:52:15 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ ],
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 15:52:15 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 15:52:15 MSK 2023: INFO: user 436641871chooses brand for search request
+Fri Apr 21 15:52:17 MSK 2023: INFO: new update received
+Fri Apr 21 15:52:17 MSK 2023: INFO: new update is callback
+Fri Apr 21 15:52:17 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$KQEtZVIw$ApFViK2VsdKVBAmFEuVeT0"}
+Fri Apr 21 15:52:17 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ ],
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 15:52:17 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 15:52:17 MSK 2023: INFO: user 436641871chooses model for search request
+Fri Apr 21 15:52:20 MSK 2023: INFO: new update received
+Fri Apr 21 15:52:20 MSK 2023: INFO: new update is callback
+Fri Apr 21 15:52:20 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$RyQLYMea$AO94R1uwEQvqlhf.VB0/k0"}
+Fri Apr 21 15:52:20 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ ],
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 15:52:20 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 15:52:20 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 15:52:31 MSK 2023: INFO: new update received
+Fri Apr 21 15:52:31 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 15:52:31 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 15:52:48 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ ],
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:10:06 MSK 2023: INFO: new update received
+Fri Apr 21 16:10:06 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 16:10:06 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 16:10:14 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ "AgACAgIAAxkBAAIH42RChw8HjksODM96Jv_YH8rqFtkWAAKVyjEb_bwQShzT-nBtOkr0AQADAgADcwADLwQ", "AgACAgIAAxkBAAIH42RChw8HjksODM96Jv_YH8rqFtkWAAKVyjEb_bwQShzT-nBtOkr0AQADAgADbQADLwQ" ],
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:10:14 MSK 2023: INFO: new update received
+Fri Apr 21 16:10:14 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 16:10:14 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 16:10:43 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ "AgACAgIAAxkBAAIH5WRCiy6q_v78Ha4Iv7AnSq7ah-sqAAKVyjEb_bwQShzT-nBtOkr0AQADAgADcwADLwQ", "AgACAgIAAxkBAAIH5WRCiy6q_v78Ha4Iv7AnSq7ah-sqAAKVyjEb_bwQShzT-nBtOkr0AQADAgADbQADLwQ" ],
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:13:30 MSK 2023: INFO: new update received
+Fri Apr 21 16:13:30 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:13:30 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:13:30 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:13:30 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 16:13:40 MSK 2023: INFO: new update received
+Fri Apr 21 16:13:40 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:13:40 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$vniBRBM2$yHFnGmtYTKKP9.Jf9mTdW1"}
+Fri Apr 21 16:13:41 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:13:41 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:13:41 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 16:13:43 MSK 2023: INFO: new update received
+Fri Apr 21 16:13:43 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:13:43 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$Ky2CpxtV$QfyaT4QceyUfg87zPUdop."}
+Fri Apr 21 16:13:43 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:13:43 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:13:43 MSK 2023: INFO: user 436641871chooses brand for search request
+Fri Apr 21 16:13:44 MSK 2023: INFO: new update received
+Fri Apr 21 16:13:44 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:13:44 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$Xi0vWApD$tsIZn/L.fwut9xK.Z4BbS."}
+Fri Apr 21 16:13:44 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:13:44 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:13:44 MSK 2023: INFO: user 436641871chooses model for search request
+Fri Apr 21 16:13:45 MSK 2023: INFO: new update received
+Fri Apr 21 16:13:45 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:13:45 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$ZwLQoWT9$rHD.0ktWKX/k28bewmdyv."}
+Fri Apr 21 16:13:45 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:13:45 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:13:45 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 16:13:55 MSK 2023: INFO: new update received
+Fri Apr 21 16:13:55 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:13:55 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:13:55 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:13:55 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH_REQUEST_ACTION
+Fri Apr 21 16:13:55 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:18:43 MSK 2023: INFO: new update received
+Fri Apr 21 16:18:44 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:18:44 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:18:44 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:18:44 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 16:18:45 MSK 2023: INFO: new update received
+Fri Apr 21 16:18:45 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:18:45 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$5E7kvk/T$fej0NqYylQVFZmeApb4vC/"}
+Fri Apr 21 16:18:45 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:18:45 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:18:45 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 16:18:48 MSK 2023: INFO: new update received
+Fri Apr 21 16:18:49 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:18:49 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$zmHhRCu4$81lPsuouZ2xGqdLE7vEUK0"}
+Fri Apr 21 16:18:49 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:18:49 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:18:49 MSK 2023: INFO: user 436641871chooses brand for search request
+Fri Apr 21 16:18:50 MSK 2023: INFO: new update received
+Fri Apr 21 16:18:50 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:18:50 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$3KGuTYhe$QBW6UVliqtYNajfVf6CJ3/"}
+Fri Apr 21 16:18:50 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:18:50 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:18:50 MSK 2023: INFO: user 436641871chooses model for search request
+Fri Apr 21 16:18:53 MSK 2023: INFO: new update received
+Fri Apr 21 16:18:53 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:18:53 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$vswjWvR7$WxQS20pCQ4C8GoWBWQv4z."}
+Fri Apr 21 16:18:53 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_MODEL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:18:53 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:18:53 MSK 2023: INFO: user 436641871chooses engine for search request
+Fri Apr 21 16:18:54 MSK 2023: INFO: new update received
+Fri Apr 21 16:18:54 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:18:54 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$cIFvs7Ox$tE9IK0eVakpV1fifTYLRr1"}
+Fri Apr 21 16:18:54 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:18:54 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:18:54 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 16:19:00 MSK 2023: INFO: new update received
+Fri Apr 21 16:19:00 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:19:00 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:19:00 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:19:00 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH_REQUEST_ACTION
+Fri Apr 21 16:19:00 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:19:32 MSK 2023: INFO: new update received
+Fri Apr 21 16:19:32 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 16:19:32 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 16:19:34 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : "Гараж",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:23:36 MSK 2023: INFO: new update received
+Fri Apr 21 16:23:36 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:23:36 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:23:36 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:23:36 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 16:24:06 MSK 2023: INFO: new update received
+Fri Apr 21 16:24:06 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:24:06 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:24:06 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:24:06 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 16:24:10 MSK 2023: INFO: new update received
+Fri Apr 21 16:24:10 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:24:13 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:24:38 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:25:03 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 16:25:20 MSK 2023: INFO: new update received
+Fri Apr 21 16:25:20 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:25:22 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:25:22 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:25:22 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 16:25:26 MSK 2023: INFO: new update received
+Fri Apr 21 16:25:26 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:25:27 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:25:33 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:26:40 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 16:26:45 MSK 2023: INFO: new update received
+Fri Apr 21 16:26:45 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:26:46 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:26:47 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:36:06 MSK 2023: ERROR!: Parameter method can not be null
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:62)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:59)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 16:36:19 MSK 2023: INFO: new update received
+Fri Apr 21 16:36:19 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:36:21 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:36:37 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:37:28 MSK 2023: INFO: new update received
+Fri Apr 21 16:37:28 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:37:31 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:37:34 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:37:35 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADcwADLwQ", "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADbQADLwQ", "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADeAADLwQ", "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADeQADLwQ" ],
+  "description" : "Гараж",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:38:34 MSK 2023: INFO: new update received
+Fri Apr 21 16:38:34 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:38:34 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:38:34 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:38:34 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADcwADLwQ", "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADbQADLwQ", "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADeAADLwQ", "AgACAgIAAxkBAAIH-WRCjWMTyfaQ-5CtkU25oT_C7JVoAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADeQADLwQ" ],
+  "description" : "Гараж",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:40:06 MSK 2023: INFO: new update received
+Fri Apr 21 16:40:06 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:40:06 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:40:06 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:40:06 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 16:40:29 MSK 2023: INFO: new update received
+Fri Apr 21 16:40:29 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:40:29 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:40:29 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:41:05 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 16:41:16 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:16 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:41:16 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:41:16 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:41:19 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 16:41:21 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:21 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:41:21 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$tCCQw38T$Uid9Oq06c1iSnfknUITzR."}
+Fri Apr 21 16:41:21 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:41:21 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:41:21 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 16:41:22 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:22 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:41:22 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$4G/xvIs/$2Y7hHxzPyODSnxfJ7ZGrt."}
+Fri Apr 21 16:41:22 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:41:22 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:41:22 MSK 2023: INFO: user 436641871chooses brand for search request
+Fri Apr 21 16:41:23 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:23 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:41:23 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$At0OYeIK$fsawrXVG..EEdinnMh8oQ/"}
+Fri Apr 21 16:41:23 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:41:23 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:41:23 MSK 2023: INFO: user 436641871chooses model for search request
+Fri Apr 21 16:41:24 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:24 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:41:24 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$rJhb7LXu$OJY3.YIUfxhluh/GZrVQz/"}
+Fri Apr 21 16:41:24 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_MODEL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:41:24 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:41:24 MSK 2023: INFO: user 436641871chooses engine for search request
+Fri Apr 21 16:41:25 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:26 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:41:26 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$rc5ejJH3$VV1E6dgn7fzkhVEG.m4In1"}
+Fri Apr 21 16:41:26 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:41:26 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:41:26 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 16:41:41 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:41 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:41:41 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:41:41 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:41:41 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH_REQUEST_ACTION
+Fri Apr 21 16:41:41 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:41:51 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:51 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 16:41:51 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 16:41:51 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : "куплю вот такой вот ситроен. Бюджет 50.000",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:41:54 MSK 2023: INFO: new update received
+Fri Apr 21 16:41:54 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:41:54 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:41:54 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:41:54 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ "AgACAgIAAxkBAAIIG2RCkp_1KmApX2XXeXCYBNbhBftFAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADcwADLwQ", "AgACAgIAAxkBAAIIG2RCkp_1KmApX2XXeXCYBNbhBftFAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADbQADLwQ", "AgACAgIAAxkBAAIIG2RCkp_1KmApX2XXeXCYBNbhBftFAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADeAADLwQ", "AgACAgIAAxkBAAIIG2RCkp_1KmApX2XXeXCYBNbhBftFAAJnyjEb_bwQSqZGOPh1kiLBAQADAgADeQADLwQ" ],
+  "description" : "куплю вот такой вот ситроен. Бюджет 50.000",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:48:43 MSK 2023: INFO: new update received
+Fri Apr 21 16:48:43 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:48:43 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:48:43 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 16:48:46 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 16:48:47 MSK 2023: INFO: new update received
+Fri Apr 21 16:48:47 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:48:47 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$gdOAEQkv$m7QBPlkxDrG.m2T6RiWlT/"}
+Fri Apr 21 16:48:47 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:48:47 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:48:47 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 16:48:49 MSK 2023: INFO: new update received
+Fri Apr 21 16:48:49 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:48:49 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$8YFzlsqW$l9I2kr68YzktyGBpE9ZQQ0"}
+Fri Apr 21 16:48:49 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:48:49 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:48:49 MSK 2023: INFO: user 436641871chooses brand for search request
+Fri Apr 21 16:48:50 MSK 2023: INFO: new update received
+Fri Apr 21 16:48:50 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:48:50 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$WokFWRq/$VLMdogYwJMIeltpP5iVjw1"}
+Fri Apr 21 16:48:50 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:48:50 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:48:50 MSK 2023: INFO: user 436641871chooses model for search request
+Fri Apr 21 16:48:52 MSK 2023: INFO: new update received
+Fri Apr 21 16:48:52 MSK 2023: INFO: new update is callback
+Fri Apr 21 16:48:52 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$Syqgj7G4$IEUQ/MdD6i3apDCQxZT8c."}
+Fri Apr 21 16:48:52 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 16:48:52 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 16:48:52 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 16:49:09 MSK 2023: INFO: new update received
+Fri Apr 21 16:49:09 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:49:09 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:49:11 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:49:11 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH_REQUEST_ACTION
+Fri Apr 21 16:49:11 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:49:27 MSK 2023: INFO: new update received
+Fri Apr 21 16:49:27 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 16:49:27 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 16:49:30 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : "Куплю колеса необычайной красоты как на фото",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:49:31 MSK 2023: INFO: new update received
+Fri Apr 21 16:49:31 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:49:31 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:49:31 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:49:31 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ "AgACAgIAAxkBAAIIJ2RClGadRCiSt_7urdpLQcPdu3nHAALzyjEb_bwQSlplhVpZcem0AQADAgADcwADLwQ", "AgACAgIAAxkBAAIIJ2RClGadRCiSt_7urdpLQcPdu3nHAALzyjEb_bwQSlplhVpZcem0AQADAgADbQADLwQ", "AgACAgIAAxkBAAIIJ2RClGadRCiSt_7urdpLQcPdu3nHAALzyjEb_bwQSlplhVpZcem0AQADAgADeAADLwQ", "AgACAgIAAxkBAAIIJ2RClGadRCiSt_7urdpLQcPdu3nHAALzyjEb_bwQSlplhVpZcem0AQADAgADeQADLwQ" ],
+  "description" : "Куплю колеса необычайной красоты как на фото",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 16:51:16 MSK 2023: INFO: new update received
+Fri Apr 21 16:51:16 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:51:16 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:51:16 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:51:16 MSK 2023: ERROR!: argument "content" is null
+com.fasterxml.jackson.databind.ObjectMapper._assertNotNull(ObjectMapper.java:4885)
+com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3644)
+com.dumpBot.common.Util.readCallBack(Util.java:12)
+com.dumpBot.processor.msgProcessor.process.ReadyProcess.execute(ReadyProcess.java:40)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:54)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:57)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 16:51:22 MSK 2023: INFO: new update received
+Fri Apr 21 16:55:17 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:55:17 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:55:17 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 16:55:17 MSK 2023: ERROR!: argument "content" is null
+com.fasterxml.jackson.databind.ObjectMapper._assertNotNull(ObjectMapper.java:4885)
+com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3644)
+com.dumpBot.common.Util.readCallBack(Util.java:12)
+com.dumpBot.processor.msgProcessor.process.ReadyProcess.execute(ReadyProcess.java:40)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:54)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:57)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 16:58:05 MSK 2023: INFO: new update received
+Fri Apr 21 16:58:07 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:58:07 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:58:07 MSK 2023: ERROR!: JDBC exception executing SQL [select c1_0.id,c1_0.carid,c1_0.client_action,c1_0.created_date,c1_0.last_callback,c1_0.login,c1_0.region_id,c1_0.role,c1_0.user_name,c1_0.waiting_messages from clientEntity c1_0 where c1_0.login=?]; SQL [n/a]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy97.findByLogin(Unknown Source)
+com.dumpBot.storage.PSQL.checkUser(PSQL.java:168)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:48)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:56)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 16:58:53 MSK 2023: INFO: new update received
+Fri Apr 21 16:58:56 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 16:58:56 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 16:58:58 MSK 2023: ERROR!: JDBC exception executing SQL [select c1_0.id,c1_0.carid,c1_0.client_action,c1_0.created_date,c1_0.last_callback,c1_0.login,c1_0.region_id,c1_0.role,c1_0.user_name,c1_0.waiting_messages from clientEntity c1_0 where c1_0.login=?]; SQL [n/a]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy97.findByLogin(Unknown Source)
+com.dumpBot.storage.PSQL.checkUser(PSQL.java:168)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:48)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:56)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 17:00:10 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:12 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 17:00:12 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 17:00:12 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 17:00:12 MSK 2023: INFO: start registration process for user 436641871
+Fri Apr 21 17:00:17 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:19 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:00:19 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$9qexoCpM$l9OIpZhZjAcwd3PFihRbM1"}
+Fri Apr 21 17:00:19 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 17:00:20 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:20 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:00:20 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$T8/1jNK7$phlU3o6YYyiNhXoAQzVSB0"}
+Fri Apr 21 17:00:20 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 17:00:21 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:21 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:00:21 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$FdP5FwqR$s27bo870d.1lXF9Etm/Vs0"}
+Fri Apr 21 17:00:21 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 17:00:22 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:22 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:00:22 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$IZvN5LJh$CxxwV2PtBbjBVz6N6yELG1"}
+Fri Apr 21 17:00:22 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_MODEL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 17:00:23 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:23 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:00:23 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$82HQloPn$qfU/geLTe7MN9uXuKEEMn1"}
+Fri Apr 21 17:00:23 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_ENGINE",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : "TU5",
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 17:00:24 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:24 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:00:24 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$5qlFxwUi$9iVzj42SxGrUyTPn8s2ny1"}
+Fri Apr 21 17:00:24 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BOLT_PATTERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : "TU5",
+    "boltPatternSize" : "4*108"
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 17:00:26 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:26 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:00:26 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$6ULUfutO$Q7.g2NSzYfqyySEjRCDkO1"}
+Fri Apr 21 17:00:26 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CITY",
+  "userData" : {
+    "regionName" : "Москва",
+    "regionId" : 1
+  },
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : "TU5",
+    "boltPatternSize" : "4*108"
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "REGISTRATION_ACTION"
+}
+Fri Apr 21 17:00:28 MSK 2023: INFO: new update received
+Fri Apr 21 17:00:28 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 17:00:28 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 17:00:28 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 17:00:28 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 17:01:35 MSK 2023: INFO: new update received
+Fri Apr 21 17:01:36 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 17:01:36 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 17:01:36 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 17:01:36 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 17:01:38 MSK 2023: INFO: new update received
+Fri Apr 21 17:01:38 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:01:38 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$rbUk8Y6R$HOBq4k8KQn9Lvs8UrL7m/."}
+Fri Apr 21 17:01:38 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 17:01:38 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 17:01:38 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 17:01:39 MSK 2023: INFO: new update received
+Fri Apr 21 17:01:39 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:01:39 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$a63e5G9T$XuIFnJ6ZFyTXvw66YfBwX/"}
+Fri Apr 21 17:01:39 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_CONCERN",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : null,
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 17:01:39 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 17:01:39 MSK 2023: INFO: user 436641871chooses brand for search request
+Fri Apr 21 17:01:41 MSK 2023: INFO: new update received
+Fri Apr 21 17:01:41 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:01:41 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$HbbII5U3$4mC2DaHwoaJZ7dTxH3EGJ0"}
+Fri Apr 21 17:01:41 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_BRAND",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : null,
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 17:01:41 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 17:01:41 MSK 2023: INFO: user 436641871chooses model for search request
+Fri Apr 21 17:01:43 MSK 2023: INFO: new update received
+Fri Apr 21 17:01:43 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:01:43 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$360VnSLD$Wgc5GwZCGXtiw9tR40snJ/"}
+Fri Apr 21 17:01:43 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "CHOOSE_MODEL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 17:01:43 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 17:01:43 MSK 2023: INFO: user 436641871chooses engine for search request
+Fri Apr 21 17:01:45 MSK 2023: INFO: new update received
+Fri Apr 21 17:01:45 MSK 2023: INFO: new update is callback
+Fri Apr 21 17:01:45 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$2DJs5E/0$bukWLgzAmQFURYScngg.J0"}
+Fri Apr 21 17:01:45 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 17:01:45 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 17:01:45 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 17:02:21 MSK 2023: INFO: new update received
+Fri Apr 21 17:02:21 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 17:02:21 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 17:02:21 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 17:02:21 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH_REQUEST_ACTION
+Fri Apr 21 17:02:21 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 17:02:52 MSK 2023: INFO: new update received
+Fri Apr 21 17:02:52 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 17:02:52 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 17:02:52 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : null,
+  "description" : "Совесть у Сережи Нагорнова",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 17:02:55 MSK 2023: INFO: new update received
+Fri Apr 21 17:02:55 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 17:02:55 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 17:02:55 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 17:02:55 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : {
+    "concern" : "PSA",
+    "brand" : "CITROEN",
+    "model" : "C4",
+    "engineName" : null,
+    "boltPatternSize" : null
+  },
+  "photos" : [ "AgACAgIAAxkBAAIIRGRCl4wdLAWQLmhAHkJ-iA7z7pR2AAL-yjEb_bwQSgKvmH4bZR1dAQADAgADcwADLwQ", "AgACAgIAAxkBAAIIRGRCl4wdLAWQLmhAHkJ-iA7z7pR2AAL-yjEb_bwQSgKvmH4bZR1dAQADAgADbQADLwQ", "AgACAgIAAxkBAAIIRGRCl4wdLAWQLmhAHkJ-iA7z7pR2AAL-yjEb_bwQSgKvmH4bZR1dAQADAgADeAADLwQ", "AgACAgIAAxkBAAIIRGRCl4wdLAWQLmhAHkJ-iA7z7pR2AAL-yjEb_bwQSgKvmH4bZR1dAQADAgADeQADLwQ" ],
+  "description" : "Совесть у Сережи Нагорнова",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 17:57:57 MSK 2023: INFO: new update received
+Fri Apr 21 17:57:57 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 17:57:57 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 17:57:57 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 17:57:57 MSK 2023: ERROR!: argument "content" is null
+com.fasterxml.jackson.databind.ObjectMapper._assertNotNull(ObjectMapper.java:4885)
+com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3644)
+com.dumpBot.common.Util.readCallBack(Util.java:12)
+com.dumpBot.processor.msgProcessor.process.ReadyProcess.execute(ReadyProcess.java:48)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:54)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:60)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 18:00:59 MSK 2023: INFO: new update received
+Fri Apr 21 18:01:00 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 18:01:00 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 18:01:00 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 18:01:00 MSK 2023: ERROR!: argument "content" is null
+com.fasterxml.jackson.databind.ObjectMapper._assertNotNull(ObjectMapper.java:4885)
+com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3644)
+com.dumpBot.common.Util.readCallBack(Util.java:12)
+com.dumpBot.processor.msgProcessor.process.ReadyProcess.execute(ReadyProcess.java:48)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:54)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:60)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:317)
+Fri Apr 21 18:01:03 MSK 2023: INFO: new update received
+Fri Apr 21 18:01:03 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 18:01:03 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 18:01:03 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Fri Apr 21 18:01:03 MSK 2023: INFO: start main menu process for user 436641871
+Fri Apr 21 18:01:04 MSK 2023: INFO: new update received
+Fri Apr 21 18:01:04 MSK 2023: INFO: new update is callback
+Fri Apr 21 18:01:04 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$HwQkhsGF$yVz9QpN140i3jdQKRHO/C/"}
+Fri Apr 21 18:01:04 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : null,
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 18:01:04 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 18:01:04 MSK 2023: INFO:  user 436641871chooses сoncern for search request
+Fri Apr 21 18:01:05 MSK 2023: INFO: new update received
+Fri Apr 21 18:01:05 MSK 2023: INFO: new update is callback
+Fri Apr 21 18:01:05 MSK 2023: INFO: Received the following callback from user update 436641871: {"token" : "$1$wWCWXNCI$Lccr.TWVwmVPkAktsKu02."}
+Fri Apr 21 18:01:05 MSK 2023: INFO: Found callback from temp :{
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+}
+Fri Apr 21 18:01:05 MSK 2023: INFO: start search callBack process for user 436641871
+Fri Apr 21 18:01:05 MSK 2023: INFO: user 436641871enter description for search request
+Fri Apr 21 18:01:16 MSK 2023: INFO: new update received
+Fri Apr 21 18:01:16 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 18:01:16 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 18:01:16 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 18:01:16 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH_REQUEST_ACTION
+Fri Apr 21 18:01:16 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : null,
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 18:01:27 MSK 2023: INFO: new update received
+Fri Apr 21 18:01:27 MSK 2023: INFO: new update is photo from 436641871
+Fri Apr 21 18:01:27 MSK 2023: INFO: start photo processor for 436641871
+Fri Apr 21 18:01:27 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "photos" : null,
+  "description" : "катышек в пупке",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 18:01:51 MSK 2023: INFO: new update received
+Fri Apr 21 18:01:51 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 18:01:51 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 18:01:51 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 18:01:51 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "photos" : [ "AgACAgIAAxkBAAIIUmRCpUcDrmtL3uLF42x7Y7GHBOwQAAKVyjEb_bwQShzT-nBtOkr0AQADAgADcwADLwQ", "AgACAgIAAxkBAAIIUmRCpUcDrmtL3uLF42x7Y7GHBOwQAAKVyjEb_bwQShzT-nBtOkr0AQADAgADbQADLwQ" ],
+  "description" : "катышек в пупке",
+  "action" : "SEARCH_REQUEST_ACTION"
+} was found by user 436641871
+Fri Apr 21 18:06:01 MSK 2023: INFO: new update received
+Fri Apr 21 18:06:01 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 21 18:06:01 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 21 18:06:01 MSK 2023: INFO: Сommand /ready recognized by user 436641871
+Fri Apr 21 18:06:01 MSK 2023: INFO: callback {
+  "userId" : "436641871",
+  "subsection" : "UNEVERSAL",
+  "userData" : null,
+  "carData" : null,
+  "photos" : [ "AgACAgIAAxkBAAIIUmRCpUcDrmtL3uLF42x7Y7GHBOwQAAKVyjEb_bwQShzT-nBtOkr0AQADAgADcwADLwQ", "AgACAgIAAxkBAAIIUmRCpUcDrmtL3uLF42x7Y7GHBOwQAAKVyjEb_bwQShzT-nBtOkr0AQADAgADbQADLwQ" ],
+  "description" : "катышек в пупке",
   "action" : "SEARCH_REQUEST_ACTION"
 } was found by user 436641871
