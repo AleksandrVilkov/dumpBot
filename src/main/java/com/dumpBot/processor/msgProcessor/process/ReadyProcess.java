@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
@@ -50,6 +52,11 @@ public class ReadyProcess extends BaseProcess implements MsgProcess {
 
     }
 
+    /*
+    в поле media должен быть указан массив с фото (видео) и поле caption должно быть только у первого элемента массива.
+    Если указать caption для более чем одного элемента, то Телеграм будет отображать их только при нажатии
+    на предварительный просмотр фотографии для каждой фотографии отдельно.
+    */
     @Override
     public SendMessage execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
@@ -62,39 +69,88 @@ public class ReadyProcess extends BaseProcess implements MsgProcess {
         } catch (Exception e) {
             logger.writeStackTrace(e);
         }
-        SendMediaGroup mediaGroup = new SendMediaGroup();
-        if (callback != null) {
-            String textMsg = createSearchText(callback, user);
-            mediaGroup.setChatId(String.valueOf(bot.getConfig().getValidateData().getChannelID()));
-            List<InputMedia> media = new ArrayList<>();
-        /*
-        в поле media должен быть указан массив с фото (видео) и поле caption должно быть только у первого элемента массива.
-        Если указать caption для более чем одного элемента, то Телеграм будет отображать их только при нажатии
-        на предварительный просмотр фотографии для каждой фотографии отдельно.
-        */
 
-            //TODO если нет фото
-            int i = 0;
-            for (String photo : callback.getPhotos()) {
-                InputMedia inputMedia = new InputMediaPhoto(photo);
-                if (i == 0) {
-                    inputMedia.setCaption(textMsg);
-                    i++;
-                }
-                media.add(inputMedia);
+        if (callback != null) {
+            Action action = callback.getAction();
+            if (action.equals(Action.SALE_ACTION)) {
+                return readySale(callback, user);
             }
-            //TODO Если одна фото
-            mediaGroup.setMedias(media);
-            try {
-                bot.execute(mediaGroup);
-            } catch (TelegramApiException e) {
-                throw new RuntimeException(e);
+            if (action.equals(Action.SEARCH_REQUEST_ACTION)) {
+                return readySearch(callback, user);
             }
-            saveUserAccommodation(user, textMsg, callback.getPhotos());
-            resetLastUserAction(user);
-            return new SendMessage(userId, resourcesHelper.getResources().getMsgs().getSendingModeration());
+            return new SendMessage(callback.getUserId(), resourcesHelper.getResources().getErrors().getCommonError());
         }
-        return new SendMessage(userId, resourcesHelper.getResources().getMsgs().getNoSendingModeration());
+        return new SendMessage(callback.getUserId(), resourcesHelper.getResources().getErrors().getCommonError());
+    }
+
+    private SendMessage readySearch(Callback callback, User user) {
+        String textMsg = createSearchText(callback, user);
+        sendToChannel(callback, textMsg);
+        saveUserAccommodation(user, textMsg, callback.getPhotos());
+        resetLastUserAction(user);
+        return new SendMessage(user.getLogin(), resourcesHelper.getResources().getMsgs().getSendingModeration());
+    }
+
+    private SendMessage readySale(Callback callback, User user) {
+        String textMsg = createSaleText(callback, user);
+        sendToChannel(callback, textMsg);
+        saveUserAccommodation(user, textMsg, callback.getPhotos());
+        resetLastUserAction(user);
+        return new SendMessage(user.getLogin(), resourcesHelper.getResources().getMsgs().getSendingModeration());
+    }
+
+    private void sendToChannel(Callback callback, String textMsg) {
+        if (callback.getPhotos() == null || callback.getPhotos().size() == 0) {
+            sendToChannelWithoutPhoto(textMsg);
+            return;
+        }
+        if (callback.getPhotos().size() == 1) {
+            sendToChannelOnePhoto(callback, textMsg);
+        } else {
+            sendToChannelManyPhoto(callback, textMsg);
+        }
+    }
+
+    private void sendToChannelWithoutPhoto(String textMsg) {
+        try {
+            bot.execute(new SendMessage(String.valueOf(bot.getConfig().getValidateData().getChannelID()), textMsg));
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void sendToChannelOnePhoto(Callback callback, String textMsg) {
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.setChatId(String.valueOf(bot.getConfig().getValidateData().getChannelID()));
+        sendPhoto.setCaption(textMsg);
+        InputFile inputFile = new InputFile(callback.getPhotos().get(0));
+        sendPhoto.setPhoto(inputFile);
+        try {
+            bot.execute(sendPhoto);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void sendToChannelManyPhoto(Callback callback, String textMsg) {
+        SendMediaGroup mediaGroup = new SendMediaGroup();
+        mediaGroup.setChatId(String.valueOf(bot.getConfig().getValidateData().getChannelID()));
+        List<InputMedia> media = new ArrayList<>();
+        int i = 0;
+        for (String photo : callback.getPhotos()) {
+            InputMedia inputMedia = new InputMediaPhoto(photo);
+            if (i == 0) {
+                inputMedia.setCaption(textMsg);
+                i++;
+            }
+            media.add(inputMedia);
+        }
+        mediaGroup.setMedias(media);
+        try {
+            bot.execute(mediaGroup);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void saveUserAccommodation(User user, String textMsg, List<String> photos) {

@@ -221,11 +221,13 @@ public class PSQL implements IStorage {
         accommodation.setTopical(userAccommodation.isTopical());
         accommodation.setDescription(userAccommodation.getDescription());
         Set<PhotoEntity> photo = new HashSet<>();
-        for (String id : userAccommodation.getPhotos()) {
-            PhotoEntity photoEntity = new PhotoEntity();
-            photoEntity.setTelegramId(id);
-            photoEntity.setUserAccommodationEntity(accommodation);
-            photo.add(photoEntity);
+        if (userAccommodation.getPhotos() != null) {
+            for (String id : userAccommodation.getPhotos()) {
+                PhotoEntity photoEntity = new PhotoEntity();
+                photoEntity.setTelegramId(id);
+                photoEntity.setUserAccommodationEntity(accommodation);
+                photo.add(photoEntity);
+            }
         }
         accommodation.setPhoto(photo);
         searchTermsRepository.save(accommodation);

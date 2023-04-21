@@ -37,10 +37,9 @@ public class SaleDescriptionProcess extends BaseProcess implements MsgProcess {
     public SendMessage execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         User user = storage.getUser(userId);
-        String stringCallBack = user.getLastCallback();
         Callback callback = null;
         try {
-            callback = Util.readCallBack(stringCallBack);
+            callback = Util.readCallBack(user.getLastCallback());
             logger.writeInfo("callback " + callback.toString() + " was found by user " + userId);
         } catch (Exception e) {
             logger.writeStackTrace(e);
@@ -48,7 +47,7 @@ public class SaleDescriptionProcess extends BaseProcess implements MsgProcess {
         if (callback != null) {
             //TODO выбирать только циферки, все пробелы и буквы идут лесом
             callback.setDescription(update.getMessage().getText());
-            user.setClientAction(Action.SALE_PHOTO.toString());
+            user.setClientAction(Action.SALE_ACTION.toString());
             user.setLastCallback(callback.toString());
             user.setWaitingMessages(true);
             storage.saveUser(user);
