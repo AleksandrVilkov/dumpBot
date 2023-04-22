@@ -3,6 +3,7 @@ package com.dumpBot.processor.msgProcessor.process.sale;
 import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.Action;
+import com.dumpBot.model.CallbackSubsection;
 import com.dumpBot.model.User;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
@@ -48,6 +49,7 @@ public class SalePriceMsgProcess extends BaseMsgProcess implements MsgProcess {
         if (callback != null) {
             //TODO выбирать только циферки, все пробелы и буквы идут лесом
             callback.setPrice(update.getMessage().getText());
+            callback.setSubsection(CallbackSubsection.DESCRIPTION);
             user.setClientAction(Action.SALE_DESCRIPTION.toString());
             user.setLastCallback(callback.toString());
             user.setWaitingMessages(true);

@@ -7,6 +7,8 @@ public enum CallbackSubsection {
     CHOOSE_ENGINE,
     CHOOSE_BOLT_PATTERN,
     CHOOSE_CITY,
+    DESCRIPTION,
+    PHOTO,
     PRICE,
     UNIVERSAL
 }

@@ -61,6 +61,7 @@ public class SaleCallBackProcess implements CallBackProcess {
     private SendMessage enterDescription(Update update, Callback callback) {
         User usr = storage.getUser(String.valueOf(update.getCallbackQuery().getFrom().getId()));
         usr.setWaitingMessages(true);
+        callback.setSubsection(CallbackSubsection.DESCRIPTION);
         usr.setClientAction(Action.SALE_ACTION.toString());
         usr.setLastCallback(callback.toString());
         storage.saveUser(usr);
@@ -70,6 +71,7 @@ public class SaleCallBackProcess implements CallBackProcess {
     private SendMessage enterPrice(Update update, Callback callback) {
         User usr = storage.getUser(String.valueOf(update.getCallbackQuery().getFrom().getId()));
         usr.setWaitingMessages(true);
+        callback.setSubsection(CallbackSubsection.PRICE);
         usr.setClientAction(Action.SALE_PRICE_ACTION.toString());
         usr.setLastCallback(callback.toString());
         storage.saveUser(usr);
@@ -151,7 +153,7 @@ public class SaleCallBackProcess implements CallBackProcess {
 
     private void insertUniversalDataButton(Map<String, String> data, Callback callback) {
         Callback newCb = callback.clone();
-        newCb.setSubsection(CallbackSubsection.UNIVERSAL);
+        newCb.setSubsection(CallbackSubsection.PRICE);
         String token = Util.newMd5FromCalBack(newCb);
         data.put(resourcesHelper.getResources().getButtonsText().getSaleUniversal(), resourcesHelper.getButtonData(token));
         storage.saveTempData(token, newCb);

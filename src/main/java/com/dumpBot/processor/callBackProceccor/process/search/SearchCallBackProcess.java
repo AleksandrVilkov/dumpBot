@@ -72,6 +72,7 @@ public class SearchCallBackProcess implements CallBackProcess {
     private SendMessage enterDescription(Update update, Callback callback) {
         User usr = storage.getUser(String.valueOf(update.getCallbackQuery().getFrom().getId()));
         usr.setWaitingMessages(true);
+        callback.setSubsection(CallbackSubsection.DESCRIPTION);
         usr.setClientAction(Action.SEARCH_REQUEST_ACTION.toString());
         usr.setLastCallback(callback.toString());
         storage.saveUser(usr);
