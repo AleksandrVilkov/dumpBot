@@ -1,6 +1,6 @@
 package com.dumpBot.processor.callBackProceccor.process;
 
-import com.dumpBot.model.Action;
+import com.dumpBot.model.enums.Action;
 import com.dumpBot.processor.callBackProceccor.process.defaultProcess.DefaultCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.rules.RulesCallbackProcess;

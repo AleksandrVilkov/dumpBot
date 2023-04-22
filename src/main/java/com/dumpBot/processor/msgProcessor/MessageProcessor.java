@@ -4,7 +4,7 @@ import com.dumpBot.bot.IMessageProcessor;
 import com.dumpBot.common.Util;
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.model.Action;
+import com.dumpBot.model.enums.Action;
 import com.dumpBot.model.User;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.BaseProcess;

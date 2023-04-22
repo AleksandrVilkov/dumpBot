@@ -5,6 +5,8 @@ import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.model.callback.CarData;
 import com.dumpBot.model.callback.UserData;
+import com.dumpBot.model.enums.CallbackSubsection;
+import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;

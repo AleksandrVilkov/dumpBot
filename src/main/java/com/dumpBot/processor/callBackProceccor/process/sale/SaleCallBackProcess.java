@@ -5,6 +5,8 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.model.callback.CarData;
+import com.dumpBot.model.enums.Action;
+import com.dumpBot.model.enums.CallbackSubsection;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
@@ -72,7 +74,7 @@ public class SaleCallBackProcess implements CallBackProcess {
         User usr = storage.getUser(String.valueOf(update.getCallbackQuery().getFrom().getId()));
         usr.setWaitingMessages(true);
         callback.setSubsection(CallbackSubsection.PRICE);
-        usr.setClientAction(Action.SALE_PRICE_ACTION.toString());
+        usr.setClientAction(Action.SALE_PRICE.toString());
         usr.setLastCallback(callback.toString());
         storage.saveUser(usr);
         return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),

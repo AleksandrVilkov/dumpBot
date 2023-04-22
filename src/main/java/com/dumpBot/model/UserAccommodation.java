@@ -1,5 +1,6 @@
 package com.dumpBot.model;
 
+import com.dumpBot.model.enums.AccommodationType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package com.dumpBot.processor.msgProcessor.process;
 
-import com.dumpBot.model.Action;
+import com.dumpBot.model.enums.Action;
 import com.dumpBot.processor.msgProcessor.StartRegistrationMsgProcess;
 import com.dumpBot.processor.msgProcessor.process.defaultProcess.DefaultProcess;
 import com.dumpBot.processor.msgProcessor.process.sale.SaleDescriptionMsgProcess;
@@ -53,7 +53,7 @@ public class MsgProcessFactory {
             case SEARCH_REQUEST_ACTION -> {
                 return searchProcess;
             }
-            case SALE_PRICE_ACTION -> {
+            case SALE_PRICE -> {
                 return salePrice;
             }
             case SALE_DESCRIPTION -> {

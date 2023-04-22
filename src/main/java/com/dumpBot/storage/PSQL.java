@@ -4,6 +4,7 @@ import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
+import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.storage.entity.*;
 import com.dumpBot.storage.repository.*;

@@ -1,6 +1,6 @@
 package com.dumpBot.model.callback;
 
-import com.dumpBot.model.CallbackSubsection;
+import com.dumpBot.model.enums.CallbackSubsection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -17,7 +17,7 @@ public class Callback implements Cloneable {
     private CallbackSubsection subsection;
 
     private String price;
-    private com.dumpBot.model.Action Action;
+    private com.dumpBot.model.enums.Action Action;
     private UserData userData;
     private CarData carData;
     private List<String> photos;
@@ -27,7 +27,7 @@ public class Callback implements Cloneable {
         this.photos = new ArrayList<>();
     }
 
-    public Callback(String userId, com.dumpBot.model.Action action) {
+    public Callback(String userId, com.dumpBot.model.enums.Action action) {
         this.userId = userId;
         Action = action;
     }

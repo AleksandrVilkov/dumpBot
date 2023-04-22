@@ -2,8 +2,8 @@ package com.dumpBot.processor.msgProcessor.process.sale;
 
 import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.model.Action;
-import com.dumpBot.model.CallbackSubsection;
+import com.dumpBot.model.enums.Action;
+import com.dumpBot.model.enums.CallbackSubsection;
 import com.dumpBot.model.User;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
