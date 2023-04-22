@@ -3,6 +3,7 @@ package com.dumpBot.processor.callBackProceccor.process;
 import com.dumpBot.model.Action;
 import com.dumpBot.processor.callBackProceccor.process.defaultProcess.DefaultCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess;
+import com.dumpBot.processor.callBackProceccor.process.rules.RulesCallbackProcess;
 import com.dumpBot.processor.callBackProceccor.process.sale.SaleCallBackProcess;
 import com.dumpBot.processor.callBackProceccor.process.search.SearchCallBackProcess;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,19 @@ public class CallBackProcessFactory {
     static CallBackProcess saleCallBackProcess;
     static CallBackProcess searchCallBackProcess;
     static CallBackProcess defaultCallBackProcess;
+    static CallBackProcess rulesCallBackProcess;
 
     @Autowired
     public CallBackProcessFactory(RegisterCallBackProcess rcp,
                                   SaleCallBackProcess sacp,
                                   SearchCallBackProcess scp,
-                                  DefaultCallBackProcess dcp) {
+                                  DefaultCallBackProcess dcp,
+                                  RulesCallbackProcess rulescp) {
         CallBackProcessFactory.registerCallBackProcess = rcp;
         CallBackProcessFactory.saleCallBackProcess = sacp;
         CallBackProcessFactory.searchCallBackProcess = scp;
         CallBackProcessFactory.defaultCallBackProcess = dcp;
+        CallBackProcessFactory.rulesCallBackProcess = rulescp;
     }
 
     public static CallBackProcess getProcess(Action action) {
@@ -37,6 +41,9 @@ public class CallBackProcessFactory {
             }
             case SEARCH_REQUEST_ACTION -> {
                 return searchCallBackProcess;
+            }
+            case RULES_ACTION -> {
+                return rulesCallBackProcess;
             }
             default -> {
                 return defaultCallBackProcess;

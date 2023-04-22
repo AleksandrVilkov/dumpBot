@@ -17,6 +17,7 @@ public class Resources {
     private Msgs msgs;
     private Errors errors;
     private Success success;
+    private String rules;
 
     @SneakyThrows
     public static Resources init() {

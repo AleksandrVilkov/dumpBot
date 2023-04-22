@@ -47,13 +47,9 @@ public class SaleCallBackProcess implements CallBackProcess {
                 logger.writeInfo("user " + userId + "chooses engine for sale");
                 return choiceEngine(update, callback);
             }
-            case PRICE -> {
+            case PRICE, UNIVERSAL -> {
                 logger.writeInfo("user " + userId + "enter description for sale");
                 return enterPrice(update, callback);
-            }
-            case UNIVERSAL -> {
-                logger.writeInfo("user " + userId + "enter description for sale");
-                return enterDescription(update, callback);
             }
             default -> {
                 logger.writeWarning("for user " + userId + " could not define subsection");
