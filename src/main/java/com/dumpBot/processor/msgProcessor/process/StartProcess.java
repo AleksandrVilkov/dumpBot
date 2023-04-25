@@ -1,9 +1,6 @@
 package com.dumpBot.processor.msgProcessor.process;
 
-import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.model.enums.Action;
-import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +8,10 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.webapp.WebAppInfo;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class StartProcess extends BaseMsgProcess implements MsgProcess {
@@ -42,33 +40,31 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
         SendMessage sendMessage = new SendMessage(userId,
                 resourcesHelper.getResources().getMsgs().getWelcomeRegistered());
 
-        Map<String, String> data = new HashMap<>();
+        InlineKeyboardMarkup.InlineKeyboardMarkupBuilder inlineKeyboardMarkupBuilder = InlineKeyboardMarkup.builder();
 
-        Callback searchCallback = new Callback(userId, Action.SEARCH_REQUEST_ACTION);
-        String tokenSearchCallback = saveTempWithToken(searchCallback);
-        data.put(resourcesHelper.getResources().getButtonsText().getSearchRequest(),
-                resourcesHelper.getButtonData(tokenSearchCallback));
+        List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
 
-        Callback saleCallback = new Callback(userId, Action.SALE_ACTION);
-        String tokenSaleCallback = saveTempWithToken(saleCallback);
-        data.put(resourcesHelper.getResources().getButtonsText().getPlaceAnAd(),
-                resourcesHelper.getButtonData(tokenSaleCallback));
+        //TODO убрать в ресурсы
 
-        Callback ruleCallback = new Callback(userId, Action.RULES_ACTION);
-        String tokenRuleCallback = saveTempWithToken(ruleCallback);
+        String url = "https://taupe-bienenstitch-397031.netlify.app/";
 
-        data.put(resourcesHelper.getResources().getButtonsText().getRules(),
-                resourcesHelper.getButtonData(tokenRuleCallback));
+        InlineKeyboardButton search = new InlineKeyboardButton(resourcesHelper.getResources().getButtonsText().getSearchRequest());
+        search.setWebApp(new WebAppInfo(url + "search"));
+        buttons.add(Collections.singletonList(search));
 
-        InlineKeyboardMarkup buttons = resourcesHelper.createInlineKeyBoard(data, 1);
+        InlineKeyboardButton sale = new InlineKeyboardButton(resourcesHelper.getResources().getButtonsText().getPlaceAnAd());
+        sale.setWebApp(new WebAppInfo(url + "sale"));
+        buttons.add(Collections.singletonList(sale));
 
-        sendMessage.setReplyMarkup(buttons);
+        InlineKeyboardButton rules = new InlineKeyboardButton(resourcesHelper.getResources().getButtonsText().getRules());
+        rules.setWebApp(new WebAppInfo(url + "rules"));
+        buttons.add(Collections.singletonList(rules));
+
+        inlineKeyboardMarkupBuilder.keyboard(buttons);
+
+        InlineKeyboardMarkup inlineKeyboardMarkup = inlineKeyboardMarkupBuilder.build();
+
+        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
-    }
-
-    private String saveTempWithToken(Callback callback) {
-        String token = Util.newMd5FromCalBack(callback);
-        storage.saveTempData(token, callback);
-        return token;
     }
 }
