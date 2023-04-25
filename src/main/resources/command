@@ -1,0 +1,6 @@
+sudo apt install nodejs
+sudo apt install npm
+sudo npm install -g n
+sudo n stable
+
+//npx create-react-app .
