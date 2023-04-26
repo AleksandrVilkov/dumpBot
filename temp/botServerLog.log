@@ -8620,3 +8620,34 @@ Sat Apr 22 00:36:21 MSK 2023: INFO: callback {
   "description" : "sss",
   "action" : "SEARCH_REQUEST_ACTION"
 } was found by user 436641871
+Wed Apr 26 09:30:58 MSK 2023: INFO: new update received
+Wed Apr 26 09:30:58 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 09:30:58 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 09:30:58 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 09:30:58 MSK 2023: INFO: start main menu process for user 436641871
+Wed Apr 26 10:22:15 MSK 2023: INFO: new update received
+Wed Apr 26 10:22:15 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 10:22:15 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 10:22:15 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 10:22:15 MSK 2023: INFO: start main menu process for user 436641871
+Wed Apr 26 10:30:43 MSK 2023: INFO: new update received
+Wed Apr 26 10:30:43 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 10:30:43 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 10:30:43 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 10:30:43 MSK 2023: INFO: start main menu process for user 436641871
+Wed Apr 26 12:24:42 MSK 2023: INFO: new update received
+Wed Apr 26 12:24:44 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 12:24:44 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 12:24:44 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 12:24:44 MSK 2023: INFO: start main menu process for user 436641871
+Wed Apr 26 12:34:56 MSK 2023: INFO: new update received
+Wed Apr 26 13:08:05 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 13:08:05 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 13:08:05 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 13:08:05 MSK 2023: INFO: start main menu process for user 436641871
+Wed Apr 26 13:13:46 MSK 2023: INFO: new update received
+Wed Apr 26 13:14:10 MSK 2023: INFO: new update received
+Wed Apr 26 13:14:10 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 13:14:10 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 13:14:10 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 13:14:10 MSK 2023: INFO: start main menu process for user 436641871
