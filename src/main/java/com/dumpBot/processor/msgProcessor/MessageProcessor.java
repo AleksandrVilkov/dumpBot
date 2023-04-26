@@ -6,7 +6,6 @@ import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.model.User;
-import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
@@ -64,10 +63,7 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         //находим пользователя и смотрим его последний колбек
         User user = storage.getUser(userId);
         String stringCallBack = user.getLastCallback();
-        Callback callback;
         try {
-            callback = Util.readCallBack(stringCallBack);
-            logger.writeInfo("callback " + callback.toString() + " was found by user " + userId);
         } catch (Exception e) {
             logger.writeStackTrace(e);
         }

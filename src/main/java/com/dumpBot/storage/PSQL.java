@@ -3,7 +3,6 @@ package com.dumpBot.storage;
 import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
-import com.dumpBot.model.callback.Callback;
 import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.storage.entity.*;
@@ -117,44 +116,6 @@ public class PSQL implements IStorage {
         } catch (Exception e) {
             logger.writeStackTrace(e);
             throw e;
-        }
-    }
-
-    @Override
-    public boolean saveTempData(String token, Callback callback) {
-        TempDataEntity tempDataEntity = new TempDataEntity();
-        tempDataEntity.setCallback(callback.toString());
-        tempDataEntity.setToken(token);
-        tempDataEntity.setCreatedDate(new Date());
-        try {
-            TempDataEntity result = tempDataRepository.save(tempDataEntity);
-            return true;
-        } catch (Exception e) {
-            logger.writeStackTrace(e);
-            return false;
-        }
-    }
-
-    @Override
-    public Callback getTempData(String token) {
-        List<TempDataEntity> result = new ArrayList<>();
-        try {
-            result = tempDataRepository.findByToken(token);
-        } catch (Exception e) {
-            logger.writeStackTrace(e);
-        }
-
-        if (result == null || result.size() != 1) {
-            logger.writeError("Result size in getTempData not equals 1!");
-            throw new RuntimeException("Result size not equals 1!");
-        }
-        String stringCallBack = result.get(0).getCallback();
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.readValue(stringCallBack, Callback.class);
-        } catch (JsonProcessingException e) {
-            logger.writeStackTrace(e);
-            throw new RuntimeException(e);
         }
     }
 

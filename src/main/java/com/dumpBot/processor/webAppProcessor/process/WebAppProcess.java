@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface WebAppProcess {
 
-    void processData(Update update, WebAppData webAppData);
+    boolean processData(Update update, WebAppData webAppData);
     List<SendMessage> prepareAnswer(Update update);
 
 }

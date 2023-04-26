@@ -48,8 +48,11 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
         }
 
         WebAppProcess wp = WebAppProcessFactory.getProcess(Util.findEnumConstant(Action.class, wpd.getAction()));
-        wp.prepareAnswer(update);
-        return wp.prepareAnswer(update);
+       if (wp != null && wp.processData(update, wpd)) {
+           return wp.prepareAnswer(update);
+       }
+       //todo убрать в ресурсы
+       return Collections.singletonList(new SendMessage(userId, "Возникла ошибка"));
     }
 
 

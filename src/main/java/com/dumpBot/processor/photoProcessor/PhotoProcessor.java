@@ -1,10 +1,8 @@
 package com.dumpBot.processor.photoProcessor;
 
 import com.dumpBot.bot.IPhotoProcessor;
-import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.User;
-import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
@@ -37,17 +35,7 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
         if (lastCallback == null) {
             return  Collections.singletonList(new SendMessage(userId, resourcesHelper.getResources().getMsgs().getPhoto().getNoAction()));
         }
-        Callback callback;
         try {
-            callback = Util.readCallBack(lastCallback);
-            logger.writeInfo("callback " + callback.toString() + " was found by user " + userId);
-            if (callback.getPhotos() == null) {
-                callback.setPhotos(photos);
-            } else {
-                callback.getPhotos().addAll(photos);
-            }
-
-            user.setLastCallback(callback.toString());
             storage.saveUser(user);
         } catch (Exception e) {
             logger.writeStackTrace(e);

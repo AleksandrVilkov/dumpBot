@@ -56,7 +56,6 @@ public class Bot extends TelegramLongPollingBot {
             return;
         }
 
-        //TODO переделать все на лист сообщений для возможности отправки нескольких сообщений юзеру
         List<SendMessage> msgs = new ArrayList<>();
         try {
             if (update.hasMessage()) {

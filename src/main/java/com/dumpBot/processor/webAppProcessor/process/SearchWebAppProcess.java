@@ -23,8 +23,9 @@ public class SearchWebAppProcess implements WebAppProcess {
     IStorage storage;
 
     @Override
-    public void processData(Update update, WebAppData wp) {
+    public boolean processData(Update update, WebAppData wp) {
         saveData(update, wp);
+        return true;
 
     }
 
