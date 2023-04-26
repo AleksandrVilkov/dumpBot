@@ -1,4 +1,4 @@
-package com.dumpBot.processor.callBackProceccor.process;
+package com.dumpBot.processor.callBackProcessor.process;
 
 import com.dumpBot.model.callback.Callback;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

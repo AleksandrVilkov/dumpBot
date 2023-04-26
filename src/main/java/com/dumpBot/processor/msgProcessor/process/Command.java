@@ -2,9 +2,7 @@ package com.dumpBot.processor.msgProcessor.process;
 
 public enum Command {
     START("/start"),
-    READY("/ready"),
-    REGISTRATION("/registration"),
-    MAIN_MENU("/main_menu");
+    READY("/ready");
     final String name;
 
     Command(String name) {

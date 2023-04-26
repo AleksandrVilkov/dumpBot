@@ -1,4 +1,4 @@
-package com.dumpBot.processor.callBackProceccor;
+package com.dumpBot.processor.callBackProcessor;
 
 import com.dumpBot.bot.ICallBackProcessor;
 import com.dumpBot.loger.ILogger;
@@ -7,8 +7,8 @@ import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
-import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
-import com.dumpBot.processor.callBackProceccor.process.CallBackProcessFactory;
+import com.dumpBot.processor.callBackProcessor.process.CallBackProcess;
+import com.dumpBot.processor.callBackProcessor.process.CallBackProcessFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class CallBackProcessor extends BaseProcess implements ICallBackProcessor {
     @Autowired
     ResourcesHelper resourcesHelper;
-
     @Autowired
     IStorage storage;
     @Autowired

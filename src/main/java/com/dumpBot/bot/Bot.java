@@ -7,8 +7,12 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Getter
@@ -20,7 +24,9 @@ public class Bot extends TelegramLongPollingBot {
     @Autowired
     private IMessageProcessor messageProcessor;
     @Autowired
-    private  IPhotoProcessor photoProcessor;
+    private IPhotoProcessor photoProcessor;
+    @Autowired
+    IWebAppProcessor webAppProcessor;
     @Autowired
     private ILogger logger;
     Config config;
@@ -52,6 +58,8 @@ public class Bot extends TelegramLongPollingBot {
             return;
         }
 
+        //TODO переделать все на лист сообщений для возможности отправки нескольких сообщений юзеру
+        List<SendMessage> msgs = new ArrayList<>();
         try {
             if (update.hasMessage()) {
                 if (update.getMessage().getText() != null) {
@@ -60,11 +68,16 @@ public class Bot extends TelegramLongPollingBot {
                     execute(messageProcessor.startMessageProcessor(update));
                     return;
                 }
-                    //смотрим фото
-                if (update.getMessage().getPhoto().size() > 0) {
+                //смотрим фото
+                if (update.getMessage().getPhoto() != null && update.getMessage().getPhoto().size() > 0) {
                     logger.writeInfo("new update is photo from " + update.getMessage().getFrom().getId());
                     execute(photoProcessor.startPhotoProcessor(update));
                     return;
+                }
+                if (update.getMessage().getWebAppData() != null) {
+                    logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId());
+                    //TODO реализовать
+                    execute(webAppProcessor.startWebAppProcessor(update));
                 }
             }
             //смотрим колбек - когда кнопка нажимается

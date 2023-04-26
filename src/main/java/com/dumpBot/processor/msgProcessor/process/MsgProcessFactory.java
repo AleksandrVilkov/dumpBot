@@ -1,7 +1,6 @@
 package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.model.enums.Action;
-import com.dumpBot.processor.msgProcessor.StartRegistrationMsgProcess;
 import com.dumpBot.processor.msgProcessor.process.defaultProcess.DefaultProcess;
 import com.dumpBot.processor.msgProcessor.process.sale.SaleDescriptionMsgProcess;
 import com.dumpBot.processor.msgProcessor.process.sale.SalePriceMsgProcess;
@@ -20,7 +19,7 @@ public class MsgProcessFactory {
     private static MsgProcess saleDescription;
 
     @Autowired
-    public MsgProcessFactory(StartRegistrationMsgProcess srp, StartProcess mmp, DefaultProcess df,
+    public MsgProcessFactory(RegistrationProcess srp, StartProcess mmp, DefaultProcess df,
                              SearchMsgProcess sp, ReadyMsgProcess rp, SalePriceMsgProcess spp, SaleDescriptionMsgProcess sdp) {
         MsgProcessFactory.registration = srp;
         MsgProcessFactory.start = mmp;
@@ -38,9 +37,6 @@ public class MsgProcessFactory {
             }
             case READY -> {
                 return readyProcess;
-            }
-            case REGISTRATION -> {
-                return registration;
             }
             default -> {
                 return defaultProcess;

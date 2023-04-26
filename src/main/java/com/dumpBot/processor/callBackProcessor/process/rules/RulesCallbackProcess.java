@@ -1,9 +1,9 @@
-package com.dumpBot.processor.callBackProceccor.process.rules;
+package com.dumpBot.processor.callBackProcessor.process.rules;
 
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.ResourcesHelper;
-import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
+import com.dumpBot.processor.callBackProcessor.process.CallBackProcess;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

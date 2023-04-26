@@ -1,7 +1,7 @@
-package com.dumpBot.processor.callBackProceccor.process.defaultProcess;
+package com.dumpBot.processor.callBackProcessor.process.defaultProcess;
 
 import com.dumpBot.model.callback.Callback;
-import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
+import com.dumpBot.processor.callBackProcessor.process.CallBackProcess;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;

@@ -1,11 +1,11 @@
-package com.dumpBot.processor.callBackProceccor.process;
+package com.dumpBot.processor.callBackProcessor.process;
 
 import com.dumpBot.model.enums.Action;
-import com.dumpBot.processor.callBackProceccor.process.defaultProcess.DefaultCallBackProcess;
-import com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess;
-import com.dumpBot.processor.callBackProceccor.process.rules.RulesCallbackProcess;
-import com.dumpBot.processor.callBackProceccor.process.sale.SaleCallBackProcess;
-import com.dumpBot.processor.callBackProceccor.process.search.SearchCallBackProcess;
+import com.dumpBot.processor.callBackProcessor.process.defaultProcess.DefaultCallBackProcess;
+import com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess;
+import com.dumpBot.processor.callBackProcessor.process.rules.RulesCallbackProcess;
+import com.dumpBot.processor.callBackProcessor.process.sale.SaleCallBackProcess;
+import com.dumpBot.processor.callBackProcessor.process.search.SearchCallBackProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

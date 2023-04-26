@@ -1,74 +1,91 @@
-package com.dumpBot.processor.callBackProceccor.process.register;
+package com.dumpBot.processor.callBackProcessor.process.search;
 
 import com.dumpBot.common.Util;
+import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.callback.Callback;
 import com.dumpBot.model.callback.CarData;
 import com.dumpBot.model.callback.UserData;
+import com.dumpBot.model.enums.Action;
 import com.dumpBot.model.enums.CallbackSubsection;
-import com.dumpBot.model.enums.Role;
-import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IStorage;
 import com.dumpBot.processor.ResourcesHelper;
-import com.dumpBot.processor.callBackProceccor.process.CallBackProcess;
-import lombok.NoArgsConstructor;
+import com.dumpBot.processor.callBackProcessor.process.CallBackProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 @Component
-@NoArgsConstructor
-public class RegisterCallBackProcess extends BaseProcess implements CallBackProcess {
-
-    @Autowired
-    ResourcesHelper resourcesHelper;
+public class SearchCallBackProcess implements CallBackProcess {
 
     @Autowired
     IStorage storage;
+    @Autowired
+    ResourcesHelper resourcesHelper;
+    @Autowired
+    ILogger logger;
 
     @Override
     public SendMessage execute(Update update, Callback callback) {
-
+        String userId = String.valueOf(update.getCallbackQuery().getFrom().getId());
+        logger.writeInfo("start search callBack process for user " + userId);
         if (callback.getSubsection() == null) {
+            logger.writeInfo(" user " + userId + "chooses сoncern for search request");
             return choiceConcern(update, callback);
         }
         switch (callback.getSubsection()) {
             case CHOOSE_CONCERN -> {
+                logger.writeInfo("user " + userId + "chooses brand for search request");
                 return choiceBrand(update, callback);
             }
             case CHOOSE_BRAND -> {
+                logger.writeInfo("user " + userId + "chooses model for search request");
                 return choiceModel(update, callback);
             }
             case CHOOSE_MODEL -> {
+                logger.writeInfo("user " + userId + "chooses engine for search request");
                 return choiceEngine(update, callback);
             }
             case CHOOSE_ENGINE -> {
+                logger.writeInfo("user " + userId + "chooses bolt pattern for search request");
                 return choiceBoltPattern(update, callback);
             }
             case CHOOSE_BOLT_PATTERN -> {
+                logger.writeInfo("user " + userId + "chooses city for search request");
                 return choiceCity(update, callback);
             }
-            case CHOOSE_CITY -> {
-                return finishRegistration(update, callback);
+            case UNIVERSAL -> {
+                logger.writeInfo("user " + userId + "enter description for search request");
+                return enterDescription(update, callback);
             }
             default -> {
-                //TODO отдавать ошибку
+                logger.writeWarning("for user " + userId + " could not define subsection");
                 return null;
             }
         }
     }
 
+    private SendMessage enterDescription(Update update, Callback callback) {
+        User usr = storage.getUser(String.valueOf(update.getCallbackQuery().getFrom().getId()));
+        usr.setWaitingMessages(true);
+        callback.setSubsection(CallbackSubsection.DESCRIPTION);
+        usr.setClientAction(Action.SEARCH_REQUEST_ACTION.toString());
+        usr.setLastCallback(callback.toString());
+        storage.saveUser(usr);
+        return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                resourcesHelper.getResources().getMsgs().getSearch().getEnterDescription());
+    }
+
     private SendMessage choiceModel(Update update, Callback callback) {
         List<Model> models = storage.getModels(callback.getCarData().getBrand());
         Map<String, String> data = new HashMap<>();
-
+        insertUniversalDataButton(data, callback);
         for (Model model : models) {
             callback.setSubsection(CallbackSubsection.CHOOSE_MODEL);
             callback.getCarData().setModel(model.getName());
@@ -76,7 +93,6 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             data.put(model.getName(), resourcesHelper.getButtonData(token));
             storage.saveTempData(token, callback);
         }
-
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarModelEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
@@ -87,7 +103,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
         List<Engine> engines = storage.getEngines(callback.getCarData().getBrand(),
                 callback.getCarData().getModel());
         Map<String, String> data = new HashMap<>();
-
+        insertUniversalDataButton(data, callback);
         for (Engine engine : engines) {
             callback.setSubsection(CallbackSubsection.CHOOSE_ENGINE);
             callback.getCarData().setEngineName(engine.getName());
@@ -95,7 +111,6 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             data.put(engine.getName(), resourcesHelper.getButtonData(token));
             storage.saveTempData(token, callback);
         }
-
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getCarEngineEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
@@ -106,7 +121,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
         List<BoltPattern> boltPatterns = storage.getBoltPattern(callback.getCarData().getBrand(),
                 callback.getCarData().getModel());
         Map<String, String> data = new HashMap<>();
-
+        insertUniversalDataButton(data, callback);
         for (BoltPattern boltPattern : boltPatterns) {
             callback.setSubsection(CallbackSubsection.CHOOSE_BOLT_PATTERN);
             callback.getCarData().setBoltPatternSize(boltPattern.getName());
@@ -124,7 +139,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
     private SendMessage choiceCity(Update update, Callback callback) {
         List<City> cities = storage.getCities();
         Map<String, String> data = new HashMap<>();
-
+        insertUniversalDataButton(data, callback);
         for (City city : cities) {
             callback.setSubsection(CallbackSubsection.CHOOSE_CITY);
             if (callback.getUserData() == null) {
@@ -136,38 +151,16 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             data.put(city.getName(), resourcesHelper.getButtonData(token));
             storage.saveTempData(token, callback);
         }
-
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getRegionEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
 
-    private SendMessage finishRegistration(Update update, Callback callback) {
-        City region = new City(callback.getUserData().getRegionId(), callback.getUserData().getRegionName());
-        User user = new User(new Date(),
-                Role.USER_ROLE,
-                String.valueOf(update.getCallbackQuery().getFrom().getId()),
-                region,
-                convertCarData(callback.getCarData()));
-        user.setWaitingMessages(false);
-        user.setUserName(update.getCallbackQuery().getFrom().getUserName());
-        boolean result = storage.saveUser(user);
-        if (result) {
-            return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
-                    resourcesHelper.getResources().getMsgs().getRegistration().getSuccessRegistration()
-            );
-        } else {
-            return new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
-                    resourcesHelper.getResources().getMsgs().getRegistration().getErrorRegistration()
-            );
-        }
-    }
-
     private SendMessage choiceBrand(Update update, Callback callback) {
         List<Brand> brands = storage.getBrands(callback.getCarData().getConcern());
         Map<String, String> data = new HashMap<>();
-
+        insertUniversalDataButton(data, callback);
         for (Brand brand : brands) {
             callback.setSubsection(CallbackSubsection.CHOOSE_BRAND);
             callback.getCarData().setBrand(brand.getName());
@@ -175,9 +168,8 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             data.put(brand.getName(), resourcesHelper.getButtonData(token));
             storage.saveTempData(token, callback);
         }
-
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
-                resourcesHelper.getResources().getMsgs().getRegistration().getCarBrandEnter());
+                resourcesHelper.getResources().getMsgs().getSearch().getCarBrandEnter());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
@@ -185,6 +177,7 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
     private SendMessage choiceConcern(Update update, Callback callback) {
         List<Concern> concerns = storage.getConcerns();
         Map<String, String> data = new HashMap<>();
+        insertUniversalDataButton(data, callback);
         for (Concern concern : concerns) {
             callback.setSubsection(CallbackSubsection.CHOOSE_CONCERN);
             CarData carData = new CarData();
@@ -194,20 +187,19 @@ public class RegisterCallBackProcess extends BaseProcess implements CallBackProc
             data.put(concern.getName(), resourcesHelper.getButtonData(token));
             storage.saveTempData(token, callback);
         }
+
         SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
                 resourcesHelper.getResources().getMsgs().getRegistration().getChoiceConcern());
         sendMessage.setReplyMarkup(resourcesHelper.createInlineKeyBoard(data, 1));
         return sendMessage;
     }
 
-
-    private Car convertCarData(CarData carData) {
-        Car car = new Car();
-        car.setBrand(new Brand(carData.getBrand()));
-        car.setModel(new Model(carData.getModel()));
-        car.setEngine(new Engine(carData.getEngineName()));
-        car.setBoltPattern(new BoltPattern(carData.getBoltPatternSize()));
-        car.setConcern(new Concern(carData.getConcern()));
-        return car;
+    private void insertUniversalDataButton(Map<String, String> data, Callback callback) {
+        Callback newCb = callback.clone();
+        newCb.setSubsection(CallbackSubsection.UNIVERSAL);
+        String token = Util.newMd5FromCalBack(newCb);
+        data.put(resourcesHelper.getResources().getButtonsText().getUniversal(), resourcesHelper.getButtonData(token));
+        storage.saveTempData(token, newCb);
     }
+
 }

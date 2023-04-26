@@ -238,6 +238,5 @@ public class ReadyMsgProcess extends BaseMsgProcess implements MsgProcess {
         user.setClientAction(null);
         user.setLastCallback(null);
         storage.saveUser(user);
-
     }
 }
