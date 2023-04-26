@@ -13,6 +13,7 @@ public class WebAppData {
     private String model;
     private String engine;
     private String price;
+    private String boltPattern;
     private String city;
     private String description;
     private String action;

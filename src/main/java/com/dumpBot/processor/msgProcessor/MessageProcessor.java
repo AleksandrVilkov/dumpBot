@@ -19,6 +19,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -37,7 +38,7 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     }
 
     @Override
-    public SendMessage startMessageProcessor(Update update) {
+    public List<SendMessage> startMessageProcessor(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         logger.writeInfo("start message processor for " + userId);
         List<MessageEntity> messageEntityList = update.getMessage().getEntities();
@@ -46,7 +47,7 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         boolean isCommand = messageEntityList != null && messageEntityList.size() > 0;
         boolean userCreated = storage.checkUser(userId);
         if (!userCreated) {
-            process = MsgProcessFactory.getProcess(Command.REGISTRATION);
+            process = MsgProcessFactory.getProcess(Action.REGISTRATION);
             process.processResultPreviousStep();
             process.preparationCurrentProcess();
             return process.execute(update);

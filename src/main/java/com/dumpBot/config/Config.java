@@ -17,7 +17,7 @@ public class Config {
     private StorageConfig storageConfig;
     @SneakyThrows
     public static Config init() {
-        File file = new File("/home/vilkov/IdeaProjects/dumpbot/src/main/resources/config.yaml");
+        File file = new File("/home/vilkov/IdeaProjects/dumpBot/src/main/resources/config.yaml");
         // Создание нового ObjectMapper как YAMLFactory
         ObjectMapper om = new ObjectMapper(new YAMLFactory());
         return om.readValue(file, Config.class);

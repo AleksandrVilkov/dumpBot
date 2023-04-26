@@ -24,6 +24,7 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
     ILogger logger;
     @Autowired
     IStorage storage;
+
     public RegistrationProcess() {
     }
 
@@ -38,22 +39,32 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
     }
 
     @Override
-    public SendMessage execute(Update update) {
+    public List<SendMessage> execute(Update update) {
+        List<SendMessage> result = new ArrayList<>();
+
+        //TODO вынести весь текст в ресурсы
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         logger.writeInfo("start registration process for user " + userId);
-        SendMessage sendMessage = new SendMessage(userId, resourcesHelper.getResources().getMsgs().getWelcomeRegistered());
+        result.add(new SendMessage(userId, "Привет!"));
+
+        SendMessage sendMessage = new SendMessage(userId, "Давай зарегистрируемся. После регистрации ты сможешь получать " +
+                "пересональные уведомления о новых обьявлениях по своей машине");
 
         ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder keyboard = ReplyKeyboardMarkup.builder();
         List<KeyboardRow> buttons = new ArrayList<>();
         //TODO убрать в ресурсы
         String url = "https://taupe-bienenstitch-397031.netlify.app/";
-        KeyboardButton registration = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getSearchRequest());
+        KeyboardButton registration = new KeyboardButton("регистрация");
         registration.setWebApp(new WebAppInfo(url + "registration"));
         buttons.add(new KeyboardRow(Collections.singletonList(registration)));
         keyboard.keyboard(buttons);
         keyboard.resizeKeyboard(true);
         ReplyKeyboardMarkup inlineKeyboardMarkup = keyboard.build();
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
-        return sendMessage;
+
+        result.add(sendMessage);
+        result.add(new SendMessage(userId, "Нажми на кнопку регистрация"));
+
+        return result;
     }
 }

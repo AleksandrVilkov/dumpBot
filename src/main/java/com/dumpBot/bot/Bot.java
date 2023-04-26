@@ -20,8 +20,6 @@ import java.util.List;
 public class Bot extends TelegramLongPollingBot {
 
     @Autowired
-    private ICallBackProcessor callBackProcessor;
-    @Autowired
     private IMessageProcessor messageProcessor;
     @Autowired
     private IPhotoProcessor photoProcessor;
@@ -65,27 +63,21 @@ public class Bot extends TelegramLongPollingBot {
                 if (update.getMessage().getText() != null) {
                     //Смотрим сообщение
                     logger.writeInfo("new update is message from " + update.getMessage().getFrom().getId());
-                    execute(messageProcessor.startMessageProcessor(update));
-                    return;
+                    msgs.addAll(messageProcessor.startMessageProcessor(update));
                 }
                 //смотрим фото
                 if (update.getMessage().getPhoto() != null && update.getMessage().getPhoto().size() > 0) {
                     logger.writeInfo("new update is photo from " + update.getMessage().getFrom().getId());
-                    execute(photoProcessor.startPhotoProcessor(update));
-                    return;
+                    msgs.addAll(photoProcessor.startPhotoProcessor(update));
                 }
                 if (update.getMessage().getWebAppData() != null) {
                     logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId());
-                    //TODO реализовать
-                    execute(webAppProcessor.startWebAppProcessor(update));
+                    msgs.addAll(webAppProcessor.startWebAppProcessor(update));
                 }
-            }
-            //смотрим колбек - когда кнопка нажимается
-            if (update.hasCallbackQuery()) {
-                logger.writeInfo("new update is callback");
-                execute(callBackProcessor.startCallbackProcessor(update));
-            } else {
-                execute(messageProcessor.createError(update));
+
+                for (SendMessage sendMessage: msgs) {
+                    execute(sendMessage);
+                }
             }
 
         } catch (TelegramApiException e) {
