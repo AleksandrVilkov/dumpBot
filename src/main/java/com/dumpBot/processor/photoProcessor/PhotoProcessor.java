@@ -4,7 +4,7 @@ import com.dumpBot.bot.IPhotoProcessor;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.User;
 import com.dumpBot.processor.BaseProcess;
-import com.dumpBot.processor.IStorage;
+import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
     @Autowired
-    IStorage storage;
+    IUserStorage storage;
     @Autowired
     ILogger logger;
     @Autowired

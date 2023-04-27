@@ -2,7 +2,7 @@ package com.dumpBot.processor.webAppProcessor.process;
 
 import com.dumpBot.model.User;
 import com.dumpBot.model.WebAppData;
-import com.dumpBot.processor.IStorage;
+import com.dumpBot.processor.IUserStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -20,7 +20,7 @@ import java.util.List;
 public class SearchWebAppProcess implements WebAppProcess {
 
     @Autowired
-    IStorage storage;
+    IUserStorage storage;
 
     @Override
     public boolean processData(Update update, WebAppData wp) {

@@ -2,7 +2,7 @@ package com.dumpBot.processor.webAppProcessor.process;
 
 import com.dumpBot.model.*;
 import com.dumpBot.model.enums.Role;
-import com.dumpBot.processor.IStorage;
+import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
 public class RegistrationWebAppProcess implements WebAppProcess {
 
     @Autowired
-    IStorage storage;
+    IUserStorage storage;
 
     @Autowired
     ResourcesHelper resourcesHelper;

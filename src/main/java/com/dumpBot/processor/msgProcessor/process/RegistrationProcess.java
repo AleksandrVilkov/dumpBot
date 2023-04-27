@@ -1,7 +1,7 @@
 package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.processor.IStorage;
+import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
     @Autowired
     ILogger logger;
     @Autowired
-    IStorage storage;
+    IUserStorage storage;
 
     public RegistrationProcess() {
     }

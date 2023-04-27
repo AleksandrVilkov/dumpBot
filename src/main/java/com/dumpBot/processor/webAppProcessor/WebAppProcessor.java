@@ -3,11 +3,10 @@ package com.dumpBot.processor.webAppProcessor;
 import com.dumpBot.bot.IWebAppProcessor;
 import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.model.User;
 import com.dumpBot.model.WebAppData;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.processor.BaseProcess;
-import com.dumpBot.processor.IStorage;
+import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.processor.webAppProcessor.process.WebAppProcess;
 import com.dumpBot.processor.webAppProcessor.process.WebAppProcessFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,14 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
-import org.telegram.telegrambots.meta.api.objects.webapp.WebAppInfo;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,7 +25,7 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
     @Autowired
     ILogger logger;
     @Autowired
-    IStorage storage;
+    IUserStorage storage;
 
     @Override
     public List<SendMessage> startWebAppProcessor(Update update) {

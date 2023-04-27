@@ -7,7 +7,7 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.model.User;
 import com.dumpBot.processor.BaseProcess;
-import com.dumpBot.processor.IStorage;
+import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.msgProcessor.process.Command;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
@@ -18,14 +18,13 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.Collections;
 import java.util.List;
 
 @Component
 public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     Config config;
     @Autowired
-    IStorage storage;
+    IUserStorage storage;
     @Autowired
     ILogger logger;
     @Autowired
