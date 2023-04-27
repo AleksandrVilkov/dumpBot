@@ -1,9 +1,6 @@
 package com.dumpBot.storage;
 
-import com.dumpBot.model.Brand;
-import com.dumpBot.model.Car;
-import com.dumpBot.model.Concern;
-import com.dumpBot.model.Model;
+import com.dumpBot.model.*;
 import com.dumpBot.service.ICarStorage;
 import com.dumpBot.storage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,12 +61,14 @@ public class CarStorage implements ICarStorage {
         List<Object[]> response = carRepository.getCars(concern.getName(), brand.getName(), model.getName());
         List<Car> cars = new ArrayList<>();
         for (Object[] object : response) {
-            for (Object o : object) {
-                //TODO заполнять
-                Car car = new Car();
-                car.setBrand(new Brand((String) o));
-                cars.add(car);
-            }
+            Car car = new Car();
+            car.setId((Integer) object[0]);
+            car.setConcern(new Concern((String) object[1]));
+            car.setBrand(new Brand((String) object[2]));
+            car.setModel(new Model((String) object[3]));
+            car.setEngine(new Engine((String) object[4]));
+            car.setBoltPattern(new BoltPattern((String) object[5]));
+            cars.add(car);
         }
         return cars;
     }

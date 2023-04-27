@@ -12,11 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/car")
 public class CarController {
 
@@ -37,9 +39,8 @@ public class CarController {
     }
 
     @PostMapping("/brands")
-    public HttpResponse getBrands(@RequestBody String concern,
-                                  @RequestBody String pattern) {
-        List<Brand> brands = carService.getBrandsByPattern(new Concern(concern), pattern);
+    public HttpResponse getBrands(@RequestBody HttpRequest request) {
+        List<Brand> brands = carService.getBrandsByPattern(new Concern(request.getConcern()), request.getPattern());
         List<String> resp = new ArrayList<>();
         for (Brand b : brands) {
             resp.add(b.getName());
@@ -48,10 +49,10 @@ public class CarController {
     }
 
     @PostMapping("/models")
-    public HttpResponse getModels(@RequestBody String concern,
-                                  @RequestBody String brand,
-                                  @RequestBody String pattern) {
-        List<Model> models = carService.getModelsByPattern(new Concern(concern), new Brand(brand), pattern);
+    public HttpResponse getModels(@RequestBody HttpRequest request) {
+        List<Model> models = carService.getModelsByPattern(new Concern(request.getConcern()),
+                new Brand(request.getBrand()), request.getPattern());
+
         List<String> resp = new ArrayList<>();
         for (Model m : models) {
             resp.add(m.getName());
@@ -60,10 +61,9 @@ public class CarController {
     }
 
     @PostMapping("/cars")
-    public HttpResponse getCars(@RequestBody String concern,
-                                @RequestBody String brand,
-                                @RequestBody String model) {
-        List<Car> cars = carService.getCars(new Concern(concern), new Brand(brand), new Model(model));
+    public HttpResponse getCars(@RequestBody HttpRequest request) {
+        List<Car> cars = carService.getCars(new Concern(request.getConcern()),
+                new Brand(request.getBrand()), new Model(request.getModel()));
         return new HttpResponse(HttpStatus.SC_OK, cars);
     }
 }

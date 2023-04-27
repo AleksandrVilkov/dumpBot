@@ -11,13 +11,13 @@ import java.util.List;
 public interface CarRepository extends CrudRepository<CarEntity, Integer> {
     @Query(value = "select distinct c.concern from car c", nativeQuery = true)
     public List<Object[]> getUniqueCarConcern();
-    @Query(value = "select distinct c.concern from car c WHERE c.concern LIKE :pattern", nativeQuery = true)
+    @Query(value = "select distinct c.concern from car c WHERE c.concern LIKE %:pattern%", nativeQuery = true)
     public List<Object[]> getConcernByPattern(String pattern);
 
-    @Query(value = "select distinct c.brand from car c WHERE c.concern = ?1 and c.brand LIKE = ?3", nativeQuery = true)
+    @Query(value = "select distinct c.brand from car c WHERE c.concern LIKE %:concern% and c.brand LIKE %:pattern%", nativeQuery = true)
     public List<Object[]> getBrandByPattern(String concern, String pattern);
 
-    @Query(value = "select distinct c.model from car c WHERE c.concern = ?1 and c.brand = ?2 and c.model LIKE = ?3", nativeQuery = true)
+    @Query(value = "select distinct c.model from car c WHERE c.concern LIKE %:concern% and c.brand LIKE %:brand% and c.model LIKE %:pattern%", nativeQuery = true)
     public List<Object[]> getModelByPattern(String concern, String brand, String pattern);
     @Query(value = "select * from car c WHERE c.concern = ?1 and c.brand = ?2 and c.model = ?3", nativeQuery = true)
     public List<Object[]> getCars(String concern, String brand, String model);

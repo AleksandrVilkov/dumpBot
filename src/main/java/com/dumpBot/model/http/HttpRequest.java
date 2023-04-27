@@ -8,4 +8,7 @@ import lombok.Setter;
 @Setter
 public class HttpRequest {
     String pattern;
+    String concern;
+    String brand;
+    String model;
 }
