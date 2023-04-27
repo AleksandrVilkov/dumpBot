@@ -21,7 +21,7 @@ public class Resources {
 
     @SneakyThrows
     public static Resources init() {
-        File file = new File("/home/vilkov/IdeaProjects/dumpbot/src/main/resources/resources.yaml");
+        File file = new File("./src/main/resources/resources.yaml");
         // Создание нового ObjectMapper как YAMLFactory
         ObjectMapper om = new ObjectMapper(new YAMLFactory());
         return om.readValue(file, Resources.class);
