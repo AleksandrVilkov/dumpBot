@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface IMessageProcessor {
    List<SendMessage> startMessageProcessor(Update update);
-    SendMessage createError(Update update);
     SendMessage createErrAuthMsg(Update update);
 }

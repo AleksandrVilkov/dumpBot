@@ -17,34 +17,8 @@ import java.util.Map;
 @Setter
 public class ResourcesHelper {
     private Resources resources;
-
     public ResourcesHelper() {
         this.resources = Resources.init();
     }
 
-    public InlineKeyboardMarkup createRegistrationButton(String userId, String token) {
-        Map<String, String> data = new HashMap<>();
-        data.put(resources.getButtonsText().getRegistration(), getButtonData(token));
-        return createInlineKeyBoard(data, 1);
-
-    }
-
-    public InlineKeyboardMarkup createInlineKeyBoard(Map<String, String> data, int columnCount) {
-        //int rowCount = Math.round((float) data.size() / columnCount);
-        List<List<InlineKeyboardMarkup>> rows = new ArrayList<>();
-        InlineKeyboardMarkup.InlineKeyboardMarkupBuilder a = InlineKeyboardMarkup.builder();
-        for (Map.Entry<String, String> entry : data.entrySet()) {
-            List<InlineKeyboardButton> buttons = new ArrayList<>();
-            InlineKeyboardButton b = new InlineKeyboardButton(entry.getKey());
-            b.setCallbackData(entry.getValue());
-            buttons.add(b);
-            a.keyboardRow(buttons);
-        }
-
-        return a.build();
-    }
-
-    public String getButtonData(String token) {
-        return "{\"token\" : \"" + token + "\"}";
-    }
 }

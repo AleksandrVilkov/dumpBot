@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class Photo {
     private String noRegistration;
+    private String withOrWithoutPhoto;
     private String noAction;
     private String successSavedToLastCallBack;
 }

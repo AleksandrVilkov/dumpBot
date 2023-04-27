@@ -15,6 +15,7 @@ public class Config {
     private CommandsConfig commands;
     private ValidateData validateData;
     private StorageConfig storageConfig;
+    private WebApp webApp;
     @SneakyThrows
     public static Config init() {
         File file = new File("/home/vilkov/IdeaProjects/dumpbot/src/main/resources/config.yaml");

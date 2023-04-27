@@ -29,20 +29,24 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
         List<String> photos = Collections.singletonList(String.valueOf(update.getMessage().getPhoto().get(0).getFileId()));
         User user = storage.getUser(userId);
         if (user == null) {
-            return Collections.singletonList(new SendMessage(userId, resourcesHelper.getResources().getMsgs().getPhoto().getNoRegistration()));
+            return Collections.singletonList(new SendMessage(userId,
+                    resourcesHelper.getResources().getMsgs().getPhoto().getNoRegistration()));
         }
         String lastCallback = user.getLastCallback();
         if (lastCallback == null) {
-            return  Collections.singletonList(new SendMessage(userId, resourcesHelper.getResources().getMsgs().getPhoto().getNoAction()));
+            return  Collections.singletonList(new SendMessage(userId,
+                    resourcesHelper.getResources().getMsgs().getPhoto().getNoAction()));
         }
         try {
             storage.saveUser(user);
         } catch (Exception e) {
             logger.writeStackTrace(e);
-            return  Collections.singletonList(new SendMessage(userId, resourcesHelper.getResources().getErrors().getCommonError()));
+            return  Collections.singletonList(new SendMessage(userId,
+                    resourcesHelper.getResources().getErrors().getCommonError()));
         }
 
-        return  Collections.singletonList(new SendMessage(userId, resourcesHelper.getResources().getMsgs().getPhoto().getSuccessSavedToLastCallBack()));
+        return  Collections.singletonList(new SendMessage(userId,
+                resourcesHelper.getResources().getMsgs().getPhoto().getSuccessSavedToLastCallBack()));
 
     }
 }

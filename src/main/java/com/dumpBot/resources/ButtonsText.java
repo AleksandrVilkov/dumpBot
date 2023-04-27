@@ -16,5 +16,6 @@ public class ButtonsText {
     private String placeAnAd;
     private String rules;
     private String universal;
+    private String withoutPhoto;
     private String saleUniversal;
 }

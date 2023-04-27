@@ -1,7 +1,7 @@
 package com.dumpBot.processor.msgProcessor.process;
 
+import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.processor.ResourcesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,16 +12,21 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.api.objects.webapp.WebAppInfo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Component
 public class StartProcess extends BaseMsgProcess implements MsgProcess {
     @Autowired
     ILogger logger;
     @Autowired
-    IUserStorage storage;
-    @Autowired
     ResourcesHelper resourcesHelper;
+    Config config;
+
+    public StartProcess() {
+        this.config = Config.init();
+    }
 
     @Override
     public void processResultPreviousStep() {
@@ -39,26 +44,22 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
         logger.writeInfo("start main menu process for user " + userId);
 
         SendMessage sendMessage = new SendMessage(userId,
-                resourcesHelper.getResources().getMsgs().getWelcomeRegistered());
+                resourcesHelper.getResources().getMsgs().getWelcome());
 
         ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder keyboard = ReplyKeyboardMarkup.builder();
 
         List<KeyboardRow> buttons = new ArrayList<>();
 
-        //TODO убрать в ресурсы
-
-        String url = "https://taupe-bienenstitch-397031.netlify.app/";
-
         KeyboardButton search = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getSearchRequest());
-        search.setWebApp(new WebAppInfo(url + "search"));
+        search.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "search"));
         buttons.add(new KeyboardRow(Collections.singletonList(search)));
 
         KeyboardButton sale = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getPlaceAnAd());
-        sale.setWebApp(new WebAppInfo(url + "sale"));
+        sale.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "sale"));
         buttons.add(new KeyboardRow(Collections.singletonList(sale)));
 
         KeyboardButton rules = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getRules());
-        rules.setWebApp(new WebAppInfo(url + "rules"));
+        rules.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "rules"));
         buttons.add(new KeyboardRow(Collections.singletonList(rules)));
 
         keyboard.keyboard(buttons);

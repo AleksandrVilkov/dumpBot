@@ -3,6 +3,7 @@ package com.dumpBot.processor.webAppProcessor.process;
 import com.dumpBot.model.User;
 import com.dumpBot.model.WebAppData;
 import com.dumpBot.processor.IUserStorage;
+import com.dumpBot.processor.ResourcesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -21,6 +22,8 @@ public class SearchWebAppProcess implements WebAppProcess {
 
     @Autowired
     IUserStorage storage;
+    @Autowired
+    ResourcesHelper resourcesHelper;
 
     @Override
     public boolean processData(Update update, WebAppData wp) {
@@ -40,8 +43,7 @@ public class SearchWebAppProcess implements WebAppProcess {
 
 
     private SendMessage createKeyboardRemoveMsg(String userId) {
-        //TODO Убрать в ресурсы
-        SendMessage sm = new SendMessage(userId, "Отлично!");
+        SendMessage sm = new SendMessage(userId, resourcesHelper.getResources().getSuccess().getExcellent());
         sm.setReplyMarkup(new ReplyKeyboardRemove(true));
         return sm;
     }
@@ -57,8 +59,7 @@ public class SearchWebAppProcess implements WebAppProcess {
     }
 
     private SendMessage createResponse(String userId) {
-        //TODO вынести текст в ресурсы
-        SendMessage sm = new SendMessage(userId, "Если есть фото - отправь их мне. Если нет - то нажми на кнопку без фото.");
+        SendMessage sm = new SendMessage(userId, resourcesHelper.getResources().getMsgs().getPhoto().getWithOrWithoutPhoto());
         sm.setReplyMarkup(makeKeyboard());
         return sm;
     }
@@ -66,7 +67,7 @@ public class SearchWebAppProcess implements WebAppProcess {
     private ReplyKeyboardMarkup makeKeyboard() {
         List<KeyboardRow> buttons = new ArrayList<>();
         ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder keyboard = ReplyKeyboardMarkup.builder();
-        KeyboardButton search = new KeyboardButton("Без фото");
+        KeyboardButton search = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getWithoutPhoto());
         buttons.add(new KeyboardRow(Collections.singletonList(search)));
 
         keyboard.keyboard(buttons);

@@ -18,7 +18,6 @@ public class RegistrationWebAppProcess implements WebAppProcess {
 
     @Autowired
     IUserStorage storage;
-
     @Autowired
     ResourcesHelper resourcesHelper;
 
@@ -51,11 +50,10 @@ public class RegistrationWebAppProcess implements WebAppProcess {
     public List<SendMessage> prepareAnswer(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         List<SendMessage> result = new ArrayList<>();
-        //TODO убрать в ресурсы
-        result.add(new SendMessage(userId, "Прекрасно!"));
-        result.add(new SendMessage(userId, "Ты успешно зарегистрирован"));
-        result.add(new SendMessage(userId, "Теперь ты можешь размещать объявления и запросы на поиск деталей в канале."));
-        result.add(new SendMessage(userId, "Что бы получить досуп у меню - нажми /start"));
+        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getWonderful()));
+        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getSuccessReservation()));
+        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getPossibilities()));
+        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getMenuAccess()));
         return result;
     }
 

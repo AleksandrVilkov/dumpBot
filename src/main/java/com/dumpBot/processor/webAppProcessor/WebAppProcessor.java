@@ -6,7 +6,7 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.WebAppData;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.processor.BaseProcess;
-import com.dumpBot.processor.IUserStorage;
+import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.webAppProcessor.process.WebAppProcess;
 import com.dumpBot.processor.webAppProcessor.process.WebAppProcessFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,8 +24,9 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
 
     @Autowired
     ILogger logger;
+
     @Autowired
-    IUserStorage storage;
+    ResourcesHelper resourcesHelper;
 
     @Override
     public List<SendMessage> startWebAppProcessor(Update update) {
@@ -40,11 +41,10 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
         }
 
         WebAppProcess wp = WebAppProcessFactory.getProcess(Util.findEnumConstant(Action.class, wpd.getAction()));
-       if (wp != null && wp.processData(update, wpd)) {
-           return wp.prepareAnswer(update);
-       }
-       //todo убрать в ресурсы
-       return Collections.singletonList(new SendMessage(userId, "Возникла ошибка"));
+        if (wp != null && wp.processData(update, wpd)) {
+            return wp.prepareAnswer(update);
+        }
+        return Collections.singletonList(new SendMessage(userId, resourcesHelper.getResources().getErrors().getCommonError()));
     }
 
 

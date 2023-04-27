@@ -1,6 +1,11 @@
 bot:
   token: 5990503214:AAGAlWdWPbKQCSvZsRfR9l48tAkuqTcFdws
   name: psa_dump_dev
+webApp:
+  url: "https://taupe-bienenstitch-397031.netlify.app"
+  pathRegistration: "/registration"
+  pathSale: ""
+  pathSearch: ""
 commands:
   start: /start
   rules: /rules

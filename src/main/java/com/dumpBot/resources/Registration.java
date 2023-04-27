@@ -8,12 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Registration {
-    private String choiceConcern;
-    private String carBrandEnter;
-    private String carModelEnter;
-    private String carEngineEnter;
-    private String carBoltPatternEnter;
-    private String regionEnter;
-    private String successRegistration;
-    private String errorRegistration;
+    private String hello;
+    private String go;
+    private String description;
+    private String tapRegistration;
 }

@@ -61,11 +61,6 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         //находим пользователя и смотрим его последний колбек
         User user = storage.getUser(userId);
-        String stringCallBack = user.getLastCallback();
-        try {
-        } catch (Exception e) {
-            logger.writeStackTrace(e);
-        }
         //Если мы ждем от него какой то текст - то смотрим что у него за действие и запускаем соответвующий процесс
         if (user.isWaitingMessages()) {
             Action action = Util.findEnumConstant(Action.class, user.getClientAction());
@@ -82,14 +77,6 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         Command command = Util.findEnumConstant(Command.class, stringCommand);
         logger.writeInfo("Сommand " + command.getName() + " recognized by user " + userId);
         return MsgProcessFactory.getProcess(command);
-
-    }
-
-    @Override
-    public SendMessage createError(Update update) {
-        String chatId = String.valueOf(update.getMessage() != null ? update.getMessage().getFrom().getId() :
-                update.getCallbackQuery().getFrom().getId());
-        return new SendMessage(chatId, resourcesHelper.getResources().getErrors().getCommonError());
     }
 
     @Override

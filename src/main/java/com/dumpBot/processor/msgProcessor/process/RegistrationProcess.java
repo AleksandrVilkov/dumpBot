@@ -1,5 +1,6 @@
 package com.dumpBot.processor.msgProcessor.process;
 
+import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.processor.ResourcesHelper;
@@ -22,10 +23,11 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
     ResourcesHelper resourcesHelper;
     @Autowired
     ILogger logger;
-    @Autowired
-    IUserStorage storage;
+    Config config;
+
 
     public RegistrationProcess() {
+        this.config = Config.init();
     }
 
     @Override
@@ -42,20 +44,17 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
     public List<SendMessage> execute(Update update) {
         List<SendMessage> result = new ArrayList<>();
 
-        //TODO вынести весь текст в ресурсы
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         logger.writeInfo("start registration process for user " + userId);
-        result.add(new SendMessage(userId, "Привет!"));
-
-        SendMessage sendMessage = new SendMessage(userId, "Давай зарегистрируемся. После регистрации ты сможешь получать " +
-                "пересональные уведомления о новых обьявлениях по своей машине");
+        result.add(new SendMessage(userId, resourcesHelper.getResources().getMsgs().getRegistration().getHello()));
+        result.add(new SendMessage(userId, resourcesHelper.getResources().getMsgs().getRegistration().getGo()));
+        SendMessage sendMessage = new SendMessage(userId, resourcesHelper.getResources().getMsgs().getRegistration().getDescription());
 
         ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder keyboard = ReplyKeyboardMarkup.builder();
         List<KeyboardRow> buttons = new ArrayList<>();
-        //TODO убрать в ресурсы
-        String url = "https://taupe-bienenstitch-397031.netlify.app/";
-        KeyboardButton registration = new KeyboardButton("регистрация");
-        registration.setWebApp(new WebAppInfo(url + "registration"));
+        String url = config.getWebApp().getUrl();
+        KeyboardButton registration = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getRegistration());
+        registration.setWebApp(new WebAppInfo(url + config.getWebApp().getPathRegistration()));
         buttons.add(new KeyboardRow(Collections.singletonList(registration)));
         keyboard.keyboard(buttons);
         keyboard.resizeKeyboard(true);
@@ -63,7 +62,7 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
 
         result.add(sendMessage);
-        result.add(new SendMessage(userId, "Нажми на кнопку регистрация"));
+        result.add(new SendMessage(userId, resourcesHelper.getResources().getMsgs().getRegistration().getTapRegistration()));
 
         return result;
     }
