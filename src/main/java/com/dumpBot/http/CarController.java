@@ -8,23 +8,19 @@ import com.dumpBot.model.http.HttpRequest;
 import com.dumpBot.model.http.HttpResponse;
 import com.dumpBot.model.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/car")
 public class CarController {
-
     @Autowired
     ICarService carService;
-
     @PostMapping("/concerns")
     public HttpResponse getConcerns(@RequestBody HttpRequest request) {
         if (request.getPattern() == null || request.getPattern().equalsIgnoreCase("")) {
@@ -47,7 +43,6 @@ public class CarController {
         }
         return new HttpResponse(HttpStatus.SC_OK, resp);
     }
-
     @PostMapping("/models")
     public HttpResponse getModels(@RequestBody HttpRequest request) {
         List<Model> models = carService.getModelsByPattern(new Concern(request.getConcern()),
@@ -59,7 +54,6 @@ public class CarController {
         }
         return new HttpResponse(HttpStatus.SC_OK, resp);
     }
-
     @PostMapping("/cars")
     public HttpResponse getCars(@RequestBody HttpRequest request) {
         List<Car> cars = carService.getCars(new Concern(request.getConcern()),
