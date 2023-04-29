@@ -8,15 +8,13 @@ import com.dumpBot.model.http.HttpRequest;
 import com.dumpBot.model.http.HttpResponse;
 import com.dumpBot.model.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/car")
 public class CarController {
     @Autowired
