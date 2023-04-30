@@ -18,7 +18,9 @@ public class RegionEntity {
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "regionId")
+    @Column(name = "country_code")
+    private String countryCode;
+    @Column(name = "region_id")
     private String regionId;
 
     public City toCity() {
