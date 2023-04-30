@@ -10,7 +10,8 @@ CREATE TABLE REGION
     region_id varchar(80) NOT NULL
 );
 
-INSERT INTO public.region (name, country_code, region_id) VALUES ('Костромская область'::varchar(80), 'RU'::varchar(80), '44'::varchar(80)),
+INSERT INTO public.region (name, country_code, region_id) VALUES
+('Костромская область'::varchar(80), 'RU'::varchar(80), '44'::varchar(80)),
 ('Республика Адыгея (Адыгея)'::varchar(80), 'RU'::varchar(80), '01'::varchar(80)),
 ('Курганская область'::varchar(80), 'RU'::varchar(80), '45'::varchar(80)),
 ('Ямало-Ненецкий автономный округ'::varchar(80), 'RU'::varchar(80), '89'::varchar(80)),
