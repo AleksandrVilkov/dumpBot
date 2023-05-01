@@ -58,12 +58,8 @@ public class UserStorage implements IUserStorage {
     @Override
     public boolean saveUser(User user) {
         Car car = user.getCar();
-        int carId;
-        if (car.getId() == 0) {
-            carId = getCarId(car);
-        } else {
-            carId = car.getId();
-        }
+        int carId = car.getId();
+
         ClientEntity clientEntity = convertUserToClient(user, carId);
         try {
             Object o1 = clientRepository.save(clientEntity);
@@ -74,44 +70,6 @@ public class UserStorage implements IUserStorage {
         }
     }
 
-//    @Override
-//    public boolean saveUserAccommodation(UserAccommodation userAccommodation) {
-//        UserAccommodationEntity accommodation = new UserAccommodationEntity();
-//        accommodation.setType(userAccommodation.getType().toString());
-//        accommodation.setCreatedDate(userAccommodation.getCreatedDate());
-//        accommodation.setClientLogin(userAccommodation.getClientLogin());
-//        accommodation.setClientId(userAccommodation.getClientId());
-//        accommodation.setMinPrice(userAccommodation.getMinPrice());
-//        accommodation.setMaxPrice(userAccommodation.getMaxPrice());
-//        accommodation.setApproved(userAccommodation.isApproved());
-//        accommodation.setRejected(userAccommodation.isRejected());
-//        accommodation.setTopical(userAccommodation.isTopical());
-//        accommodation.setDescription(userAccommodation.getDescription());
-//        Set<PhotoEntity> photo = new HashSet<>();
-//        if (userAccommodation.getPhotos() != null) {
-//            for (String id : userAccommodation.getPhotos()) {
-//                PhotoEntity photoEntity = new PhotoEntity();
-//                photoEntity.setTelegramId(id);
-//                photoEntity.setUserAccommodationEntity(accommodation);
-//                photo.add(photoEntity);
-//            }
-//        }
-//        accommodation.setPhoto(photo);
-//        searchTermsRepository.save(accommodation);
-//        return true;
-//    }
-
-
-    private int getCarId(Car car) {
-        List<Object[]> o = carRepository.getCar(car.getBrand().getName(),
-                car.getModel().getName(),
-                car.getEngine().getName(),
-                car.getBoltPattern().getName());
-        if (o.size() == 1) {
-            return (Integer) o.get(0)[0];
-        }
-        return 0;
-    }
 
     private ClientEntity convertUserToClient(User user, Integer carId) {
         ClientEntity clientEntity = new ClientEntity();

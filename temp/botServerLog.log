@@ -14943,6 +14943,122 @@ Wed Apr 26 21:33:26 MSK 2023: INFO: start message processor for 436641871
 Wed Apr 26 21:33:26 MSK 2023: INFO: start registration process for user 436641871
 Wed Apr 26 21:33:38 MSK 2023: INFO: new update received
 Wed Apr 26 21:33:45 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 21:57:22 MSK 2023: INFO: new update received
+Wed Apr 26 21:57:25 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:09:31 MSK 2023: INFO: new update received
+Wed Apr 26 22:09:35 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:09:36 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:09:36 MSK 2023: INFO: start registration process for user 436641871
+Wed Apr 26 22:10:25 MSK 2023: INFO: new update received
+Wed Apr 26 22:10:28 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:11:44 MSK 2023: INFO: new update received
+Wed Apr 26 22:11:50 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:11:50 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:11:50 MSK 2023: INFO: start registration process for user 436641871
+Wed Apr 26 22:12:34 MSK 2023: INFO: new update received
+Wed Apr 26 22:12:38 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:14:21 MSK 2023: INFO: new update received
+Wed Apr 26 22:14:25 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:14:32 MSK 2023: ERROR!: could not execute statement; SQL [n/a]; constraint [client_carid_fkey]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:269)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy113.save(Unknown Source)
+com.dumpBot.storage.PSQL.saveUser(PSQL.java:164)
+com.dumpBot.processor.webAppProcessor.process.RegistrationWebAppProcess.processData(RegistrationWebAppProcess.java:38)
+com.dumpBot.processor.webAppProcessor.WebAppProcessor.startWebAppProcessor(WebAppProcessor.java:51)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:74)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Wed Apr 26 22:15:23 MSK 2023: INFO: new update received
+Wed Apr 26 22:15:28 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:15:28 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:15:28 MSK 2023: INFO: start registration process for user 436641871
+Wed Apr 26 22:15:42 MSK 2023: INFO: new update received
+Wed Apr 26 22:15:43 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:16:17 MSK 2023: INFO: new update received
+Wed Apr 26 22:16:17 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:16:17 MSK 2023: ERROR!: could not execute statement; SQL [n/a]; constraint [client_login_key]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:269)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:163)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy113.save(Unknown Source)
+com.dumpBot.storage.PSQL.saveUser(PSQL.java:164)
+com.dumpBot.processor.webAppProcessor.process.RegistrationWebAppProcess.processData(RegistrationWebAppProcess.java:38)
+com.dumpBot.processor.webAppProcessor.WebAppProcessor.startWebAppProcessor(WebAppProcessor.java:51)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:74)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Wed Apr 26 22:16:35 MSK 2023: INFO: new update received
+Wed Apr 26 22:16:35 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:16:35 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:16:35 MSK 2023: INFO: start registration process for user 436641871
+Wed Apr 26 22:16:48 MSK 2023: INFO: new update received
+Wed Apr 26 22:16:48 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:16:59 MSK 2023: INFO: new update received
+Wed Apr 26 22:17:00 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:17:00 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:17:00 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 22:17:00 MSK 2023: INFO: start main menu process for user 436641871
+Wed Apr 26 22:17:28 MSK 2023: INFO: new update received
+Wed Apr 26 22:17:28 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:17:28 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:17:28 MSK 2023: INFO: start registration process for user 436641871
+Wed Apr 26 22:17:44 MSK 2023: INFO: new update received
+Wed Apr 26 22:17:44 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:17:44 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:17:44 MSK 2023: INFO: start registration process for user 436641871
+Wed Apr 26 22:18:00 MSK 2023: INFO: new update received
+Wed Apr 26 22:18:00 MSK 2023: INFO: new update is webApp from 436641871
+Wed Apr 26 22:18:03 MSK 2023: INFO: new update received
+Wed Apr 26 22:18:03 MSK 2023: INFO: new update is message from 436641871
+Wed Apr 26 22:18:03 MSK 2023: INFO: start message processor for 436641871
+Wed Apr 26 22:18:03 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed Apr 26 22:18:03 MSK 2023: INFO: start main menu process for user 436641871
+Wed Apr 26 22:20:17 MSK 2023: INFO: new update received
+Wed Apr 26 22:20:18 MSK 2023: INFO: new update is message from 358507326
+Wed Apr 26 22:20:18 MSK 2023: INFO: start message processor for 358507326
+Wed Apr 26 22:20:18 MSK 2023: INFO: Сommand /start recognized by user 358507326
+Wed Apr 26 22:20:18 MSK 2023: INFO: start main menu process for user 358507326
+Wed Apr 26 22:21:16 MSK 2023: INFO: new update received
+Wed Apr 26 22:21:16 MSK 2023: INFO: new update is message from 358507326
+Wed Apr 26 22:21:16 MSK 2023: INFO: start message processor for 358507326
+Wed Apr 26 22:21:16 MSK 2023: INFO: Сommand /start recognized by user 358507326
+Wed Apr 26 22:21:16 MSK 2023: INFO: start main menu process for user 358507326
+Wed Apr 26 22:21:39 MSK 2023: INFO: new update received
+Wed Apr 26 22:21:39 MSK 2023: INFO: new update is message from 358507326
+Wed Apr 26 22:21:39 MSK 2023: INFO: start message processor for 358507326
+Wed Apr 26 22:21:39 MSK 2023: INFO: Сommand /start recognized by user 358507326
+Wed Apr 26 22:21:39 MSK 2023: INFO: start main menu process for user 358507326
+Wed Apr 26 22:21:57 MSK 2023: INFO: new update received
+Wed Apr 26 22:21:58 MSK 2023: INFO: new update is message from 358507326
+Wed Apr 26 22:21:58 MSK 2023: INFO: start message processor for 358507326
+Wed Apr 26 22:21:58 MSK 2023: INFO: Сommand /start recognized by user 358507326
+Wed Apr 26 22:21:58 MSK 2023: INFO: start main menu process for user 358507326
+Wed Apr 26 22:25:17 MSK 2023: INFO: new update received
+Wed Apr 26 22:25:18 MSK 2023: INFO: new update is message from 2074839398
+Wed Apr 26 22:25:18 MSK 2023: INFO: start message processor for 2074839398
+Wed Apr 26 22:25:18 MSK 2023: INFO: start registration process for user 2074839398
 Thu Apr 27 15:08:08 MSK 2023: INFO: new update received
 Thu Apr 27 15:08:08 MSK 2023: INFO: new update is message from 436641871
 Thu Apr 27 15:08:08 MSK 2023: INFO: start message processor for 436641871
@@ -14996,3 +15112,13 @@ com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:74)
 java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
 org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Mon May 01 12:30:03 MSK 2023: INFO: new update received
+Mon May 01 12:30:06 MSK 2023: INFO: new update is message from 358507326
+Mon May 01 12:30:06 MSK 2023: INFO: start message processor for 358507326
+Mon May 01 12:30:06 MSK 2023: INFO: Сommand /start recognized by user 358507326
+Mon May 01 12:30:06 MSK 2023: INFO: start main menu process for user 358507326
+Mon May 01 13:55:23 MSK 2023: INFO: new update received
+Mon May 01 13:55:24 MSK 2023: INFO: new update is message from 358507326
+Mon May 01 13:55:24 MSK 2023: INFO: start message processor for 358507326
+Mon May 01 13:55:24 MSK 2023: INFO: Сommand /start recognized by user 358507326
+Mon May 01 13:55:24 MSK 2023: INFO: start main menu process for user 358507326
