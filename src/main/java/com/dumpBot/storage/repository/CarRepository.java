@@ -26,5 +26,7 @@ public interface CarRepository extends CrudRepository<CarEntity, Integer> {
     public List<Object[]> getUniqueCarBoltPattern(String brand, String model);
     @Query(value = "select * from car c WHERE c.brand = ?1 and c.model = ?2 and c.engine = ?3 and c.bolt_Pattern = ?4", nativeQuery = true)
     public List<Object[]> getCar(String brand, String model, String engine, String boltPattern);
+    @Query(value = "select * from car c", nativeQuery = true)
+    public List<Object[]> getAllCars();
 }
 

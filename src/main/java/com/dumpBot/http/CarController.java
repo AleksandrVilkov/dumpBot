@@ -58,6 +58,11 @@ public class CarController {
                 new Brand(request.getBrand()), new Model(request.getModel()));
         return new HttpResponse(HttpStatus.SC_OK, cars);
     }
+    @GetMapping("/allCars")
+    public HttpResponse getAllCars() {
+        List<Car> cars = carService.getAllCars();
+        return new HttpResponse(HttpStatus.SC_OK, cars);
+    }
 }
 
 

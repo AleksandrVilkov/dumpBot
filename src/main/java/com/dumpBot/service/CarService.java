@@ -35,4 +35,9 @@ public class CarService implements ICarService {
     public List<Car> getCars(Concern concern, Brand brand, Model model) {
         return carStorage.getCars(concern, brand, model);
     }
+
+    @Override
+    public List<Car> getAllCars() {
+        return carStorage.getAllCars();
+    }
 }

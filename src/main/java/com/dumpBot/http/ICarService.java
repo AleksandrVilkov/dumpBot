@@ -12,5 +12,6 @@ public interface ICarService {
     List<Model> getModelsByPattern(Concern concern, Brand brand, String pattern);
 
     List<Car> getCars(Concern concern, Brand brand, Model model);
+    List<Car> getAllCars();
 
 }
