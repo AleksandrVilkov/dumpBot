@@ -21,7 +21,7 @@ validateData:
 webApp:
   url: "https://taupe-bienenstitch-397031.netlify.app"
   pathRegistration: "/registration"
-  pathSale: ""
+  pathSale: "/sale"
   pathSearch: ""
 
 resources:

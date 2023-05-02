@@ -52,7 +52,7 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
         buttons.add(new KeyboardRow(Collections.singletonList(search)));
 
         KeyboardButton sale = new KeyboardButton(resources.getButtonsText().getPlaceAnAd());
-        sale.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "sale"));
+        sale.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + config.getWebApp().getPathSale()));
         buttons.add(new KeyboardRow(Collections.singletonList(sale)));
 
         KeyboardButton rules = new KeyboardButton(resources.getButtonsText().getRules());
