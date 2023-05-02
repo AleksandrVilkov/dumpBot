@@ -3,7 +3,7 @@ hostname: 85.193.82.129
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/public
+    url: jdbc:postgresql://localhost:5432/autodump
     username: autodump_user
     password: root
     driver-class-name: org.postgresql.Driver
