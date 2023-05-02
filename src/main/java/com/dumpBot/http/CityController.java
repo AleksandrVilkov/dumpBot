@@ -26,7 +26,7 @@ public class CityController {
 
 
     @PostMapping("/city")
-    public HttpResponse getConcerns(@RequestBody HttpRequest request) {
+    public HttpResponse getCity(@RequestBody HttpRequest request) {
         if (request.getPattern() == null || request.getPattern().equalsIgnoreCase("")) {
             return new HttpResponse(HttpStatus.SC_BAD_REQUEST, "pattern is empty");
         }
