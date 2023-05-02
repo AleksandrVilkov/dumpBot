@@ -1,6 +1,7 @@
 package com.dumpBot;
 
 import com.dumpBot.bot.Bot;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,7 +13,9 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 @SpringBootApplication
 @Component
 public class Main {
+
     public static void main(String[] args) {
+
         ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
         Bot bot = (Bot) context.getBean("bot");
         try {

@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/autodump
+    username: autodump_user
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+bot:
+  token: 5990503214:AAGAlWdWPbKQCSvZsRfR9l48tAkuqTcFdws
+  name: psa_dump_dev
+commands:
+  start: /start
+  rules: /rules
+  registration: /registration
+  subscription: /subscription
+  sale: /sale
+validateData:
+  channelID: -1001773791815
+  channelURL: "https://t.me/dumpChenDev"
+
+webApp:
+  url: "https://taupe-bienenstitch-397031.netlify.app"
+  pathRegistration: "/registration"
+  pathSale: ""
+  pathSearch: ""
+
+resources:
+  buttonsText:
+    registration: Регистрация
+    searchRequest: Найти
+    placeAnAd: Продать
+    withoutPhoto: Без фото
+    rules: Правила
+  errors:
+    commonError: Что то пошло не так. Давай попробуем еще раз
+    authError: К сожалению, я не рапознал что ты подписан на канал. Для продолжения работы подпишись на канал и нажми /start
+
+  msgs:
+    welcomeMessage: Привет, добро пожаловать на свалку PSA. Для того что бы начать пользовататься свалкой - подпишись на канал {ссылка на канал}, и нажми на кнопку \"Регистрация\
+    welcome: Привет, что хочешь сделать?
+    registration:
+      hello: Привет!
+      go: Давай зарегистрируемся.
+      description: После регистрации ты сможешь получать пересональные уведомления о новых обьявлениях по своей машине
+      tapRegistration: Нажми на кнопку регистрация
+
+    photo:
+      withOrWithoutPhoto: Если есть фото - отправь их мне. Если нет - то нажми на кнопку без фото
+      noRegistration: К сожалению, я не вижу что ты зарегистрирован. Пройди регистрацию, для этого нажми /start
+      noAction: Не могу понять, зачем мне фото. что бы разместить их к обьявлению или запросу - сначала начни сначала нажми /start
+      successSavedToLastCallBack: Отлично, фото добавлено! Для отправки на модерацию - нажмми /ready
+  success:
+    wonderful: Прекрасно!
+    excellent: Отлично!
+    successReservation: Ты успешно зарегистрирован
+    possibilities: Теперь ты можешь размещать объявления и запросы на поиск деталей в канале.
+    menuAccess: Что бы получить досуп у меню - нажми /start
+
+  rules: Пока правил нет, ПОЛНАЯ АНАРХИЯ!!!!
+

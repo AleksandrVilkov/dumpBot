@@ -5,7 +5,7 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.User;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IUserStorage;
-import com.dumpBot.processor.ResourcesHelper;
+import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -20,7 +20,7 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
     @Autowired
     ILogger logger;
     @Autowired
-    ResourcesHelper resourcesHelper;
+    Resources resources;
 
     @Override
     public List<SendMessage> startPhotoProcessor(Update update) {
@@ -30,23 +30,23 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
         User user = storage.getUser(userId);
         if (user == null) {
             return Collections.singletonList(new SendMessage(userId,
-                    resourcesHelper.getResources().getMsgs().getPhoto().getNoRegistration()));
+                    resources.getMsgs().getPhoto().getNoRegistration()));
         }
         String lastCallback = user.getLastCallback();
         if (lastCallback == null) {
             return  Collections.singletonList(new SendMessage(userId,
-                    resourcesHelper.getResources().getMsgs().getPhoto().getNoAction()));
+                    resources.getMsgs().getPhoto().getNoAction()));
         }
         try {
             storage.saveUser(user);
         } catch (Exception e) {
             logger.writeStackTrace(e);
             return  Collections.singletonList(new SendMessage(userId,
-                    resourcesHelper.getResources().getErrors().getCommonError()));
+                    resources.getErrors().getCommonError()));
         }
 
         return  Collections.singletonList(new SendMessage(userId,
-                resourcesHelper.getResources().getMsgs().getPhoto().getSuccessSavedToLastCallBack()));
+                resources.getMsgs().getPhoto().getSuccessSavedToLastCallBack()));
 
     }
 }

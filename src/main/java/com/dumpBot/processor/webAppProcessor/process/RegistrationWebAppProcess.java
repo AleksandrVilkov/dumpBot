@@ -3,7 +3,7 @@ package com.dumpBot.processor.webAppProcessor.process;
 import com.dumpBot.model.*;
 import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.IUserStorage;
-import com.dumpBot.processor.ResourcesHelper;
+import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -19,7 +19,7 @@ public class RegistrationWebAppProcess implements WebAppProcess {
     @Autowired
     IUserStorage storage;
     @Autowired
-    ResourcesHelper resourcesHelper;
+    Resources resources;
 
     @Override
     public boolean processData(Update update, WebAppData webAppData) {
@@ -50,10 +50,10 @@ public class RegistrationWebAppProcess implements WebAppProcess {
     public List<SendMessage> prepareAnswer(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         List<SendMessage> result = new ArrayList<>();
-        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getWonderful()));
-        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getSuccessReservation()));
-        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getPossibilities()));
-        result.add(new SendMessage(userId, resourcesHelper.getResources().getSuccess().getMenuAccess()));
+        result.add(new SendMessage(userId, resources.getSuccess().getWonderful()));
+        result.add(new SendMessage(userId, resources.getSuccess().getSuccessReservation()));
+        result.add(new SendMessage(userId, resources.getSuccess().getPossibilities()));
+        result.add(new SendMessage(userId, resources.getSuccess().getMenuAccess()));
         return result;
     }
 

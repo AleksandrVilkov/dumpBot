@@ -2,7 +2,7 @@ package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.processor.ResourcesHelper;
+import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -21,12 +21,9 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
     @Autowired
     ILogger logger;
     @Autowired
-    ResourcesHelper resourcesHelper;
+    Resources resources;
+    @Autowired
     Config config;
-
-    public StartProcess() {
-        this.config = Config.init();
-    }
 
     @Override
     public void processResultPreviousStep() {
@@ -44,21 +41,21 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
         logger.writeInfo("start main menu process for user " + userId);
 
         SendMessage sendMessage = new SendMessage(userId,
-                resourcesHelper.getResources().getMsgs().getWelcome());
+                resources.getMsgs().getWelcome());
 
         ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder keyboard = ReplyKeyboardMarkup.builder();
 
         List<KeyboardRow> buttons = new ArrayList<>();
 
-        KeyboardButton search = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getSearchRequest());
+        KeyboardButton search = new KeyboardButton(resources.getButtonsText().getSearchRequest());
         search.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "search"));
         buttons.add(new KeyboardRow(Collections.singletonList(search)));
 
-        KeyboardButton sale = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getPlaceAnAd());
+        KeyboardButton sale = new KeyboardButton(resources.getButtonsText().getPlaceAnAd());
         sale.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "sale"));
         buttons.add(new KeyboardRow(Collections.singletonList(sale)));
 
-        KeyboardButton rules = new KeyboardButton(resourcesHelper.getResources().getButtonsText().getRules());
+        KeyboardButton rules = new KeyboardButton(resources.getButtonsText().getRules());
         rules.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "rules"));
         buttons.add(new KeyboardRow(Collections.singletonList(rules)));
 

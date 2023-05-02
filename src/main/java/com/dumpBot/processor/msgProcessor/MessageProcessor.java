@@ -8,10 +8,11 @@ import com.dumpBot.model.enums.Action;
 import com.dumpBot.model.User;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IUserStorage;
-import com.dumpBot.processor.ResourcesHelper;
 import com.dumpBot.processor.msgProcessor.process.Command;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.dumpBot.processor.msgProcessor.process.MsgProcessFactory;
+import com.dumpBot.resources.Resources;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -21,19 +22,16 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
 @Component
+@NoArgsConstructor
 public class MessageProcessor extends BaseProcess implements IMessageProcessor {
+   @Autowired
     Config config;
     @Autowired
     IUserStorage storage;
     @Autowired
     ILogger logger;
     @Autowired
-    ResourcesHelper resourcesHelper;
-
-    public MessageProcessor() {
-        super();
-        this.config = Config.init();
-    }
+    Resources resources;
 
     @Override
     public List<SendMessage> startMessageProcessor(Update update) {
@@ -83,6 +81,6 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     public SendMessage createErrAuthMsg(Update update) {
         String chatId = String.valueOf(update.getMessage() != null ? update.getMessage().getFrom().getId() :
                 update.getCallbackQuery().getFrom().getId());
-        return new SendMessage(chatId, resourcesHelper.getResources().getErrors().getAuthError());
+        return new SendMessage(chatId, resources.getErrors().getAuthError());
     }
 }

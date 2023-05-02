@@ -5,6 +5,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -13,18 +15,14 @@ import java.io.File;
 @Getter
 @NoArgsConstructor
 public class Resources {
+    @Autowired
     private ButtonsText buttonsText;
+    @Autowired
     private Msgs msgs;
+    @Autowired
     private Errors errors;
+    @Autowired
     private Success success;
+    @Value("${resources.rules}")
     private String rules;
-
-    @SneakyThrows
-    public static Resources init() {
-        File file = new File("./src/main/resources/resources.yaml");
-        // Создание нового ObjectMapper как YAMLFactory
-        ObjectMapper om = new ObjectMapper(new YAMLFactory());
-        return om.readValue(file, Resources.class);
-    }
-
 }

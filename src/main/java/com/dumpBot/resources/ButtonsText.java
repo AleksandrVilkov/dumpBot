@@ -1,21 +1,22 @@
 package com.dumpBot.resources;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Component
 public class ButtonsText {
+    @Value("${resources.buttonsText.registration}")
     private String registration;
+    @Value("${resources.buttonsText.searchRequest}")
     private String searchRequest;
+    @Value("${resources.buttonsText.placeAnAd}")
     private String placeAnAd;
+    @Value("${resources.buttonsText.rules}")
     private String rules;
-    private String universal;
+    @Value("${resources.buttonsText.withoutPhoto}")
     private String withoutPhoto;
-    private String saleUniversal;
 }

@@ -3,6 +3,7 @@ package com.dumpBot.bot;
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ import java.util.List;
 @Component
 @Getter
 @Setter
+@NoArgsConstructor
 public class Bot extends TelegramLongPollingBot {
 
     @Autowired
@@ -27,11 +29,8 @@ public class Bot extends TelegramLongPollingBot {
     IWebAppProcessor webAppProcessor;
     @Autowired
     private ILogger logger;
+    @Autowired
     Config config;
-
-    public Bot() {
-        this.config = Config.init();
-    }
 
     @Override
     public String getBotUsername() {

@@ -1,28 +1,24 @@
 package com.dumpBot.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 
 @Getter
 @Setter
+@Component
 public class Config {
-    private BotConfig bot;
+    @Autowired
+    BotConfig bot;
+    @Autowired
     private CommandsConfig commands;
+    @Autowired
     private ValidateData validateData;
-    private StorageConfig storageConfig;
+    @Autowired
     private WebApp webApp;
-    @SneakyThrows
-    public static Config init() {
-        File file = new File("./src/main/resources/config.yaml");
-        // Создание нового ObjectMapper как YAMLFactory
-        ObjectMapper om = new ObjectMapper(new YAMLFactory());
-        return om.readValue(file, Config.class);
-    }
 }
 
 
