@@ -69,7 +69,7 @@ public class Bot extends TelegramLongPollingBot {
                     msgs.addAll(photoProcessor.startPhotoProcessor(update));
                 }
                 if (update.getMessage().getWebAppData() != null) {
-                    logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId());
+                    logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId() + ": "+update.getMessage().getWebAppData().getData());
                     msgs.addAll(webAppProcessor.startWebAppProcessor(update));
                 }
 
