@@ -19,7 +19,7 @@ validateData:
   channelURL: "https://t.me/dumpChenDev"
 
 webApp:
-  url: "https://taupe-bienenstitch-397031.netlify.app"
+  url: "http://http://85.193.82.129:3001/"
   pathRegistration: "/registration"
   pathSale: "/sale"
   pathSearch: ""
