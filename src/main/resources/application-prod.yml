@@ -8,13 +8,13 @@ spring:
     password: root
     driver-class-name: org.postgresql.Driver
 
-#server:
-#  port: 443
-#  ssl:
-#    key-store: keystore.p12
-#    key-store-password: 841212
-#    keyStoreType: PKCS12
-#    keyAlias: tomcat
+server:
+  port: 443
+  ssl:
+    key-store: keystore.p12
+    key-store-password: 841212
+    keyStoreType: PKCS12
+    keyAlias: tomcat
 bot:
   token: 5990503214:AAGAlWdWPbKQCSvZsRfR9l48tAkuqTcFdws
   name: psa_dump_dev
@@ -29,7 +29,7 @@ validateData:
   channelURL: "https://t.me/dumpChenDev"
 
 webApp:
-  url: "http://http://85.193.82.129:3001/"
+  url: "https://85.193.82.129:3000"
   pathRegistration: "/registration"
   pathSale: "/sale"
   pathSearch: ""

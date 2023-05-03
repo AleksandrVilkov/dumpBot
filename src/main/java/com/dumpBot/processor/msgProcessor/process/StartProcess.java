@@ -2,6 +2,7 @@ package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
+import com.dumpBot.loger.Logger;
 import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,15 +49,18 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
         List<KeyboardRow> buttons = new ArrayList<>();
 
         KeyboardButton search = new KeyboardButton(resources.getButtonsText().getSearchRequest());
-        search.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "search"));
+        search.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "/search"));
         buttons.add(new KeyboardRow(Collections.singletonList(search)));
 
         KeyboardButton sale = new KeyboardButton(resources.getButtonsText().getPlaceAnAd());
-        sale.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + config.getWebApp().getPathSale()));
+
+        String saleUrl = config.getWebApp().getUrl() + config.getWebApp().getPathSale();
+        sale.setWebApp(new WebAppInfo(saleUrl));
+        logger.writeInfo("create button with url: " + saleUrl);
         buttons.add(new KeyboardRow(Collections.singletonList(sale)));
 
         KeyboardButton rules = new KeyboardButton(resources.getButtonsText().getRules());
-        rules.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "rules"));
+        rules.setWebApp(new WebAppInfo(config.getWebApp().getUrl() + "/rules"));
         buttons.add(new KeyboardRow(Collections.singletonList(rules)));
 
         keyboard.keyboard(buttons);
