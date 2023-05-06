@@ -17,19 +17,6 @@ public class CityStorage implements ICityStorage {
     RegionRepository regionRepository;
 
     @Override
-    public List<String> getAllCountries() {
-
-        //TODO реализовать
-        return null;
-    }
-
-    @Override
-    public List<City> getCityByPattern(String pattern) {
-        //TODO реализовать
-        return null;
-    }
-
-    @Override
     public List<City> getAllCities() {
        List<Object[]> result = regionRepository.getAllCities();
        List<City> cities = new ArrayList<>();

@@ -14,17 +14,6 @@ public class CityService implements ICityService {
     ICityStorage cityStorage;
 
     @Override
-
-    public List<String> getCountries() {
-        return cityStorage.getAllCountries();
-    }
-
-    @Override
-    public List<City> getCityByPattern(String pattern) {
-        return cityStorage.getCityByPattern(pattern);
-    }
-
-    @Override
     public List<City> getAllCities() {
         return cityStorage.getAllCities();
     }

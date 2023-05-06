@@ -15158,3 +15158,20 @@ Tue May 02 23:00:27 MSK 2023: INFO: new update is message from 436641871
 Tue May 02 23:00:27 MSK 2023: INFO: start message processor for 436641871
 Tue May 02 23:00:27 MSK 2023: INFO: Сommand /start recognized by user 436641871
 Tue May 02 23:00:27 MSK 2023: INFO: start main menu process for user 436641871
+Sat May 06 22:05:30 MSK 2023: INFO: new update received
+Sat May 06 22:09:17 MSK 2023: INFO: new update is message from 436641871
+Sat May 06 22:09:17 MSK 2023: INFO: start message processor for 436641871
+Sat May 06 22:09:17 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Sat May 06 22:09:17 MSK 2023: INFO: start main menu process for user 436641871
+Sat May 06 22:09:17 MSK 2023: INFO: create button with url: http://http://85.193.82.129:3001//sale
+Sat May 06 22:09:17 MSK 2023: ERROR!: Error executing org.telegram.telegrambots.meta.api.methods.send.SendMessage query: [400] Bad Request: keyboard button Web App URL 'http://http://85.193.82.129:3001//search' is invalid: Wrong port number specified in the URL
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponseInternal(PartialBotApiMethod.java:54)
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponse(PartialBotApiMethod.java:34)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:20)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:15)
+org.telegram.telegrambots.bots.DefaultAbsSender.sendApiMethod(DefaultAbsSender.java:1096)
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:64)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:77)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
