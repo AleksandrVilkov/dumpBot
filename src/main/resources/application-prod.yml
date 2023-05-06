@@ -9,7 +9,7 @@ spring:
     driver-class-name: org.postgresql.Driver
 
 server:
-  port: 443
+  port: 442
   ssl:
     key-store: keystore.p12
     key-store-password: 841212
@@ -29,7 +29,7 @@ validateData:
   channelURL: "https://t.me/dumpChenDev"
 
 webApp:
-  url: "https://1460223-cx54297.tw1.ru:3000"
+  url: "https://dumpdot.ru"
   pathRegistration: "/registration"
   pathSale: "/sale"
   pathSearch: ""
