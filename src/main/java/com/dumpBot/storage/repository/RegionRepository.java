@@ -14,4 +14,7 @@ public interface RegionRepository extends JpaRepository<RegionEntity, Integer> {
     @Query(value = "select * from region r WHERE c.name LIKE %:pattern%", nativeQuery = true)
     public List<Object[]> getCitiesByPattern(String pattern);
 
+    @Query(value = "select * from region", nativeQuery = true)
+    public List<Object[]> getAllCities();
+
 }

@@ -28,4 +28,20 @@ public class CityStorage implements ICityStorage {
         //TODO реализовать
         return null;
     }
+
+    @Override
+    public List<City> getAllCities() {
+       List<Object[]> result = regionRepository.getAllCities();
+       List<City> cities = new ArrayList<>();
+       for (Object[] o: result) {
+           City city = new City();
+           city.setId((Integer) o[0]);
+           city.setName((String) o[1]);
+           city.setCountryCode((String) o[2]);
+           city.setRegionId((String) o[3]);
+           cities.add(city);
+       }
+
+        return cities;
+    }
 }

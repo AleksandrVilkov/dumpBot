@@ -29,7 +29,7 @@ validateData:
   channelURL: "https://t.me/dumpChenDev"
 
 webApp:
-  url: "https://85.193.82.129:3000"
+  url: "https://1460223-cx54297.tw1.ru:3000"
   pathRegistration: "/registration"
   pathSale: "/sale"
   pathSearch: ""

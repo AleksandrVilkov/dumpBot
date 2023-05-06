@@ -77,7 +77,7 @@ public class UserStorage implements IUserStorage {
         clientEntity.setUserName(user.getUserName());
         clientEntity.setCreatedDate(new Date());
         clientEntity.setRole(user.getRole().name());
-        clientEntity.setRegionId(user.getRegion().getRegionId());
+        clientEntity.setRegionId(Integer.parseInt(user.getRegion().getRegionId()));
         if (user.getCar().getId() != 0) {
             clientEntity.setCarid(user.getCar().getId());
         } else {

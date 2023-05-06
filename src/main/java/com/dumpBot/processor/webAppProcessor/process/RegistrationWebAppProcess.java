@@ -23,17 +23,15 @@ public class RegistrationWebAppProcess implements WebAppProcess {
 
     @Override
     public boolean processData(Update update, WebAppData webAppData) {
-        City city = new City();
-        city.setName(webAppData.getCity());
-        city.setRegionId(1);
-        User user = new User(new Date(),
-                Role.USER_ROLE,
-                String.valueOf(update.getMessage().getFrom().getId()),
-                city,
-                convertCarData(webAppData));
-        user.setWaitingMessages(false);
-        user.setUserName(update.getMessage().getFrom().getUserName());
-        return storage.saveUser(user);
+//        User user = new User(new Date(),
+//                Role.USER_ROLE,
+//                String.valueOf(update.getMessage().getFrom().getId()),
+//                city,
+//                convertCarData(webAppData));
+//        user.setWaitingMessages(false);
+//        user.setUserName(update.getMessage().getFrom().getUserName());
+//        return storage.saveUser(user);
+        return false;
     }
 
     private Car convertCarData(WebAppData webAppData) {

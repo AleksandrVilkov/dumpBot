@@ -25,7 +25,7 @@ public class RegionEntity {
 
     public City toCity() {
         City city = new City();
-        city.setRegionId(Integer.parseInt(String.valueOf(this.getId())));
+        city.setRegionId((String.valueOf(this.getId())));
         city.setName(this.getName());
         return city;
     }

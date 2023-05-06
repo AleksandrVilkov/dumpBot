@@ -27,7 +27,6 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
 
     @Autowired
     Resources resources;
-
     @Override
     public List<SendMessage> startWebAppProcessor(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
