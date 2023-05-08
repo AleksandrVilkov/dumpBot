@@ -1,11 +1,10 @@
 package com.dumpBot.processor.webAppProcessor.process;
 
+import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.resources.Resources;
-import com.dumpBot.service.ICarStorage;
-import com.dumpBot.service.ICityStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -20,34 +19,24 @@ public class RegistrationWebAppProcess implements WebAppProcess {
 
     @Autowired
     IUserStorage userStorage;
-    ICarStorage carStorage;
-    ICityStorage cityStorage;
     @Autowired
     Resources resources;
+    @Autowired
+    ILogger logger;
 
     @Override
     public boolean processData(Update update, WebAppData webAppData) {
-
-//        User user = new User(new Date(),
-//                Role.USER_ROLE,
-//                String.valueOf(update.getMessage().getFrom().getId()),
-//                city,
-//                convertCarData(webAppData));
-//        user.setWaitingMessages(false);
-//        user.setUserName(update.getMessage().getFrom().getUserName());
-//        return userStorage.saveUser(user);
-        return false;
+        User user = new User(new Date(),
+                Role.USER_ROLE,
+                String.valueOf(update.getMessage().getFrom().getId()),
+                webAppData.getCityId(),
+                webAppData.getCarId());
+        user.setWaitingMessages(false);
+        logger.writeInfo("New user defined: " + user.toString());
+        user.setUserName(update.getMessage().getFrom().getUserName());
+        return userStorage.saveUser(user);
     }
 
-    private Car convertCarData(WebAppData webAppData) {
-        Car car = new Car();
-        car.setBrand(new Brand(webAppData.getBrand()));
-        car.setModel(new Model(webAppData.getModel()));
-        car.setEngine(new Engine(webAppData.getEngine()));
-        car.setBoltPattern(new BoltPattern(webAppData.getBoltPattern()));
-        car.setConcern(new Concern(webAppData.getConcern()));
-        return car;
-    }
 
     @Override
     public List<SendMessage> prepareAnswer(Update update) {

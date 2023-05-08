@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ICityStorage {
     List<City> getAllCities();
+    City getCityById(int id);
 }

@@ -49,7 +49,7 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
     }
 
 
-    private static WebAppData readWebApp(String webAppStr) throws JsonProcessingException {
+    private WebAppData readWebApp(String webAppStr) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(webAppStr, WebAppData.class);
     }

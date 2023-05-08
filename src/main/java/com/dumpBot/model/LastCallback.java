@@ -5,15 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-public class WebAppData {
+public class LastCallback {
     private String carId;
-    private String cityId;
     private String description;
     private String price;
-    private String action;
-
+    private List<String> photos;
     @Override
     public String toString() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -24,4 +24,3 @@ public class WebAppData {
         }
     }
 }
-

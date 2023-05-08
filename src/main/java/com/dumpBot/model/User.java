@@ -1,6 +1,8 @@
 package com.dumpBot.model;
 
 import com.dumpBot.model.enums.Role;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,17 +20,27 @@ public class User {
     private Date createDate;
     private Role role;
     private String login;
-    private City region;
-    private Car car;
+    private String regionId;
+    private String carId;
     private boolean waitingMessages;
     private String clientAction;
     private String lastCallback;
 
-    public User(Date createDate, Role role, String login, City region, Car car) {
+    public User(Date createDate, Role role, String login, String regionId, String carId) {
         this.createDate = createDate;
         this.role = role;
         this.login = login;
-        this.region = region;
-        this.car = car;
+        this.regionId = regionId;
+        this.carId = carId;
+    }
+
+    @Override
+    public String toString() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

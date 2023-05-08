@@ -7,4 +7,5 @@ import java.util.List;
 public interface ICarStorage {
 
     List<Car> getAllCars();
+    Car findCarById(int id);
 }

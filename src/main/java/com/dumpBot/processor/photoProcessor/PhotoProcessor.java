@@ -1,15 +1,22 @@
 package com.dumpBot.processor.photoProcessor;
 
 import com.dumpBot.bot.IPhotoProcessor;
+import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
+import com.dumpBot.model.LastCallback;
 import com.dumpBot.model.User;
+import com.dumpBot.model.WebAppData;
 import com.dumpBot.processor.BaseProcess;
 import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.resources.Resources;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,24 +36,35 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
         List<String> photos = Collections.singletonList(String.valueOf(update.getMessage().getPhoto().get(0).getFileId()));
         User user = storage.getUser(userId);
         if (user == null) {
+            logger.writeInfo("user is null: userId " + userId);
             return Collections.singletonList(new SendMessage(userId,
                     resources.getMsgs().getPhoto().getNoRegistration()));
         }
-        String lastCallback = user.getLastCallback();
-        if (lastCallback == null) {
-            return  Collections.singletonList(new SendMessage(userId,
+        String stringLastCallback = user.getLastCallback();
+        logger.writeInfo("found callback from user " + userId + ": " + stringLastCallback);
+        if (stringLastCallback == null) {
+            logger.writeInfo("lastCallback is null: userId " + userId);
+            return Collections.singletonList(new SendMessage(userId,
                     resources.getMsgs().getPhoto().getNoAction()));
         }
         try {
+            LastCallback lastCallback = Util.readLastCallback(stringLastCallback);
+            logger.writeInfo("callback from user " + userId + " read successfully");
+            if (lastCallback.getPhotos() == null) {
+                lastCallback.setPhotos(new ArrayList<>());
+            }
+            lastCallback.getPhotos().addAll(photos);
+            user.setLastCallback(lastCallback.toString());
             storage.saveUser(user);
         } catch (Exception e) {
             logger.writeStackTrace(e);
-            return  Collections.singletonList(new SendMessage(userId,
+            return Collections.singletonList(new SendMessage(userId,
                     resources.getErrors().getCommonError()));
         }
 
-        return  Collections.singletonList(new SendMessage(userId,
+        return Collections.singletonList(new SendMessage(userId,
                 resources.getMsgs().getPhoto().getSuccessSavedToLastCallBack()));
 
     }
+
 }

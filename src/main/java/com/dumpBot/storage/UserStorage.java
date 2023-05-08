@@ -38,16 +38,14 @@ public class UserStorage implements IUserStorage {
     public User getUser(String id) {
         List<ClientEntity> c = clientRepository.findByLogin(id);
         ClientEntity clientEntity = c.get(0);
-        RegionEntity regionEntity = regionRepository.findById(clientEntity.getRegionId()).get();
-        CarEntity carEntity = carRepository.findById(clientEntity.getCarid()).get();
         return new User(
                 clientEntity.getId(),
                 clientEntity.getUserName(),
                 clientEntity.getCreatedDate(),
                 Util.findEnumConstant(Role.class, clientEntity.getRole()),
                 clientEntity.getLogin(),
-                regionEntity.toCity(),
-                carEntity.toCarModel(),
+                String.valueOf(clientEntity.getRegionId()),
+                String.valueOf(clientEntity.getCarid()),
                 clientEntity.isWaitingMessages(),
                 clientEntity.getClientAction(),
                 clientEntity.getLastCallback()
@@ -57,10 +55,7 @@ public class UserStorage implements IUserStorage {
 
     @Override
     public boolean saveUser(User user) {
-        Car car = user.getCar();
-        int carId = car.getId();
-
-        ClientEntity clientEntity = convertUserToClient(user, carId);
+        ClientEntity clientEntity = convertUserToClient(user, Integer.valueOf(user.getCarId()));
         try {
             Object o1 = clientRepository.save(clientEntity);
             return true;
@@ -77,9 +72,9 @@ public class UserStorage implements IUserStorage {
         clientEntity.setUserName(user.getUserName());
         clientEntity.setCreatedDate(new Date());
         clientEntity.setRole(user.getRole().name());
-        clientEntity.setRegionId(Integer.parseInt(user.getRegion().getRegionId()));
-        if (user.getCar().getId() != 0) {
-            clientEntity.setCarid(user.getCar().getId());
+        clientEntity.setRegionId(Integer.parseInt(user.getRegionId()));
+        if (!user.getCarId().equalsIgnoreCase("")) {
+            clientEntity.setCarid(Integer.parseInt(user.getCarId()));
         } else {
             clientEntity.setCarid(carId);
         }

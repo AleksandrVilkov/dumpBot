@@ -1,5 +1,9 @@
 package com.dumpBot.common;
 
+import com.dumpBot.model.LastCallback;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Util {
 
     public static <T extends Enum<T>> T findEnumConstant(final Class<T> cls, final String name) {
@@ -12,6 +16,11 @@ public class Util {
             }
         }
         return null;
+    }
+
+    public static LastCallback readLastCallback(String lastCallback) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(lastCallback, LastCallback.class);
     }
 
 }
