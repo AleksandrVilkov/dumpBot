@@ -27,6 +27,7 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
 
     @Autowired
     Resources resources;
+
     @Override
     public List<SendMessage> startWebAppProcessor(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
@@ -34,6 +35,7 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
         WebAppData wpd;
         try {
             wpd = readWebApp(data);
+            logger.writeInfo("received webAppData from " + userId + ": " + data);
         } catch (Exception e) {
             logger.writeStackTrace(e);
             return Collections.singletonList(new SendMessage(userId, e.getMessage()));

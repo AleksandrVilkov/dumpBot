@@ -43,6 +43,7 @@ public class Logger implements ILogger {
     }
 
     public void writeStackTrace(Exception e) {
+        System.out.println(e.getMessage());
         writeError(e.getMessage());
         StackTraceElement[] stackTraceElement = e.getStackTrace();
         for (StackTraceElement traceElement : stackTraceElement) {

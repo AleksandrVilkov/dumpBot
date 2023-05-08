@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 public class WebAppProcessFactory {
     private static WebAppProcess registration;
     private static WebAppProcess search;
+    private static WebAppProcess sale;
 
     @Autowired
-    public WebAppProcessFactory(RegistrationWebAppProcess r, SearchWebAppProcess s) {
+    public WebAppProcessFactory(RegistrationWebAppProcess r, SearchWebAppProcess s, SaleWebAppProcess sp) {
         WebAppProcessFactory.registration = r;
         WebAppProcessFactory.search = s;
+        WebAppProcessFactory.sale = sp;
     }
 
     public static WebAppProcess getProcess(Action action) {
@@ -22,6 +24,9 @@ public class WebAppProcessFactory {
             }
             case SEARCH -> {
                 return search;
+            }
+            case SALE -> {
+                return sale;
             }
 
             default -> {

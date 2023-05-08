@@ -4,6 +4,8 @@ import com.dumpBot.model.*;
 import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.IUserStorage;
 import com.dumpBot.resources.Resources;
+import com.dumpBot.service.ICarStorage;
+import com.dumpBot.service.ICityStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -17,12 +19,15 @@ import java.util.List;
 public class RegistrationWebAppProcess implements WebAppProcess {
 
     @Autowired
-    IUserStorage storage;
+    IUserStorage userStorage;
+    ICarStorage carStorage;
+    ICityStorage cityStorage;
     @Autowired
     Resources resources;
 
     @Override
     public boolean processData(Update update, WebAppData webAppData) {
+
 //        User user = new User(new Date(),
 //                Role.USER_ROLE,
 //                String.valueOf(update.getMessage().getFrom().getId()),
@@ -30,7 +35,7 @@ public class RegistrationWebAppProcess implements WebAppProcess {
 //                convertCarData(webAppData));
 //        user.setWaitingMessages(false);
 //        user.setUserName(update.getMessage().getFrom().getUserName());
-//        return storage.saveUser(user);
+//        return userStorage.saveUser(user);
         return false;
     }
 
