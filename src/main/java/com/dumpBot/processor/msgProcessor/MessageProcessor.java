@@ -60,8 +60,8 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
         //находим пользователя и смотрим его последний колбек
         User user = storage.getUser(userId);
         //Если мы ждем от него какой то текст - то смотрим что у него за действие и запускаем соответвующий процесс
-        if (user.isWaitingMessages()) {
-            Action action = Util.findEnumConstant(Action.class, user.getClientAction());
+        if (true) {
+            Action action = Action.SEARCH;//Util.findEnumConstant(Action.class, user.getClientAction());
             logger.writeInfo("The user " + userId + " is waiting for a text message on the process " + action.name());
             return MsgProcessFactory.getProcess(action);
         }

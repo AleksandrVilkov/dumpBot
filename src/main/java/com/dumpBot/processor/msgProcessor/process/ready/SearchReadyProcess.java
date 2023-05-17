@@ -61,35 +61,43 @@ public class SearchReadyProcess implements IReadyProcess {
             logger.writeStackTrace(e);
             return sendError(userId);
         }
-        if (lastCallback.getPhotos() != null && lastCallback.getPhotos().size() > 0) {
-            if (lastCallback.getPhotos().size() == 1) {
-                SendPhoto sendPhoto = new SendPhoto();
-                sendPhoto.setPhoto(new InputFile(lastCallback.getPhotos().get(0)));
-                sendPhoto.setChatId(config.getValidateData().getChannelID());
-                sendPhoto.setCaption(crateTextForChanel(lastCallback, user));
-                try {
-                    bot.execute(sendPhoto);
-                    return Collections.singletonList(new SendMessage(userId, "Успешно отправлено в канал!"));
-                } catch (TelegramApiException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                SendMediaGroup sendMediaGroup = new SendMediaGroup();
-                sendMediaGroup.setMedias(getMedias(lastCallback, user));
-                sendMediaGroup.setChatId(config.getValidateData().getChannelID());
-                try {
-                    bot.execute(sendMediaGroup);
-                    updateUser(user);
-                    return Collections.singletonList(new SendMessage(userId, "Успешно отправлено в канал!"));
-                } catch (TelegramApiException e) {
-                    logger.writeStackTrace(e);
-                    return sendError(userId);
-                }
+        if (lastCallback.getPhotos().size() == 1) {
+            SendPhoto sendPhoto = new SendPhoto();
+            sendPhoto.setPhoto(new InputFile(lastCallback.getPhotos().get(0)));
+            sendPhoto.setChatId(config.getValidateData().getChannelID());
+            sendPhoto.setCaption(crateTextForChanel(lastCallback, user));
+            try {
+                bot.execute(sendPhoto);
+                return Collections.singletonList(new SendMessage(userId, resources.getMsgs().getSearch().getSuccessSendSearchQuery()));
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
             }
+        } else if (lastCallback.getPhotos().size() > 1) {
+            SendMediaGroup sendMediaGroup = new SendMediaGroup();
+            sendMediaGroup.setMedias(getMedias(lastCallback, user));
+            sendMediaGroup.setChatId(config.getValidateData().getChannelID());
+            try {
+                bot.execute(sendMediaGroup);
+                updateUser(user);
+                return Collections.singletonList(new SendMessage(userId, resources.getMsgs().getSearch().getSuccessSendSearchQuery()));
+            } catch (TelegramApiException e) {
+                logger.writeStackTrace(e);
+                return sendError(userId);
+            }
+        } else {
+            SendMessage sendMessage = new SendMessage(String.valueOf(config.getValidateData().getChannelID()),
+                    crateTextForChanel(lastCallback, user));
+            try {
+                bot.execute(sendMessage);
+            } catch (TelegramApiException e) {
+                logger.writeStackTrace(e);
+                return Collections.singletonList(new SendMessage(userId, resources.getMsgs().getSearch().getSuccessSendSearchQuery()));
+            }
+            updateUser(user);
         }
 
 
-        return null;
+        return sendError(userId);
     }
 
     private List<InputMedia> getMedias(LastCallback lastCallback, User user) {
@@ -105,15 +113,18 @@ public class SearchReadyProcess implements IReadyProcess {
         }
         return inputMedia;
     }
+
     private List<SendMessage> sendError(String userId) {
         return Collections.singletonList(new SendMessage(userId, resources.getErrors().getCommonError()));
     }
+
     private void updateUser(User user) {
         user.setWaitingMessages(false);
         user.setLastCallback(null);
         user.setClientAction(null);
         userStorage.saveUser(user);
     }
+
     private String crateTextForChanel(LastCallback lastCallback, User user) {
         Car car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
         logger.writeInfo("find car for user " + user.getLogin());

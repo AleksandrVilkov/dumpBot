@@ -11,13 +11,16 @@ public class MsgProcessFactory {
     private static MsgProcess start;
     private static MsgProcess defaultProcess;
 
+    private static MsgProcess searchMgsProcess;
+
     private static MsgProcess readyProcess;
 
     @Autowired
-    public MsgProcessFactory(RegistrationProcess srp, StartProcess mmp, MainReadyProcess rp) {
+    public MsgProcessFactory(RegistrationProcess srp, StartProcess mmp, MainReadyProcess rp, SearchMsgProcess smp) {
         MsgProcessFactory.registration = srp;
         MsgProcessFactory.start = mmp;
         MsgProcessFactory.readyProcess = rp;
+        MsgProcessFactory.searchMgsProcess = smp;
     }
 
     public static MsgProcess getProcess(Command command) {
@@ -42,6 +45,9 @@ public class MsgProcessFactory {
             }
             case START -> {
                 return start;
+            }
+            case SEARCH -> {
+                return searchMgsProcess;
             }
             default -> {
                 return defaultProcess;

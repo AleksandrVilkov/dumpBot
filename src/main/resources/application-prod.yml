@@ -32,7 +32,7 @@ webApp:
   url: "https://dumpdot.ru"
   pathRegistration: "/registration"
   pathSale: "/sale"
-  pathSearch: ""
+  pathSearch: "/search"
 
 resources:
   buttonsText:
@@ -53,10 +53,13 @@ resources:
       go: Давай зарегистрируемся.
       description: После регистрации ты сможешь получать пересональные уведомления о новых обьявлениях по своей машине
       tapRegistration: Нажми на кнопку регистрация
-
+    search:
+      title: Хорошо, я запомнил что фото нет.
+      botReady: Для отправки на модерацию - нажмми /ready
+      successSendSearchQuery: Прекрасно, запрос на поиск успешно отправлен
     photo:
       withOrWithoutPhoto: Если есть фото - отправь их мне. Если нет - то нажми на кнопку без фото
-      givePhoto: Теперь прекрепи фотографии. Просто отправь их мне.
+      givePhoto: Теперь прекре пи фотографии. Просто отправь их мне.
       noPhoto: Не нахожу у тебя фотографий.
       info: Размещение объявления о продаже невозможно без фотографий
       noRegistration: К сожалению, я не вижу что ты зарегистрирован. Пройди регистрацию, для этого нажми /start

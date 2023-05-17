@@ -20,5 +20,7 @@ public class Msgs {
     private Registration registration;
     @Autowired
     private Photo photo;
+    @Autowired
+    private Search search;
 
 }
