@@ -56,7 +56,6 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
 
         String saleUrl = config.getWebApp().getUrl() + config.getWebApp().getPathSale();
         sale.setWebApp(new WebAppInfo(saleUrl));
-        logger.writeInfo("create button with url: " + saleUrl);
         buttons.add(new KeyboardRow(Collections.singletonList(sale)));
 
         KeyboardButton rules = new KeyboardButton(resources.getButtonsText().getRules());

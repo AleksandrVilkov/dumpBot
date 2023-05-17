@@ -81,6 +81,7 @@ public class SaleReadyProcess implements IReadyProcess {
             sendPhoto.setCaption(crateTextForChanel(lastCallback, user));
             try {
                 bot.execute(sendPhoto);
+                updateUser(user);
                 return Collections.singletonList(new SendMessage(userId, "Успешно отправлено в канал!"));
             } catch (TelegramApiException e) {
                 throw new RuntimeException(e);
