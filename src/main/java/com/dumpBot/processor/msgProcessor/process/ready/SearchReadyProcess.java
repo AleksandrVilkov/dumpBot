@@ -61,7 +61,7 @@ public class SearchReadyProcess implements IReadyProcess {
         }
 
         Car car = null;
-        if (lastCallback.getCarId() != null && lastCallback.getCarId().equalsIgnoreCase("")) {
+        if (lastCallback.getCarId() != null && !lastCallback.getCarId().equalsIgnoreCase("")) {
             car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
             logger.writeInfo("find car for user " + user.getLogin());
         }
@@ -72,7 +72,7 @@ public class SearchReadyProcess implements IReadyProcess {
         if (accommodationStorage.saveAccommodation(userAccommodation)) {
             updateUser(user);
             List<SendMessage> result = new ArrayList<>(getAccommodationMsgForAdmins());
-            result.add(new SendMessage(userId, resources.getMsgs().getSale().getSuccessSendQuery()));
+            result.add(new SendMessage(userId, resources.getMsgs().getSearch().getSuccessSendSearchQuery()));
             return result;
         } else {
             return sendError(userId);
@@ -82,10 +82,13 @@ public class SearchReadyProcess implements IReadyProcess {
     private List<SendMessage> getAccommodationMsgForAdmins() {
         List<SendMessage> result = new ArrayList<>();
         List<User> admins = userStorage.findAdmins();
-        for (User u : admins) {
-            String id = String.valueOf(u.getLogin());
-            result.add(new SendMessage(id, resources.getMsgs().getAdmin().getNewAccommodation()));
+        if (admins != null) {
+            for (User u : admins) {
+                String id = String.valueOf(u.getLogin());
+                result.add(new SendMessage(id, resources.getMsgs().getAdmin().getNewAccommodation()));
+            }
         }
+
         return result;
     }
 

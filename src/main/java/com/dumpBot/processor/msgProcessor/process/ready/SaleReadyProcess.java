@@ -85,9 +85,11 @@ public class SaleReadyProcess implements IReadyProcess {
     private List<SendMessage> getAccommodationMsgForAdmins() {
         List<SendMessage> result = new ArrayList<>();
         List<User> admins = userStorage.findAdmins();
-        for (User u : admins) {
-            String id = String.valueOf(u.getLogin());
-            result.add(new SendMessage(id, resources.getMsgs().getAdmin().getNewAccommodation()));
+        if (admins != null) {
+            for (User u : admins) {
+                String id = String.valueOf(u.getLogin());
+                result.add(new SendMessage(id, resources.getMsgs().getAdmin().getNewAccommodation()));
+            }
         }
         return result;
     }
