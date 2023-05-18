@@ -1,8 +1,8 @@
-package com.dumpBot.storage;
+package com.dumpBot.storage.storage;
 
 
 import com.dumpBot.model.City;
-import com.dumpBot.service.ICityStorage;
+import com.dumpBot.storage.ICityStorage;
 import com.dumpBot.storage.entity.RegionEntity;
 import com.dumpBot.storage.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class CityStorage implements ICityStorage {

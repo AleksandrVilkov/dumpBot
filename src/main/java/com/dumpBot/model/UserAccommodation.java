@@ -1,10 +1,7 @@
 package com.dumpBot.model;
 
 import com.dumpBot.model.enums.AccommodationType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -14,14 +11,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserAccommodation {
     private int id;
     private AccommodationType type;
+    private Car car;
     private Date createdDate;
     private String clientLogin;
     private int clientId;
-    private int minPrice;
-    private int maxPrice;
+    private int price;
     private boolean approved;
     private boolean rejected;
     private boolean topical;

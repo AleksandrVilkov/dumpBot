@@ -1,7 +1,7 @@
-package com.dumpBot.storage;
+package com.dumpBot.storage.storage;
 
 import com.dumpBot.model.*;
-import com.dumpBot.service.ICarStorage;
+import com.dumpBot.storage.ICarStorage;
 import com.dumpBot.storage.entity.CarEntity;
 import com.dumpBot.storage.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class CarStorage implements ICarStorage {

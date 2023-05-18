@@ -1,10 +1,10 @@
-package com.dumpBot.storage;
+package com.dumpBot.storage.storage;
 
 import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.enums.Role;
-import com.dumpBot.processor.IUserStorage;
+import com.dumpBot.storage.IUserStorage;
 import com.dumpBot.storage.entity.*;
 import com.dumpBot.storage.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +63,17 @@ public class UserStorage implements IUserStorage {
             logger.writeStackTrace(e);
             return false;
         }
+    }
+
+    @Override
+    public List<User> findAdmins() {
+        List<Object[]> f = clientRepository.findAdmins();
+        List<User> admins = new ArrayList<>();
+        for (Object[] o: f){
+
+        }
+        //TODO
+        return null;
     }
 
 

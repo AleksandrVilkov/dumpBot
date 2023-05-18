@@ -7,7 +7,7 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.model.User;
 import com.dumpBot.processor.BaseProcess;
-import com.dumpBot.processor.IUserStorage;
+import com.dumpBot.storage.IUserStorage;
 import com.dumpBot.processor.msgProcessor.process.Command;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.dumpBot.processor.msgProcessor.process.MsgProcessFactory;

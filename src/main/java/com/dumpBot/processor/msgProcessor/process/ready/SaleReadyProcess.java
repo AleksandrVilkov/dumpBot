@@ -4,30 +4,25 @@ import com.dumpBot.bot.Bot;
 import com.dumpBot.common.Util;
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.model.Car;
-import com.dumpBot.model.City;
-import com.dumpBot.model.LastCallback;
-import com.dumpBot.model.User;
-import com.dumpBot.processor.IUserStorage;
+import com.dumpBot.model.*;
+import com.dumpBot.storage.IAccommodationStorage;
+import com.dumpBot.storage.IUserStorage;
 import com.dumpBot.resources.Resources;
-import com.dumpBot.service.ICarStorage;
-import com.dumpBot.service.ICityStorage;
+import com.dumpBot.storage.ICarStorage;
+import com.dumpBot.storage.ICityStorage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
-import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Класс, отвечающий за обработку команды ready при статусе пользователя SALE
+ */
 
 @Component
 public class SaleReadyProcess implements IReadyProcess {
@@ -43,9 +38,12 @@ public class SaleReadyProcess implements IReadyProcess {
     @Autowired
     ICityStorage cityStorage;
     @Autowired
+    IAccommodationStorage accommodationStorage;
+    @Autowired
     Resources resources;
     @Autowired
     Config config;
+
     @Override
     public List<SendMessage> execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
@@ -69,36 +67,29 @@ public class SaleReadyProcess implements IReadyProcess {
             return msgs;
         }
 
-      //Если более 1 фото - нужно отправлять SendMediaGroup, если фото одно - то SendPhoto
-        /**
-         * В дальнейшем этот блок убрать в админку, заменить на сохранение заявки от пользователя в БД
-         * И отправку уведомления админам канала
-        */
-        if (lastCallback.getPhotos().size() == 1) {
-            SendPhoto sendPhoto = new SendPhoto();
-            sendPhoto.setPhoto(new InputFile(lastCallback.getPhotos().get(0)));
-            sendPhoto.setChatId(config.getValidateData().getChannelID());
-            sendPhoto.setCaption(crateTextForChanel(lastCallback, user));
-            try {
-                bot.execute(sendPhoto);
-                updateUser(user);
-                return Collections.singletonList(new SendMessage(userId, "Успешно отправлено в канал!"));
-            } catch (TelegramApiException e) {
-                throw new RuntimeException(e);
-            }
+        Car car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
+        logger.writeInfo("find car for user " + user.getLogin());
+        City city = cityStorage.getCityById(Integer.parseInt(user.getRegionId()));
+        logger.writeInfo("find city for user " + user.getLogin());
+        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, car, city);
+        if (accommodationStorage.saveAccommodation(userAccommodation)) {
+            updateUser(user);
+            List<SendMessage> result = new ArrayList<>(getAccommodationMsgForAdmins());
+            result.add(new SendMessage(userId, resources.getMsgs().getSale().getSuccessSendQuery()));
+            return result;
         } else {
-            SendMediaGroup sendMediaGroup = new SendMediaGroup();
-            sendMediaGroup.setMedias(getMedias(lastCallback, user));
-            sendMediaGroup.setChatId(config.getValidateData().getChannelID());
-            try {
-                bot.execute(sendMediaGroup);
-                updateUser(user);
-                return Collections.singletonList(new SendMessage(userId, "Успешно отправлено в канал!"));
-            } catch (TelegramApiException e) {
-                logger.writeStackTrace(e);
-                return sendError(userId);
-            }
+            return sendError(userId);
         }
+    }
+
+    private List<SendMessage> getAccommodationMsgForAdmins() {
+        List<SendMessage> result = new ArrayList<>();
+        List<User> admins = userStorage.findAdmins();
+        for (User u : admins) {
+            String id = String.valueOf(u.getLogin());
+            result.add(new SendMessage(id, resources.getMsgs().getAdmin().getNewAccommodation()));
+        }
+        return result;
     }
 
     private void updateUser(User user) {
@@ -108,36 +99,129 @@ public class SaleReadyProcess implements IReadyProcess {
         userStorage.saveUser(user);
     }
 
-    private List<InputMedia> getMedias(LastCallback lastCallback, User user) {
-        List<InputMedia> inputMedia = new ArrayList<>();
-        boolean isFirst = true;
-        for (String photo : lastCallback.getPhotos()) {
-            InputMediaPhoto inputMediaPhoto = new InputMediaPhoto(photo);
-            if (isFirst) {
-                inputMediaPhoto.setCaption(crateTextForChanel(lastCallback, user));
-                isFirst = false;
-            }
-            inputMedia.add(inputMediaPhoto);
-        }
-        return inputMedia;
-    }
-
-    private String crateTextForChanel(LastCallback lastCallback, User user) {
-        Car car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
-        logger.writeInfo("find car for user " + user.getLogin());
-        City city = cityStorage.getCityById(Integer.parseInt(user.getRegionId()));
-        logger.writeInfo("find city for user " + user.getLogin());
-
-        return "Продам: " + lastCallback.getDescription() + "\n" +
-                "Концерн: " + car.getConcern().getName() + "\n" +
-                "Бренд: " + car.getBrand().getName() + "\n" +
-                "Модель: " + car.getModel().getName() + "\n" +
-                "Цена: " + lastCallback.getPrice() + "\n" +
-                "Писать: @" + user.getUserName() + "\n" +
-                "Местонахождение: " + city.getName();
-    }
 
     private List<SendMessage> sendError(String userId) {
         return Collections.singletonList(new SendMessage(userId, resources.getErrors().getCommonError()));
     }
 }
+// Перенести в функционал админа.
+//Sale
+//Если более 1 фото - нужно отправлять SendMediaGroup, если фото одно - то SendPhoto
+//    private List<InputMedia> getMedias(LastCallback lastCallback, User user) {
+//        List<InputMedia> inputMedia = new ArrayList<>();
+//        boolean isFirst = true;
+//        for (String photo : lastCallback.getPhotos()) {
+//            InputMediaPhoto inputMediaPhoto = new InputMediaPhoto(photo);
+//            if (isFirst) {
+//                inputMediaPhoto.setCaption(crateTextForChanel(lastCallback, user));
+//                isFirst = false;
+//            }
+//            inputMedia.add(inputMediaPhoto);
+//        }
+//        return inputMedia;
+//    }
+//        if (lastCallback.getPhotos().size() == 1) {
+//            SendPhoto sendPhoto = new SendPhoto();
+//            sendPhoto.setPhoto(new InputFile(lastCallback.getPhotos().get(0)));
+//            sendPhoto.setChatId(config.getValidateData().getChannelID());
+//            sendPhoto.setCaption(crateTextForChanel(lastCallback, user));
+//            try {
+//
+//                //TODO сохранять объявление в бд, слать уведомление админам
+//                bot.execute(sendPhoto);
+//                updateUser(user);
+//                return Collections.singletonList(new SendMessage(userId, "Успешно отправлено в канал!"));
+//            } catch (TelegramApiException e) {
+//                throw new RuntimeException(e);
+//            }
+//        } else {
+//            SendMediaGroup sendMediaGroup = new SendMediaGroup();
+//            sendMediaGroup.setMedias(getMedias(lastCallback, user));
+//            sendMediaGroup.setChatId(config.getValidateData().getChannelID());
+//            try {
+//
+//                //TODO сохранять объявление в бд, слать уведомление админам
+//                bot.execute(sendMediaGroup);
+//                updateUser(user);
+//                return Collections.singletonList(new SendMessage(userId, "Успешно отправлено в канал!"));
+//            } catch (TelegramApiException e) {
+//                logger.writeStackTrace(e);
+//                return sendError(userId);
+//            }
+//        }
+
+
+
+//Search
+
+//        if (lastCallback.getPhotos() == null || lastCallback.getPhotos().size() == 0) {
+//            //фото нет
+//            return handleCallbackWithoutPhoto(lastCallback, user);
+//        } else if (lastCallback.getPhotos().size() == 1) { //есть одно фото
+//            return handleCallbackWithOnePhoto(lastCallback, user);
+//        } else { //есть много фото
+//            return handleCallbackWithMorePhoto(lastCallback, user);
+//        }
+
+//    private List<SendMessage> handleCallbackWithoutPhoto(LastCallback lastCallback, User user) {
+//        logger.writeInfo("no photo in user callback");
+//        SendMessage sendMessage = new SendMessage(String.valueOf(config.getValidateData().getChannelID()),
+//                crateTextForChanel(lastCallback, user, false));
+//        try {
+//            bot.execute(sendMessage);
+//            updateUser(user);
+//            return Collections.singletonList(new SendMessage((user.getLogin()),
+//                    resources.getMsgs().getSearch().getSuccessSendSearchQuery()));
+//        } catch (TelegramApiException e) {
+//            logger.writeStackTrace(e);
+//            return sendError(String.valueOf(user.getId()));
+//        }
+//    }
+//
+//    private List<SendMessage> handleCallbackWithOnePhoto(LastCallback lastCallback, User user) {
+//        logger.writeInfo("find one photo in callback");
+//        SendPhoto sendPhoto = new SendPhoto();
+//        sendPhoto.setPhoto(new InputFile(lastCallback.getPhotos().get(0)));
+//        sendPhoto.setChatId(config.getValidateData().getChannelID());
+//        sendPhoto.setCaption(crateTextForChanel(lastCallback, user, true));
+//        try {
+//            bot.execute(sendPhoto);
+//            updateUser(user);
+//            return Collections.singletonList(new SendMessage(user.getLogin(),
+//                    resources.getMsgs().getSearch().getSuccessSendSearchQuery()));
+//        } catch (TelegramApiException e) {
+//            logger.writeStackTrace(e);
+//            return sendError(String.valueOf(user.getId()));
+//        }
+//
+//    }
+//
+//    private List<SendMessage> handleCallbackWithMorePhoto(LastCallback lastCallback, User user) {
+//        logger.writeInfo("find more photo in callback");
+//        SendMediaGroup sendMediaGroup = new SendMediaGroup();
+//        sendMediaGroup.setMedias(getMedias(lastCallback, user));
+//        sendMediaGroup.setChatId(config.getValidateData().getChannelID());
+//        try {
+//            bot.execute(sendMediaGroup);
+//            updateUser(user);
+//            return Collections.singletonList(new SendMessage(user.getLogin(),
+//                    resources.getMsgs().getSearch().getSuccessSendSearchQuery()));
+//        } catch (TelegramApiException e) {
+//            logger.writeStackTrace(e);
+//            return sendError(String.valueOf(user.getId()));
+//        }
+//    }
+
+//    private List<InputMedia> getMedias(LastCallback lastCallback, User user) {
+//        List<InputMedia> inputMedia = new ArrayList<>();
+//        boolean isFirst = true;
+//        for (String photo : lastCallback.getPhotos()) {
+//            InputMediaPhoto inputMediaPhoto = new InputMediaPhoto(photo);
+//            if (isFirst) {
+//                inputMediaPhoto.setCaption(crateTextForChanel(lastCallback, user, true));
+//                isFirst = false;
+//            }
+//            inputMedia.add(inputMediaPhoto);
+//        }
+//        return inputMedia;
+//    }

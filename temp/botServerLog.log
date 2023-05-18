@@ -320,7 +320,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy96.getUniqueCarBoltPattern(Unknown Source)
-com.dumpBot.storage.UserStorage.getBoltPattern(PSQL.java:111)
+com.dumpBot.storage.storage.UserStorage.getBoltPattern(PSQL.java:111)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.choiceBoltPattern(RegisterCallBackProcess.java:104)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:51)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -358,7 +358,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy96.getUniqueCarBoltPattern(Unknown Source)
-com.dumpBot.storage.UserStorage.getBoltPattern(PSQL.java:111)
+com.dumpBot.storage.storage.UserStorage.getBoltPattern(PSQL.java:111)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.choiceBoltPattern(RegisterCallBackProcess.java:104)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:51)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -396,7 +396,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy96.getUniqueCarBoltPattern(Unknown Source)
-com.dumpBot.storage.UserStorage.getBoltPattern(PSQL.java:111)
+com.dumpBot.storage.storage.UserStorage.getBoltPattern(PSQL.java:111)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.choiceBoltPattern(RegisterCallBackProcess.java:104)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:51)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -691,7 +691,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy97.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveUser(PSQL.java:206)
+com.dumpBot.storage.storage.UserStorage.saveUser(PSQL.java:206)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.finishRegistration(RegisterCallBackProcess.java:152)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:57)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -2560,7 +2560,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveTempData(PSQL.java:134)
+com.dumpBot.storage.storage.UserStorage.saveTempData(PSQL.java:134)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -2605,7 +2605,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveTempData(PSQL.java:134)
+com.dumpBot.storage.storage.UserStorage.saveTempData(PSQL.java:134)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -2646,7 +2646,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveTempData(PSQL.java:134)
+com.dumpBot.storage.storage.UserStorage.saveTempData(PSQL.java:134)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -2686,7 +2686,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveTempData(PSQL.java:134)
+com.dumpBot.storage.storage.UserStorage.saveTempData(PSQL.java:134)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.choiceConcern(RegisterCallBackProcess.java:192)
 com.dumpBot.processor.callBackProcessor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:38)
 com.dumpBot.processor.callBackProcessor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:34)
@@ -2715,7 +2715,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy89.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveTempData(PSQL.java:134)
+com.dumpBot.storage.storage.UserStorage.saveTempData(PSQL.java:134)
 com.dumpBot.processor.msgProcessor.StartRegistrationMsgProcess.saveTempWithToken(StartRegistrationProcess.java:43)
 com.dumpBot.processor.msgProcessor.StartRegistrationMsgProcess.execute(StartRegistrationProcess.java:36)
 com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:54)
@@ -3800,7 +3800,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy97.findByLogin(Unknown Source)
-com.dumpBot.storage.UserStorage.checkUser(PSQL.java:168)
+com.dumpBot.storage.storage.UserStorage.checkUser(PSQL.java:168)
 com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:48)
 com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:56)
 java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -3823,7 +3823,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy97.findByLogin(Unknown Source)
-com.dumpBot.storage.UserStorage.checkUser(PSQL.java:168)
+com.dumpBot.storage.storage.UserStorage.checkUser(PSQL.java:168)
 com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:48)
 com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:56)
 java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -11469,7 +11469,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy102.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveUser(PSQL.java:203)
+com.dumpBot.storage.storage.UserStorage.saveUser(PSQL.java:203)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.finishRegistration(RegisterCallBackProcess.java:155)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:59)
 com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:35)
@@ -14020,7 +14020,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy102.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveUser(PSQL.java:203)
+com.dumpBot.storage.storage.UserStorage.saveUser(PSQL.java:203)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.finishRegistration(RegisterCallBackProcess.java:155)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:59)
 com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:35)
@@ -14064,7 +14064,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy102.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveUser(PSQL.java:203)
+com.dumpBot.storage.storage.UserStorage.saveUser(PSQL.java:203)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.finishRegistration(RegisterCallBackProcess.java:155)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:59)
 com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:35)
@@ -14220,7 +14220,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy102.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveUser(PSQL.java:203)
+com.dumpBot.storage.storage.UserStorage.saveUser(PSQL.java:203)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.finishRegistration(RegisterCallBackProcess.java:155)
 com.dumpBot.processor.callBackProceccor.process.register.RegisterCallBackProcess.execute(RegisterCallBackProcess.java:59)
 com.dumpBot.processor.callBackProceccor.CallBackProcessor.startCallbackProcessor(CallBackProcessor.java:35)
@@ -15105,7 +15105,7 @@ org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInv
 org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
 jdk.proxy2/jdk.proxy2.$Proxy115.save(Unknown Source)
-com.dumpBot.storage.UserStorage.saveUser(UserStorage.java:69)
+com.dumpBot.storage.storage.UserStorage.saveUser(UserStorage.java:69)
 com.dumpBot.processor.webAppProcessor.process.RegistrationWebAppProcess.processData(RegistrationWebAppProcess.java:36)
 com.dumpBot.processor.webAppProcessor.WebAppProcessor.startWebAppProcessor(WebAppProcessor.java:44)
 com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:74)
@@ -15175,3 +15175,135 @@ com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:77)
 java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
 org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Wed May 17 21:26:10 MSK 2023: INFO: new update received
+Wed May 17 21:26:22 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 21:31:11 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:02:18 MSK 2023: INFO: User 436641871 does not expect a text message. create the main menu
+Wed May 17 22:02:18 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:02:18 MSK 2023: INFO: create button with url: http://http://85.193.82.129:3001//sale
+Wed May 17 22:02:28 MSK 2023: INFO: new update received
+Wed May 17 22:02:29 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:02:30 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:02:31 MSK 2023: INFO: User 436641871 does not expect a text message. create the main menu
+Wed May 17 22:02:31 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:02:31 MSK 2023: INFO: create button with url: http://http://85.193.82.129:3001//sale
+Wed May 17 22:02:32 MSK 2023: ERROR!: Error executing org.telegram.telegrambots.meta.api.methods.send.SendMessage query: [400] Bad Request: keyboard button Web App URL 'http://http://85.193.82.129:3001//search' is invalid: Wrong port number specified in the URL
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponseInternal(PartialBotApiMethod.java:54)
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponse(PartialBotApiMethod.java:34)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:20)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:15)
+org.telegram.telegrambots.bots.DefaultAbsSender.sendApiMethod(DefaultAbsSender.java:1096)
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:64)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:77)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Wed May 17 22:03:00 MSK 2023: INFO: new update received
+Wed May 17 22:03:01 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:03:15 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:03:16 MSK 2023: INFO: User 436641871 does not expect a text message. create the main menu
+Wed May 17 22:03:16 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:03:16 MSK 2023: INFO: create button with url: http://http://85.193.82.129:3001//sale
+Wed May 17 22:04:17 MSK 2023: ERROR!: Error executing org.telegram.telegrambots.meta.api.methods.send.SendMessage query: [400] Bad Request: keyboard button Web App URL 'http://http://85.193.82.129:3001//search' is invalid: Wrong port number specified in the URL
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponseInternal(PartialBotApiMethod.java:54)
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponse(PartialBotApiMethod.java:34)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:20)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:15)
+org.telegram.telegrambots.bots.DefaultAbsSender.sendApiMethod(DefaultAbsSender.java:1096)
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:64)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:77)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Wed May 17 22:04:17 MSK 2023: INFO: new update received
+Wed May 17 22:04:19 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:04:22 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:04:25 MSK 2023: INFO: User 436641871 does not expect a text message. create the main menu
+Wed May 17 22:04:40 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:04:40 MSK 2023: INFO: create button with url: http://http://85.193.82.129:3001//sale
+Wed May 17 22:04:40 MSK 2023: ERROR!: Error executing org.telegram.telegrambots.meta.api.methods.send.SendMessage query: [400] Bad Request: keyboard button Web App URL 'http://http://85.193.82.129:3001//search' is invalid: Wrong port number specified in the URL
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponseInternal(PartialBotApiMethod.java:54)
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponse(PartialBotApiMethod.java:34)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:20)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:15)
+org.telegram.telegrambots.bots.DefaultAbsSender.sendApiMethod(DefaultAbsSender.java:1096)
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:64)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:77)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Wed May 17 22:04:40 MSK 2023: INFO: new update received
+Wed May 17 22:04:42 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:04:43 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:05:28 MSK 2023: INFO: User 436641871 does not expect a text message. create the main menu
+Wed May 17 22:05:28 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:05:28 MSK 2023: INFO: create button with url: http://http://85.193.82.129:3001//sale
+Wed May 17 22:05:36 MSK 2023: INFO: new update received
+Wed May 17 22:05:40 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:05:43 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:06:02 MSK 2023: INFO: new update received
+Wed May 17 22:06:02 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:06:02 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:06:06 MSK 2023: INFO: new update received
+Wed May 17 22:06:06 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:06:06 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:06:42 MSK 2023: INFO: new update received
+Wed May 17 22:06:42 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:06:42 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:06:43 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH
+Wed May 17 22:06:45 MSK 2023: INFO: start ready process for user 436641871
+Wed May 17 22:06:49 MSK 2023: INFO: new update received
+Wed May 17 22:06:49 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:06:49 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:06:59 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH
+Wed May 17 22:07:04 MSK 2023: INFO: start ready process for user 436641871
+Wed May 17 22:07:56 MSK 2023: INFO: new update received
+Wed May 17 22:07:56 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:07:56 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:07:58 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH
+Wed May 17 22:07:58 MSK 2023: INFO: start ready process for user 436641871
+Wed May 17 22:14:21 MSK 2023: INFO: new update received
+Wed May 17 22:14:21 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:14:21 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:14:23 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH
+Wed May 17 22:14:24 MSK 2023: INFO: start ready process for user 436641871
+Wed May 17 22:14:33 MSK 2023: INFO: new update received
+Wed May 17 22:14:33 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:14:33 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:14:34 MSK 2023: INFO: The user 436641871 is waiting for a text message on the process SEARCH
+Wed May 17 22:14:35 MSK 2023: INFO: start ready process for user 436641871
+Wed May 17 22:14:47 MSK 2023: INFO: new update received
+Wed May 17 22:14:47 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:14:47 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:14:47 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed May 17 22:14:47 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:14:47 MSK 2023: INFO: create button with url: http://http://85.193.82.129:3001//sale
+Wed May 17 22:14:47 MSK 2023: ERROR!: Error executing org.telegram.telegrambots.meta.api.methods.send.SendMessage query: [400] Bad Request: keyboard button Web App URL 'http://http://85.193.82.129:3001//search' is invalid: Wrong port number specified in the URL
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponseInternal(PartialBotApiMethod.java:54)
+org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod.deserializeResponse(PartialBotApiMethod.java:34)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:20)
+org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage.deserializeResponse(BotApiMethodMessage.java:15)
+org.telegram.telegrambots.bots.DefaultAbsSender.sendApiMethod(DefaultAbsSender.java:1096)
+org.telegram.telegrambots.meta.bots.AbsSender.execute(AbsSender.java:64)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:77)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Wed May 17 22:15:59 MSK 2023: INFO: new update received
+Wed May 17 22:15:59 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:15:59 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:15:59 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed May 17 22:15:59 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:15:59 MSK 2023: INFO: create button with url: https://85.193.82.129:3001//sale
+Wed May 17 22:17:52 MSK 2023: INFO: new update received
+Wed May 17 22:17:52 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:17:52 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:17:52 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed May 17 22:17:52 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:18:08 MSK 2023: INFO: create button with url: https://dumpdot.ru/sale
+Wed May 17 22:21:21 MSK 2023: INFO: new update received
+Wed May 17 22:21:22 MSK 2023: INFO: new update is message from 436641871
+Wed May 17 22:21:22 MSK 2023: INFO: start message processor for 436641871
+Wed May 17 22:21:22 MSK 2023: INFO: Сommand /start recognized by user 436641871
+Wed May 17 22:21:22 MSK 2023: INFO: start main menu process for user 436641871
+Wed May 17 22:21:26 MSK 2023: INFO: create button with url: https://dumpdot.ru/sale

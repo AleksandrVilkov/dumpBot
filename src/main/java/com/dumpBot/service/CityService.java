@@ -2,6 +2,7 @@ package com.dumpBot.service;
 
 import com.dumpBot.http.ICityService;
 import com.dumpBot.model.City;
+import com.dumpBot.storage.ICityStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

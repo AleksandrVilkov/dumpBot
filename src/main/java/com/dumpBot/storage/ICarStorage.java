@@ -1,4 +1,4 @@
-package com.dumpBot.service;
+package com.dumpBot.storage;
 
 import com.dumpBot.model.*;
 

@@ -14,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+
 public class UserAccommodationEntity {
     @Id
     @Column(name = "id")

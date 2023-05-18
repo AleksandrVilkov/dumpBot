@@ -22,5 +22,9 @@ public class Msgs {
     private Photo photo;
     @Autowired
     private Search search;
+    @Autowired
+    private Admin admin;
+    @Autowired
+    private Sale sale;
 
 }
