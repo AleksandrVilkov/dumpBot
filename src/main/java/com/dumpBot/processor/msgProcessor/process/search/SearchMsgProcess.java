@@ -1,7 +1,10 @@
-package com.dumpBot.processor.msgProcessor.process;
+package com.dumpBot.processor.msgProcessor.process.search;
 
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.User;
+import com.dumpBot.model.enums.Action;
+import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
+import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.dumpBot.storage.IUserStorage;
 import com.dumpBot.resources.Resources;
 import lombok.NoArgsConstructor;
@@ -40,7 +43,7 @@ public class SearchMsgProcess extends BaseMsgProcess implements MsgProcess {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         logger.writeInfo("start ready process for user " + userId);
         User user = userStorage.getUser(userId);
-        if (user == null /* || user.getClientAction() != Action.SEARCH.name()*/) {
+        if (user == null || !user.getClientAction().equals(Action.SEARCH.name())) {
             return sendError(userId);
         }
         List<SendMessage> result = new ArrayList<>();

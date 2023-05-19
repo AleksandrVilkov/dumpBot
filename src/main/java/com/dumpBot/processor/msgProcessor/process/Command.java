@@ -2,7 +2,8 @@ package com.dumpBot.processor.msgProcessor.process;
 
 public enum Command {
     START("/start"),
-    READY("/ready");
+    READY("/ready"),
+    ADMIN("admin");
     final String name;
 
     Command(String name) {

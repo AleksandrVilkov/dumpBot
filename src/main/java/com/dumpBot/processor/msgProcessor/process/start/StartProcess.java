@@ -1,8 +1,10 @@
-package com.dumpBot.processor.msgProcessor.process;
+package com.dumpBot.processor.msgProcessor.process.start;
 
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.loger.Logger;
+import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
+import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

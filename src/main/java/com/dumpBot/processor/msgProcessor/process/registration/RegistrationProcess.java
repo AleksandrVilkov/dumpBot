@@ -1,7 +1,9 @@
-package com.dumpBot.processor.msgProcessor.process;
+package com.dumpBot.processor.msgProcessor.process.registration;
 
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
+import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
+import com.dumpBot.processor.msgProcessor.process.MsgProcess;
 import com.dumpBot.resources.Resources;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

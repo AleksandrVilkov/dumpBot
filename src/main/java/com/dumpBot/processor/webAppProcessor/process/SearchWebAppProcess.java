@@ -79,5 +79,4 @@ public class SearchWebAppProcess implements WebAppProcess {
         keyboard.resizeKeyboard(true);
         return keyboard.build();
     }
-
 }

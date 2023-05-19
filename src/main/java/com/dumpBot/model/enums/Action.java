@@ -4,5 +4,6 @@ public enum Action {
     REGISTRATION,
     START,
     SALE,
-    SEARCH
+    SEARCH,
+    ADMINISTRATION,
 }
