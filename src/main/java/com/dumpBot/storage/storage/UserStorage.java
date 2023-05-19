@@ -10,6 +10,7 @@ import com.dumpBot.storage.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.*;
 
 @Component
@@ -44,8 +45,8 @@ public class UserStorage implements IUserStorage {
                 clientEntity.getCreatedDate(),
                 Util.findEnumConstant(Role.class, clientEntity.getRole()),
                 clientEntity.getLogin(),
-                String.valueOf(clientEntity.getRegionId()),
-                String.valueOf(clientEntity.getCarid()),
+                clientEntity.getRegionId(),
+                clientEntity.getCarid(),
                 clientEntity.isWaitingMessages(),
                 clientEntity.getClientAction(),
                 clientEntity.getLastCallback()
@@ -67,13 +68,23 @@ public class UserStorage implements IUserStorage {
 
     @Override
     public List<User> findAdmins() {
-        List<Object[]> f = clientRepository.findAdmins();
+        List<Object[]> datas = clientRepository.findAdmins();
         List<User> admins = new ArrayList<>();
-        for (Object[] o: f){
-
+        for (Object[] o : datas) {
+            User user = new User();
+            user.setId((Integer) o[0]);
+            user.setCreateDate((Date) o[1]);
+            user.setRole(Util.findEnumConstant(Role.class, (String) o[2]));
+            user.setLogin((String) o[3]);
+            user.setRegionId((Integer) o[4]);
+            user.setUserName((String) o[5]);
+            user.setClientAction((String) o[6]);
+            user.setWaitingMessages((Boolean) o[7]);
+            user.setCarId((Integer) o[8]);
+            user.setLastCallback((String) o[9]);
+            admins.add(user);
         }
-        //TODO
-        return null;
+        return admins;
     }
 
 
@@ -81,11 +92,11 @@ public class UserStorage implements IUserStorage {
         ClientEntity clientEntity = new ClientEntity();
         clientEntity.setId(user.getId());
         clientEntity.setUserName(user.getUserName());
-        clientEntity.setCreatedDate(new Date());
+        clientEntity.setCreatedDate(new java.util.Date());
         clientEntity.setRole(user.getRole().name());
-        clientEntity.setRegionId(Integer.parseInt(user.getRegionId()));
-        if (!user.getCarId().equalsIgnoreCase("")) {
-            clientEntity.setCarid(Integer.parseInt(user.getCarId()));
+        clientEntity.setRegionId(user.getRegionId());
+        if (!(user.getCarId() == 0)) {
+            clientEntity.setCarid(user.getCarId());
         } else {
             clientEntity.setCarid(carId);
         }

@@ -66,7 +66,7 @@ public class SearchReadyProcess implements IReadyProcess {
             logger.writeInfo("find car for user " + user.getLogin());
         }
 
-        City city = cityStorage.getCityById(Integer.parseInt(user.getRegionId()));
+        City city = cityStorage.getCityById(user.getRegionId());
         logger.writeInfo("find city for user " + user.getLogin());
         UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, car, city);
         if (accommodationStorage.saveAccommodation(userAccommodation)) {

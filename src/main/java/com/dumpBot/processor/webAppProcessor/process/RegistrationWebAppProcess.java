@@ -29,8 +29,8 @@ public class RegistrationWebAppProcess implements WebAppProcess {
         User user = new User(new Date(),
                 Role.USER_ROLE,
                 String.valueOf(update.getMessage().getFrom().getId()),
-                webAppData.getCityId(),
-                webAppData.getCarId());
+                Integer.parseInt(webAppData.getCityId()),
+                Integer.parseInt(webAppData.getCarId()));
         user.setWaitingMessages(false);
         logger.writeInfo("New user defined: " + user.toString());
         user.setUserName(update.getMessage().getFrom().getUserName());

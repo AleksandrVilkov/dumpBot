@@ -20,13 +20,13 @@ public class User {
     private Date createDate;
     private Role role;
     private String login;
-    private String regionId;
-    private String carId;
+    private int regionId;
+    private int carId;
     private boolean waitingMessages;
     private String clientAction;
     private String lastCallback;
 
-    public User(Date createDate, Role role, String login, String regionId, String carId) {
+    public User(Date createDate, Role role, String login, int regionId, int carId) {
         this.createDate = createDate;
         this.role = role;
         this.login = login;
