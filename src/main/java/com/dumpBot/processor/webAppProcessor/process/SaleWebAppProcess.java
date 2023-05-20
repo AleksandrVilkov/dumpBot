@@ -4,6 +4,7 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.LastCallback;
 import com.dumpBot.model.User;
 import com.dumpBot.model.WebAppData;
+import com.dumpBot.processor.webAppProcessor.WebAppProcess;
 import com.dumpBot.storage.IUserStorage;
 import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;

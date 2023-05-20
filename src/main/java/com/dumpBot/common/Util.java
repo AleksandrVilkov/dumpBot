@@ -1,5 +1,6 @@
 package com.dumpBot.common;
 
+import com.dumpBot.model.ButtonCallBack;
 import com.dumpBot.model.LastCallback;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,5 +23,8 @@ public class Util {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(lastCallback, LastCallback.class);
     }
-
+    public static ButtonCallBack readButtonCallBack(String buttonCallBack) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(buttonCallBack, ButtonCallBack.class);
+    }
 }

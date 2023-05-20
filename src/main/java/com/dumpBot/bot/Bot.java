@@ -26,7 +26,9 @@ public class Bot extends TelegramLongPollingBot {
     @Autowired
     private IPhotoProcessor photoProcessor;
     @Autowired
-    IWebAppProcessor webAppProcessor;
+    private IWebAppProcessor webAppProcessor;
+    @Autowired
+    private IButtonCallbackProcessor buttonCallbackProcessor;
     @Autowired
     private ILogger logger;
     @Autowired
@@ -57,30 +59,51 @@ public class Bot extends TelegramLongPollingBot {
 
         List<SendMessage> msgs = new ArrayList<>();
         try {
-            if (update.hasMessage()) {
-                if (update.getMessage().getText() != null) {
-                    //Смотрим сообщение
-                    logger.writeInfo("new update is message from " + update.getMessage().getFrom().getId());
-                    msgs.addAll(messageProcessor.startMessageProcessor(update));
-                }
-                //смотрим фото
-                if (update.getMessage().getPhoto() != null && update.getMessage().getPhoto().size() > 0) {
-                    logger.writeInfo("new update is photo from " + update.getMessage().getFrom().getId());
-                    msgs.addAll(photoProcessor.startPhotoProcessor(update));
-                }
-                if (update.getMessage().getWebAppData() != null) {
-                    logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId() + ": "+update.getMessage().getWebAppData().getData());
-                    msgs.addAll(webAppProcessor.startWebAppProcessor(update));
-                }
 
-                for (SendMessage sendMessage: msgs) {
-                    execute(sendMessage);
-                }
+            if (update.hasMessage()) {
+                handleMsg(update, msgs);
             }
 
+            if (update.hasCallbackQuery()) {
+                handleCallback(update, msgs);
+            }
         } catch (TelegramApiException e) {
             logger.writeStackTrace(e);
             throw new RuntimeException(e);
+        }
+
+        for (SendMessage sendMessage: msgs) {
+            try {
+                execute(sendMessage);
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void handleCallback(Update update, List<SendMessage> msgs) throws TelegramApiException {
+        logger.writeInfo("new update with callback " + update.getCallbackQuery().getFrom().getId());
+        logger.writeInfo("callback: " + update.getCallbackQuery().getData());
+        msgs.addAll(buttonCallbackProcessor.startButtonCallbackProcessor(update));
+    }
+
+    private void handleMsg(Update update, List<SendMessage> msgs) throws TelegramApiException {
+        if (update.getMessage().getText() != null) {
+            //Смотрим сообщение
+            logger.writeInfo("new update is message from " + update.getMessage().getFrom().getId());
+            msgs.addAll(messageProcessor.startMessageProcessor(update));
+        }
+        //смотрим фото
+        if (update.getMessage().getPhoto() != null && update.getMessage().getPhoto().size() > 0) {
+            logger.writeInfo("new update is photo from " + update.getMessage().getFrom().getId());
+            msgs.addAll(photoProcessor.startPhotoProcessor(update));
+        }
+
+        //смотрим WebAppData
+        if (update.getMessage().getWebAppData() != null) {
+            logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId() +
+                    ": " + update.getMessage().getWebAppData().getData());
+            msgs.addAll(webAppProcessor.startWebAppProcessor(update));
         }
     }
 }

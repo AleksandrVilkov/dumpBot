@@ -1,6 +1,9 @@
 package com.dumpBot.storage.entity;
 
 
+import com.dumpBot.common.Util;
+import com.dumpBot.model.UserAccommodation;
+import com.dumpBot.model.enums.AccommodationType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,4 +56,19 @@ public class UserAccommodationEntity {
     @OneToMany(mappedBy = "userAccommodationEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Set<PhotoEntity> photo;
 
+    public UserAccommodation toUserAccommodation() {
+        UserAccommodation userAccommodation = new UserAccommodation();
+        userAccommodation.setId(this.id);
+        //TODO
+        //userAccommodation.setCreatedDate((java.sql.Date) this.getCreatedDate());
+        userAccommodation.setType(Util.findEnumConstant(AccommodationType.class, this.type));
+        userAccommodation.setClientLogin(this.clientLogin);
+        userAccommodation.setClientId(this.clientId);
+        userAccommodation.setPrice(this.maxPrice);
+        userAccommodation.setApproved(this.isApproved());
+        userAccommodation.setRejected(this.isRejected());
+        userAccommodation.setTopical(this.isTopical());
+        userAccommodation.setDescription(this.getDescription());
+        return userAccommodation;
+    }
 }

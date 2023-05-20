@@ -1,6 +1,7 @@
-package com.dumpBot.processor.msgProcessor.process;
+package com.dumpBot.processor.msgProcessor;
 
 import com.dumpBot.model.enums.Action;
+import com.dumpBot.processor.msgProcessor.process.Command;
 import com.dumpBot.processor.msgProcessor.process.admin.MainAdminProcess;
 import com.dumpBot.processor.msgProcessor.process.ready.MainReadyProcess;
 import com.dumpBot.processor.msgProcessor.process.registration.RegistrationProcess;

@@ -1,6 +1,9 @@
-package com.dumpBot.processor.webAppProcessor.process;
+package com.dumpBot.processor.webAppProcessor;
 
 import com.dumpBot.model.enums.Action;
+import com.dumpBot.processor.webAppProcessor.process.RegistrationWebAppProcess;
+import com.dumpBot.processor.webAppProcessor.process.SaleWebAppProcess;
+import com.dumpBot.processor.webAppProcessor.process.SearchWebAppProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

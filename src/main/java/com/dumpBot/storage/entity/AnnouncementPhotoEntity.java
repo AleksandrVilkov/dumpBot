@@ -17,7 +17,7 @@ public class AnnouncementPhotoEntity {
     private int id;
     @Column(name = "telegram_id")
     private int telegramId;
-
-    private int AnnouncementId;
-
+    @ManyToOne
+    @JoinColumn(name = "user_accommodation_id", nullable = false)
+    private UserAccommodationEntity userAccommodationEntity;
 }

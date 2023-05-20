@@ -7,7 +7,7 @@ import com.dumpBot.model.User;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.storage.IUserStorage;
 import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
-import com.dumpBot.processor.msgProcessor.process.MsgProcess;
+import com.dumpBot.processor.msgProcessor.MsgProcess;
 import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

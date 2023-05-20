@@ -3,6 +3,7 @@ package com.dumpBot.processor.webAppProcessor.process;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.*;
 import com.dumpBot.model.enums.Role;
+import com.dumpBot.processor.webAppProcessor.WebAppProcess;
 import com.dumpBot.storage.IUserStorage;
 import com.dumpBot.resources.Resources;
 import org.springframework.beans.factory.annotation.Autowired;

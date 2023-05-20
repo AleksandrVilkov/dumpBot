@@ -34,10 +34,16 @@ public class AccommodationStorage implements IAccommodationStorage {
     public List<UserAccommodation> getAll() {
         List<Object[]> data = accommodationRepository.getAll();
         List<UserAccommodation> result = new ArrayList<>();
-        for (Object o : data) {
-            //TODO
+        for (Object[] o : data) {
+            result.add(getFromObject(o));
         }
         return result;
+    }
+
+    @Override
+    public UserAccommodation getById(int id) {
+       UserAccommodationEntity res = accommodationRepository.findById(id).get();
+       return  res.toUserAccommodation();
     }
 
     @Override
@@ -45,25 +51,29 @@ public class AccommodationStorage implements IAccommodationStorage {
         List<Object[]> data = accommodationRepository.getAllInconsistent();
         List<UserAccommodation> result = new ArrayList<>();
         for (Object[] o : data) {
-            UserAccommodation userAccommodation = new UserAccommodation();
-            userAccommodation.setId((Integer) o[0]);
-            userAccommodation.setCreatedDate((Date) o[1]);
-            userAccommodation.setType(Util.findEnumConstant(AccommodationType.class, (String) o[2]));
-            userAccommodation.setClientLogin((String) o[3]);
-            userAccommodation.setClientId((Integer) o[4]);
-            userAccommodation.setPrice((Integer) o[6]);
-            userAccommodation.setApproved((Boolean) o[7]);
-            userAccommodation.setRejected((Boolean) o[8]);
-            userAccommodation.setTopical((Boolean) o[9]);
-            userAccommodation.setDescription((String) o[10]);
-            //TODO фото
-            result.add(userAccommodation);
+            result.add(getFromObject(o));
         }
         return result;
     }
 
+    private UserAccommodation getFromObject(Object[] o) {
+        UserAccommodation userAccommodation = new UserAccommodation();
+        userAccommodation.setId((Integer) o[0]);
+        userAccommodation.setCreatedDate((Date) o[1]);
+        userAccommodation.setType(Util.findEnumConstant(AccommodationType.class, (String) o[2]));
+        userAccommodation.setClientLogin((String) o[3]);
+        userAccommodation.setClientId((Integer) o[4]);
+        userAccommodation.setPrice((Integer) o[6]);
+        userAccommodation.setApproved((Boolean) o[7]);
+        userAccommodation.setRejected((Boolean) o[8]);
+        userAccommodation.setTopical((Boolean) o[9]);
+        userAccommodation.setDescription((String) o[10]);
+        //TODO фото
+        return userAccommodation;
+    }
     private UserAccommodationEntity convertToEntity(UserAccommodation accommodation) {
         UserAccommodationEntity result = new UserAccommodationEntity();
+        result.setId(accommodation.getId());
         result.setCreatedDate(accommodation.getCreatedDate());
         result.setClientLogin(accommodation.getClientLogin());
         result.setClientId(accommodation.getClientId());

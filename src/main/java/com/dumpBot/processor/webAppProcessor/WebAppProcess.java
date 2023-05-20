@@ -1,4 +1,4 @@
-package com.dumpBot.processor.webAppProcessor.process;
+package com.dumpBot.processor.webAppProcessor;
 
 import com.dumpBot.model.WebAppData;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

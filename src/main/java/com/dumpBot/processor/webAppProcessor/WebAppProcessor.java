@@ -6,8 +6,6 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.WebAppData;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.processor.BaseProcess;
-import com.dumpBot.processor.webAppProcessor.process.WebAppProcess;
-import com.dumpBot.processor.webAppProcessor.process.WebAppProcessFactory;
 import com.dumpBot.resources.Resources;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
