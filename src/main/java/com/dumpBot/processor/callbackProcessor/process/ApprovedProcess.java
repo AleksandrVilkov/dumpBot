@@ -20,6 +20,7 @@ import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -36,19 +37,21 @@ public class ApprovedProcess implements CallbackProcess {
     @Autowired
     IAccommodationStorage accommodationStorage;
 
+    //TODO подклчюить ресурсы
     @Override
     public List<SendMessage> start(UserAccommodation userAccommodation, Update update) {
         List<SendMessage> result = new ArrayList<>();
 
         if (!sendToChannel(userAccommodation)) {
-            return null; //TODO вернуть ошибку
+            return sendErr(update);
         }
 
-        List<SendMessage> adminMsgs = null;
+        List<SendMessage> adminMsgs;
         try {
             adminMsgs = createMsgToAdmin(update, userAccommodation);
         } catch (Exception e) {
-            return null;  //TODO вернуть ошибку
+            logger.writeStackTrace(e);
+            return sendErr(update);
         }
 
         List<SendMessage> userMsgs = createMsgToUser(userAccommodation);
@@ -68,6 +71,10 @@ public class ApprovedProcess implements CallbackProcess {
         editMessageText.setMessageId(msgId);
         bot.execute(editMessageText);
         return new ArrayList<>();
+    }
+
+    private List<SendMessage> sendErr(Update update) {
+        return Collections.singletonList(new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()), "Произошла ошибка"));
     }
 
     private List<SendMessage> createMsgToUser(UserAccommodation userAccommodation) {

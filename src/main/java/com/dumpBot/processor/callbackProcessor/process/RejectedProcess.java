@@ -1,6 +1,5 @@
 package com.dumpBot.processor.callbackProcessor.process;
 
-import com.dumpBot.model.ButtonCallBack;
 import com.dumpBot.model.UserAccommodation;
 import com.dumpBot.processor.callbackProcessor.CallbackProcess;
 import org.springframework.stereotype.Component;

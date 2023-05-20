@@ -39,10 +39,10 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
     @Override
     public List<SendMessage> execute(Update update) {
         User user = userStorage.getUser(String.valueOf(update.getMessage().getFrom().getId()));
-        logger.writeInfo("Start main admin process for " + user.getLogin() +" " + user.getUserName());
+        logger.writeInfo("Start main admin process for " + user.getLogin() + " " + user.getUserName());
         String adminId = user.getLogin();
         if (!user.getRole().equals(Role.ADMIN_ROLE)) {
-            logger.writeWarning("user " + user.getLogin() +" " + user.getUserName() +  "is not ADMIN!");
+            logger.writeWarning("user " + user.getLogin() + " " + user.getUserName() + "is not ADMIN!");
             return sendErr(adminId);
         }
 
@@ -64,7 +64,7 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
         user.setClientAction(Action.ADMINISTRATION.name());
         user.setWaitingMessages(true);
         userStorage.saveUser(user);
-        logger.writeInfo("admin menu was create. User "+ user.getLogin() +" " + user.getUserName() +"will be updated");
+        logger.writeInfo("admin menu was create. User " + user.getLogin() + " " + user.getUserName() + "will be updated");
         return res;
     }
 

@@ -32,10 +32,11 @@ public class CallbackProcessor implements IButtonCallbackProcessor {
             buttonCallBack = Util.readButtonCallBack(update.getCallbackQuery().getData());
         } catch (JsonProcessingException e) {
             logger.writeStackTrace(e);
-            return Collections.singletonList(new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()), "Упс,  ошибочка"));
+            return Collections.singletonList(new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                    "Упс,  ошибочка"));
         }
         UserAccommodation ua = accommodationStorage.getById(buttonCallBack.getAccommodationId());
         CallbackProcess callbackProcess = CallbackProcessFactory.getProcess(buttonCallBack.getResult());
-        return callbackProcess.start(ua,update);
+        return callbackProcess.start(ua, update);
     }
 }

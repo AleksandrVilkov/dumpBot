@@ -9,5 +9,4 @@ import java.util.List;
 
 public interface CallbackProcess {
     List<SendMessage> start(UserAccommodation userAccommodation, Update update);
-
 }

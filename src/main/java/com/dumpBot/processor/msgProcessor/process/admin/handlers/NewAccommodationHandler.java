@@ -25,15 +25,16 @@ public class NewAccommodationHandler implements TextMsgHandler {
         List<SendMessage> result = new ArrayList<>();
         result.add(new SendMessage(String.valueOf(message.getFrom().getId()),
                 "Всего не рассмотренных запросов: " + inconsistentAccommodation.size()));
+        //TODO использовать объект для колбека
         for (UserAccommodation userAccommodation : inconsistentAccommodation) {
             SendMessage sendMessage = new SendMessage(String.valueOf(message.getFrom().getId()), userAccommodation.getDescription());
             InlineKeyboardButton a = new InlineKeyboardButton();
-            a.setCallbackData("{\"accommodationId\":" + userAccommodation.getId() +", "
+            a.setCallbackData("{\"accommodationId\":" + userAccommodation.getId() + ", "
                     + "\"result\": \"approved\"}");
             a.setText("Одобрить");
 
             InlineKeyboardButton b = new InlineKeyboardButton();
-            b.setCallbackData("{\"accommodationId\":" + userAccommodation.getId() +", "
+            b.setCallbackData("{\"accommodationId\":" + userAccommodation.getId() + ", "
                     + "\"result\": \"rejected\"}");
             b.setText("Отклонить");
 

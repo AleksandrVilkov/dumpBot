@@ -25,6 +25,7 @@ public class StatisticHandler implements TextMsgHandler {
     @Autowired
     ICarStorage carStorage;
 
+    //TODO подключить ресурсы
     @Override
     public List<SendMessage> execute(Message message) {
         List<User> users = userStorage.getAllUsers();
