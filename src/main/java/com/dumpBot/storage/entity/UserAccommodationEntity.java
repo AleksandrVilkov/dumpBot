@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -69,6 +71,11 @@ public class UserAccommodationEntity {
         userAccommodation.setRejected(this.isRejected());
         userAccommodation.setTopical(this.isTopical());
         userAccommodation.setDescription(this.getDescription());
+        List<String> photos = new ArrayList<>();
+        for (PhotoEntity photoEntity: this.photo) {
+            photos.add(photoEntity.getTelegramId());
+        }
+        userAccommodation.setPhotos(photos);
         return userAccommodation;
     }
 }

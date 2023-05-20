@@ -1,23 +1,22 @@
 package com.dumpBot.storage.storage;
 
-import com.dumpBot.common.Util;
 import com.dumpBot.model.UserAccommodation;
-import com.dumpBot.model.enums.AccommodationType;
 import com.dumpBot.storage.IAccommodationStorage;
+import com.dumpBot.storage.entity.PhotoEntity;
 import com.dumpBot.storage.entity.UserAccommodationEntity;
 import com.dumpBot.storage.repository.UserAccommodationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class AccommodationStorage implements IAccommodationStorage {
 
     @Autowired
     UserAccommodationRepository accommodationRepository;
+
 
     @Override
     public boolean saveAccommodation(UserAccommodation accommodation) {
@@ -32,44 +31,28 @@ public class AccommodationStorage implements IAccommodationStorage {
 
     @Override
     public List<UserAccommodation> getAll() {
-        List<Object[]> data = accommodationRepository.getAll();
+        Iterable<UserAccommodationEntity> data = accommodationRepository.findAll();
         List<UserAccommodation> result = new ArrayList<>();
-        for (Object[] o : data) {
-            result.add(getFromObject(o));
+        for (UserAccommodationEntity o : data) {
+            result.add(o.toUserAccommodation());
         }
         return result;
     }
 
     @Override
     public UserAccommodation getById(int id) {
-       UserAccommodationEntity res = accommodationRepository.findById(id).get();
-       return  res.toUserAccommodation();
+        UserAccommodationEntity res = accommodationRepository.findById(id).get();
+        return res.toUserAccommodation();
     }
 
     @Override
     public List<UserAccommodation> getAllInconsistent() {
-        List<Object[]> data = accommodationRepository.getAllInconsistent();
+        List<UserAccommodationEntity> data = accommodationRepository.findAllByTopical(true);
         List<UserAccommodation> result = new ArrayList<>();
-        for (Object[] o : data) {
-            result.add(getFromObject(o));
+        for (UserAccommodationEntity userAccommodationEntity : data) {
+            result.add(userAccommodationEntity.toUserAccommodation());
         }
         return result;
-    }
-
-    private UserAccommodation getFromObject(Object[] o) {
-        UserAccommodation userAccommodation = new UserAccommodation();
-        userAccommodation.setId((Integer) o[0]);
-        userAccommodation.setCreatedDate((Date) o[1]);
-        userAccommodation.setType(Util.findEnumConstant(AccommodationType.class, (String) o[2]));
-        userAccommodation.setClientLogin((String) o[3]);
-        userAccommodation.setClientId((Integer) o[4]);
-        userAccommodation.setPrice((Integer) o[6]);
-        userAccommodation.setApproved((Boolean) o[7]);
-        userAccommodation.setRejected((Boolean) o[8]);
-        userAccommodation.setTopical((Boolean) o[9]);
-        userAccommodation.setDescription((String) o[10]);
-        //TODO фото
-        return userAccommodation;
     }
     private UserAccommodationEntity convertToEntity(UserAccommodation accommodation) {
         UserAccommodationEntity result = new UserAccommodationEntity();
@@ -84,7 +67,14 @@ public class AccommodationStorage implements IAccommodationStorage {
         result.setTopical(accommodation.isTopical());
         result.setDescription(accommodation.getDescription());
         result.setType(accommodation.getType().toString());
-        //TODO посмотреть как связать фото
+        Set<PhotoEntity> set = new HashSet<>();
+        for (String photo : accommodation.getPhotos()) {
+            PhotoEntity photoEntity = new PhotoEntity();
+            photoEntity.setUserAccommodationEntity(result);
+            photoEntity.setTelegramId(photo);
+            set.add(photoEntity);
+        }
+        result.setPhoto(set);
         return result;
     }
 }
