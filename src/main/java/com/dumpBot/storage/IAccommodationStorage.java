@@ -7,4 +7,5 @@ import java.util.List;
 public interface IAccommodationStorage {
     boolean saveAccommodation(UserAccommodation accommodation);
     List<UserAccommodation> getAll();
+    List<UserAccommodation> getAllInconsistent();
 }

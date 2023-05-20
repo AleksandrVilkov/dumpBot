@@ -11,4 +11,6 @@ import java.util.List;
 public interface UserAccommodationRepository extends CrudRepository<UserAccommodationEntity, Integer> {
     @Query(value = "select * from user_accommodation", nativeQuery = true)
     List<Object[]> getAll();
+    @Query(value = "select * from user_accommodation WHERE topical ='true'", nativeQuery = true)
+    List<Object[]> getAllInconsistent();
 }

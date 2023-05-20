@@ -39,6 +39,7 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
         //no use
     }
 
+    //TODO предусмотреть ситуацию, когда "userName":null
     @Override
     public List<SendMessage> execute(Update update) {
         List<SendMessage> result = new ArrayList<>();
