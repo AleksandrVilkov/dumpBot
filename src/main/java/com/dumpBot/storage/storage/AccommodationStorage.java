@@ -7,6 +7,9 @@ import com.dumpBot.storage.repository.UserAccommodationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class AccommodationStorage implements IAccommodationStorage {
 
@@ -22,6 +25,16 @@ public class AccommodationStorage implements IAccommodationStorage {
             return false;
         }
 
+    }
+
+    @Override
+    public List<UserAccommodation> getAll() {
+        List<Object[]> data = accommodationRepository.getAll();
+        List<UserAccommodation> result = new ArrayList<>();
+        for (Object o : data) {
+            //TODO
+        }
+        return result;
     }
 
     private UserAccommodationEntity convertToEntity(UserAccommodation accommodation) {

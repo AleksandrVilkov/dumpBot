@@ -36,6 +36,7 @@ public class UserStorage implements IUserStorage {
         }
     }
 
+    @Override
     public User getUser(String id) {
         List<ClientEntity> c = clientRepository.findByLogin(id);
         ClientEntity clientEntity = c.get(0);
@@ -51,6 +52,17 @@ public class UserStorage implements IUserStorage {
                 clientEntity.getClientAction(),
                 clientEntity.getLastCallback()
         );
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        List<User> result = new ArrayList<>();
+        List<Object[]> datas = clientRepository.getAll();
+        for (Object[] o : datas) {
+            User user = createUser(o);
+            result.add(user);
+        }
+        return result;
     }
 
 
@@ -71,20 +83,25 @@ public class UserStorage implements IUserStorage {
         List<Object[]> datas = clientRepository.findAdmins();
         List<User> admins = new ArrayList<>();
         for (Object[] o : datas) {
-            User user = new User();
-            user.setId((Integer) o[0]);
-            user.setCreateDate((Date) o[1]);
-            user.setRole(Util.findEnumConstant(Role.class, (String) o[2]));
-            user.setLogin((String) o[3]);
-            user.setRegionId((Integer) o[4]);
-            user.setUserName((String) o[5]);
-            user.setClientAction((String) o[6]);
-            user.setWaitingMessages((Boolean) o[7]);
-            user.setCarId((Integer) o[8]);
-            user.setLastCallback((String) o[9]);
+            User user = createUser(o);
             admins.add(user);
         }
         return admins;
+    }
+
+    private User createUser(Object[] o) {
+        User user = new User();
+        user.setId((Integer) o[0]);
+        user.setCreateDate((Date) o[1]);
+        user.setRole(Util.findEnumConstant(Role.class, (String) o[2]));
+        user.setLogin((String) o[3]);
+        user.setRegionId((Integer) o[4]);
+        user.setUserName((String) o[5]);
+        user.setClientAction((String) o[6]);
+        user.setWaitingMessages((Boolean) o[7]);
+        user.setCarId((Integer) o[8]);
+        user.setLastCallback((String) o[9]);
+        return user;
     }
 
 

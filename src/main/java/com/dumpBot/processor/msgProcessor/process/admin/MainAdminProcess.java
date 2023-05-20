@@ -1,10 +1,12 @@
-package com.dumpBot.processor.msgProcessor.admin;
+package com.dumpBot.processor.msgProcessor.process.admin;
 
+import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.User;
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
 import com.dumpBot.processor.msgProcessor.process.MsgProcess;
+import com.dumpBot.processor.msgProcessor.process.admin.handlers.TextMsgHandler;
 import com.dumpBot.storage.IUserStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,41 +21,50 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class AdminProcess extends BaseMsgProcess implements MsgProcess {
+public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
     @Autowired
     IUserStorage userStorage;
+    @Autowired
+    ILogger logger;
 
     @Override
     public void processResultPreviousStep() {
-
     }
 
     @Override
     public void preparationCurrentProcess() {
-
     }
 
     //TODO убрать текст в проперти файл
     @Override
     public List<SendMessage> execute(Update update) {
         User user = userStorage.getUser(String.valueOf(update.getMessage().getFrom().getId()));
+        logger.writeInfo("Start main admin process for " + user.getLogin() +" " + user.getUserName());
         String adminId = user.getLogin();
-
         if (!user.getRole().equals(Role.ADMIN_ROLE)) {
-           return sendErr(adminId);
+            logger.writeWarning("user " + user.getLogin() +" " + user.getUserName() +  "is not ADMIN!");
+            return sendErr(adminId);
         }
 
+        //Если находимся в режиме ожидания - то идем в обработчик текстовых сообщений
+        if (user.isWaitingMessages()) {
+            logger.writeInfo("see on text message...");
+            TextMsgHandler msgHandler = HandlerFactory.getHandler(update.getMessage());
+            return msgHandler.execute(update.getMessage());
+        }
+        logger.writeInfo("creating main admin menu..");
         SendMessage helloMsg = new SendMessage(adminId, "Привет, @" + user.getUserName() + "!");
         SendMessage callToActionMsg = new SendMessage(adminId, "Выбери действие, которое ты хочешь совершить. " +
                 "Помни, люди на тебя надеятся." +
                 "от тебя зависит успех продажи их говна!");
         callToActionMsg.setReplyMarkup(createKeyBoard());
-
         List<SendMessage> res = new ArrayList<>();
         res.add(helloMsg);
         res.add(callToActionMsg);
         user.setClientAction(Action.ADMINISTRATION.name());
+        user.setWaitingMessages(true);
         userStorage.saveUser(user);
+        logger.writeInfo("admin menu was create. User "+ user.getLogin() +" " + user.getUserName() +"will be updated");
         return res;
     }
 
@@ -65,6 +76,7 @@ public class AdminProcess extends BaseMsgProcess implements MsgProcess {
         res.add(s);
         return res;
     }
+
     private ReplyKeyboardMarkup createKeyBoard() {
         ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder keyboard = ReplyKeyboardMarkup.builder();
         List<KeyboardRow> buttons = new ArrayList<>();

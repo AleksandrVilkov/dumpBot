@@ -1,7 +1,7 @@
 package com.dumpBot.processor.msgProcessor.process;
 
 import com.dumpBot.model.enums.Action;
-import com.dumpBot.processor.msgProcessor.admin.AdminProcess;
+import com.dumpBot.processor.msgProcessor.process.admin.MainAdminProcess;
 import com.dumpBot.processor.msgProcessor.process.ready.MainReadyProcess;
 import com.dumpBot.processor.msgProcessor.process.registration.RegistrationProcess;
 import com.dumpBot.processor.msgProcessor.process.search.SearchMsgProcess;
@@ -21,7 +21,7 @@ public class MsgProcessFactory {
     private static MsgProcess adminProcess;
 
     @Autowired
-    public MsgProcessFactory(RegistrationProcess srp, StartProcess mmp, MainReadyProcess rp, SearchMsgProcess smp, AdminProcess ap) {
+    public MsgProcessFactory(RegistrationProcess srp, StartProcess mmp, MainReadyProcess rp, SearchMsgProcess smp, MainAdminProcess ap) {
         MsgProcessFactory.registration = srp;
         MsgProcessFactory.start = mmp;
         MsgProcessFactory.readyProcess = rp;
@@ -37,8 +37,7 @@ public class MsgProcessFactory {
             case READY -> {
                 return readyProcess;
             }
-            case ADMIN ->
-            {
+            case ADMIN -> {
                 return adminProcess;
             }
             default -> {
@@ -57,6 +56,9 @@ public class MsgProcessFactory {
             }
             case SEARCH -> {
                 return searchMgsProcess;
+            }
+            case ADMINISTRATION -> {
+                return adminProcess;
             }
             default -> {
                 return defaultProcess;

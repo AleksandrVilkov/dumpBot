@@ -1,8 +1,10 @@
 package com.dumpBot.storage;
 
-import com.dumpBot.model.User;
 import com.dumpBot.model.UserAccommodation;
+
+import java.util.List;
 
 public interface IAccommodationStorage {
     boolean saveAccommodation(UserAccommodation accommodation);
+    List<UserAccommodation> getAll();
 }

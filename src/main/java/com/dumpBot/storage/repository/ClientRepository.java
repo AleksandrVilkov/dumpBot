@@ -15,4 +15,6 @@ public interface ClientRepository extends CrudRepository<ClientEntity, Integer> 
     @Query(value = "select * from client c WHERE c.role = 'ADMIN_ROLE'", nativeQuery = true)
     List<Object[]> findAdmins();
 
+    @Query(value = "select * from client", nativeQuery = true)
+    List<Object[]> getAll();
 }
