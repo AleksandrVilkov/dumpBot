@@ -74,7 +74,6 @@ public class StatisticHandler implements TextMsgHandler {
 
     private SendMessage calcAccommodationStat(Message message) {
         List<UserAccommodation> userAccommodations = accommodationStorage.getAll();
-        int count = userAccommodations.size();
 
         int countSearch = 0;
         int approvedSearch = 0;
@@ -85,6 +84,7 @@ public class StatisticHandler implements TextMsgHandler {
         int rejectedSale = 0;
 
         int topical = 0;
+
         for (UserAccommodation userAccommodation : userAccommodations) {
             if (userAccommodation.getType().equals(AccommodationType.SEARCH)) {
                 countSearch++;
@@ -108,6 +108,7 @@ public class StatisticHandler implements TextMsgHandler {
                 topical++;
             }
         }
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("СТАТИСТИКА\nВсего запросов: ")
                 .append(userAccommodations.size())
