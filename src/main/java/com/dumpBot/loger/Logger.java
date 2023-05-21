@@ -11,8 +11,18 @@ import java.util.Date;
 public class Logger implements ILogger {
 
     private final String PATH;
+    private final String ANSI_RESET;
+    private final String ANSI_RED;
+    private final String ANSI_GREEN;
+    private final String ANSI_BLUE;
+    private final String ANSI_YELLOW;
 
     public Logger() {
+        ANSI_RESET = "\u001B[0m";
+        ANSI_RED = "\u001B[31m";
+        ANSI_GREEN = "\u001B[32m";
+        ANSI_BLUE = "\u001B[34m";
+        ANSI_YELLOW = "\u001B[33m";
         final String DIR = "temp";
         final String FILE = "botServerLog.log";
         File dir = new File(DIR);
@@ -27,33 +37,50 @@ public class Logger implements ILogger {
     }
 
     @Override
-    public void writeInfo(String msg) {
-        write(new Date() + ": INFO: " + msg);
-        System.out.println(msg);
+    public void writeInfo(String msg, Class cls) {
+        String txtColor = new Date() + "[" + cls + "]" + ANSI_BLUE + ": [INFO] " + ANSI_RESET + msg;
+        String txt = new Date() + "[" + cls + "]: [INFO] " + msg;
+        write(txt);
+        System.out.println(txtColor);
     }
 
     @Override
-    public void writeWarning(String msg) {
-        write(new Date() + ": WARNING: " + msg);
+    public void writeOk(String msg, Class cls) {
+        String txtColor = new Date() + "[" + cls + "]" + ANSI_GREEN + ": [OK] " + ANSI_RESET + msg;
+        String txt = new Date() + "[" + cls + "]: [OK] " + msg;
+        write(txt);
+        System.out.println(txtColor);
     }
 
     @Override
-    public void writeError(String msg) {
-        write(new Date() + ": ERROR!: " + msg);
+    public void writeWarning(String msg, Class cls) {
+        String txtColor = new Date() + "[" + cls + "]" + ANSI_YELLOW + ": [WARNING] " + ANSI_RESET + msg;
+        String txt = new Date() + "[" + cls + "]: [WARNING] " + msg;
+        write(txt);
+        System.out.println(txtColor);
+    }
+
+    @Override
+    public void writeError(String msg, Class cls) {
+        String txtColor = new Date() + "[" + cls + "]" + ANSI_YELLOW + ": [ERROR] " + ANSI_RESET + msg;
+        String txt = new Date() + "[" + cls + "]: [ERROR] " + msg;
+        write(txt);
+        System.out.println(txtColor);
     }
 
     public void writeStackTrace(Exception e) {
-        System.out.println(e.getMessage());
-        writeError(e.getMessage());
+        System.out.println(ANSI_RED + e.getMessage() + ANSI_RESET);
+        write(e.getMessage());
         StackTraceElement[] stackTraceElement = e.getStackTrace();
         for (StackTraceElement traceElement : stackTraceElement) {
             write(traceElement.toString());
+            System.out.println(ANSI_RED + traceElement.toString() + ANSI_RESET);
         }
     }
 
     public void write(String test) {
         try (FileWriter writer = new FileWriter(PATH, true)) {
-            writer.write(test +"\n");
+            writer.write(test + "\n");
             writer.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);

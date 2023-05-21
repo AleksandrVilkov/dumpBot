@@ -74,14 +74,14 @@ public class NewAccommodationHandler implements TextMsgHandler {
 
     private void createAndSend(UserAccommodation userAccommodation, String chatId) throws Exception {
         if (userAccommodation.getPhotos() == null || userAccommodation.getPhotos().size() == 0) {
-            logger.writeInfo("no photo in user callback");
+            logger.writeInfo("no photo in user callback", this.getClass());
             SendMessage sendMessage = new SendMessage(chatId, userAccommodation.getDescription());
             sendMessage.setReplyMarkup(createInlineKeyboardMarkup(userAccommodation));
             bot.execute(sendMessage);
             return;
         }
         if (userAccommodation.getPhotos().size() == 1) {
-            logger.writeInfo("find one photo in callback");
+            logger.writeInfo("find one photo in callback", this.getClass());
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setPhoto(new InputFile(userAccommodation.getPhotos().get(0)));
             sendPhoto.setChatId(chatId);
@@ -89,7 +89,7 @@ public class NewAccommodationHandler implements TextMsgHandler {
             sendPhoto.setReplyMarkup(createInlineKeyboardMarkup(userAccommodation));
             bot.execute(sendPhoto);
         } else {
-            logger.writeInfo("find more photo in callback");
+            logger.writeInfo("find more photo in callback", this.getClass());
             SendMediaGroup sendMediaGroup = new SendMediaGroup();
             sendMediaGroup.setMedias(getMedias(userAccommodation));
             sendMediaGroup.setChatId(chatId);

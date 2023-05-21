@@ -40,7 +40,7 @@ public class StartProcess extends BaseMsgProcess implements MsgProcess {
     @Override
     public List<SendMessage> execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
-        logger.writeInfo("start main menu process for user " + userId);
+        logger.writeInfo("start main menu process for user " + userId, this.getClass());
 
         SendMessage sendMessage = new SendMessage(userId,
                 resources.getMsgs().getWelcome());

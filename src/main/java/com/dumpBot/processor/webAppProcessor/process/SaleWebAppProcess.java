@@ -30,7 +30,7 @@ public class SaleWebAppProcess implements WebAppProcess {
     public boolean processData(Update update, WebAppData webAppData) {
         String userId = update.getMessage().getFrom().getId().toString();
         User user = userStorage.getUser(userId);
-        logger.writeInfo("user " + userId + " was found from database");
+        logger.writeInfo("user " + userId + " was found from database", this.getClass());
         user.setWaitingMessages(true);
         user.setClientAction(webAppData.getAction());
         LastCallback lastCallback = new LastCallback();
@@ -39,7 +39,7 @@ public class SaleWebAppProcess implements WebAppProcess {
         lastCallback.setCarId(webAppData.getCarId());
         user.setLastCallback(lastCallback.toString());
         userStorage.saveUser(user);
-        logger.writeInfo("user update successfully with data: " + user.toString());
+        logger.writeInfo("user update successfully with data: " + user.toString(), this.getClass());
         return true;
     }
 

@@ -47,9 +47,10 @@ public class SaleReadyProcess implements IReadyProcess {
     @Override
     public List<SendMessage> execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
-        logger.writeInfo("start sale ready process for user " + userId);
+        logger.writeInfo("start sale ready process for user " + userId, this.getClass());
         User user = userStorage.getUser(userId);
         if (user == null) {
+            logger.writeWarning("user is null", this.getClass());
             return sendError(userId);
         }
         LastCallback lastCallback;
@@ -61,6 +62,7 @@ public class SaleReadyProcess implements IReadyProcess {
         }
         //фото обязательно должно быть. Ну а как иначе?
         if (lastCallback.getPhotos() == null || lastCallback.getPhotos().size() == 0) {
+            logger.writeWarning("photos is null or size = 0. user: " + userId, this.getClass());
             List<SendMessage> msgs = new ArrayList<>();
             msgs.add(new SendMessage(userId, resources.getMsgs().getPhoto().getNoPhoto()));
             msgs.add(new SendMessage(userId, resources.getMsgs().getPhoto().getInfo()));
@@ -68,16 +70,18 @@ public class SaleReadyProcess implements IReadyProcess {
         }
 
         Car car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
-        logger.writeInfo("find car for user " + user.getLogin());
+        logger.writeInfo("find car for user " + user.getLogin(), this.getClass());
         City city = cityStorage.getCityById(user.getRegionId());
-        logger.writeInfo("find city for user " + user.getLogin());
+        logger.writeInfo("find city for user " + user.getLogin(), this.getClass());
         UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, car, city);
         if (accommodationStorage.saveAccommodation(userAccommodation)) {
             updateUser(user);
+            logger.writeInfo("User was updated. New user data: \n" + user.toString(), this.getClass());
             List<SendMessage> result = new ArrayList<>(getAccommodationMsgForAdmins());
             result.add(new SendMessage(userId, resources.getMsgs().getSale().getSuccessSendQuery()));
             return result;
         } else {
+            logger.writeWarning("accommodation was not save!", this.getClass());
             return sendError(userId);
         }
     }

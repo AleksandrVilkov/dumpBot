@@ -28,7 +28,7 @@ public class CallbackProcessor implements IButtonCallbackProcessor {
 
     @Override
     public List<SendMessage> startButtonCallbackProcessor(Update update) {
-        logger.writeInfo("start button callback processor");
+        logger.writeInfo("start processor", this.getClass());
         ButtonCallBack buttonCallBack;
         try {
             buttonCallBack = Util.readButtonCallBack(update.getCallbackQuery().getData());

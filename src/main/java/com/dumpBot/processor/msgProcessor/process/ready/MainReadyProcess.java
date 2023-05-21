@@ -46,7 +46,7 @@ public class MainReadyProcess extends BaseMsgProcess implements MsgProcess {
     @Override
     public List<SendMessage> execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
-        logger.writeInfo("start ready process for user " + userId);
+        logger.writeInfo("start ready process for user " + userId, this.getClass());
         User user = userStorage.getUser(userId);
         if (user == null || user.getClientAction() == null) {
             return sendError(userId);

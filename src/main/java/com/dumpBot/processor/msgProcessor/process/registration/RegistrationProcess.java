@@ -48,7 +48,7 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
             return returnErrNullUserName(userId);
         }
 
-        logger.writeInfo("start registration process for user " + userId);
+        logger.writeInfo("start registration process for user " + userId, this.getClass());
         result.add(new SendMessage(userId, resources.getMsgs().getRegistration().getHello()));
         result.add(new SendMessage(userId, resources.getMsgs().getRegistration().getGo()));
         SendMessage sendMessage = new SendMessage(userId, resources.getMsgs().getRegistration().getDescription());

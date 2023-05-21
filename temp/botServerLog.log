@@ -15315,3 +15315,27 @@ Thu May 18 23:45:41 MSK 2023: INFO: new update received
 Thu May 18 23:45:41 MSK 2023: INFO: new update is message from 358507326
 Thu May 18 23:45:41 MSK 2023: INFO: start message processor for 358507326
 Thu May 18 23:45:41 MSK 2023: INFO: start registration process for user 358507326
+Sun May 21 16:07:52 MSK 2023: INFO: new update received
+Sun May 21 16:07:52 MSK 2023: INFO: new update is message from 358507326
+Sun May 21 16:07:52 MSK 2023: INFO: start message processor for 358507326
+Sun May 21 16:07:52 MSK 2023: INFO: start registration process for user 358507326
+Sun May 21 16:07:58 MSK 2023: INFO: new update received
+Sun May 21 16:07:58 MSK 2023: INFO: new update is message from 436641871
+Sun May 21 16:07:58 MSK 2023: INFO: start message processor for 436641871
+Sun May 21 16:07:58 MSK 2023: INFO: User 436641871 does not expect a text message. create the main menu
+Sun May 21 16:07:58 MSK 2023: INFO: start main menu process for user 436641871
+Sun May 21 16:08:16 MSK 2023: INFO: new update received
+Sun May 21 16:08:16 MSK 2023: INFO: new update is message from 436641871
+Sun May 21 16:08:16 MSK 2023: INFO: start message processor for 436641871
+Sun May 21 16:08:16 MSK 2023: INFO: Сommand admin recognized by user 436641871
+Sun May 21 16:08:16 MSK 2023: INFO: Start main admin process for 436641871 asvilkov
+Sun May 21 16:08:24 MSK 2023: INFO: new update received
+Sun May 21 16:08:25 MSK 2023: INFO: new update is message from 436641871
+Sun May 21 16:08:25 MSK 2023: INFO: start message processor for 436641871
+Sun May 21 16:08:25 MSK 2023: INFO: Сommand admin recognized by user 436641871
+Sun May 21 16:08:25 MSK 2023: INFO: Start main admin process for 436641871 asvilkov
+Sun May 21 16:37:36 MSK 2023: INFO: new update received
+Sun May 21 16:37:36 MSK 2023: INFO: new update is message from 436641871
+Sun May 21 16:37:36 MSK 2023: INFO: start message processor for 436641871
+Sun May 21 16:37:36 MSK 2023: INFO: Сommand admin recognized by user 436641871
+Sun May 21 16:37:36 MSK 2023: INFO: Start main admin process for 436641871 asvilkov

@@ -34,7 +34,7 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     @Override
     public List<SendMessage> startMessageProcessor(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
-        logger.writeInfo("start message processor for " + userId);
+        logger.writeInfo("start processor", this.getClass());
         List<MessageEntity> messageEntityList = update.getMessage().getEntities();
         MsgProcess process;
         //Если это команда - получаем MessageEntity bot_command,если команды нет - то лист пустой
@@ -53,25 +53,20 @@ public class MessageProcessor extends BaseProcess implements IMessageProcessor {
     }
 
     private MsgProcess handleMessageText(Update update) {
-
         String userId = String.valueOf(update.getMessage().getFrom().getId());
-        //находим пользователя и смотрим его последний колбек
         User user = storage.getUser(userId);
-        //Если мы ждем от него какой то текст - то смотрим что у него за действие и запускаем соответвующий процесс
         if (user.isWaitingMessages()) {
             Action action = Util.findEnumConstant(Action.class, user.getClientAction());
-            logger.writeInfo("The user " + userId + " is waiting for a text message on the process " + action.name());
             return MsgProcessFactory.getProcess(action);
         }
-        logger.writeInfo("User " + userId + " does not expect a text message. create the main menu");
-        return MsgProcessFactory.getProcess(Command.START); //Если все мимо - то показываем меню
+        return MsgProcessFactory.getProcess(Command.START);
     }
 
     private MsgProcess handleCommand(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
         String stringCommand = update.getMessage().getText().toUpperCase().replace("/", "");
         Command command = Util.findEnumConstant(Command.class, stringCommand);
-        logger.writeInfo("Сommand " + command.getName() + " recognized by user " + userId);
+        logger.writeInfo("Сommand " + command.getName() + " recognized by user " + userId, this.getClass());
         return MsgProcessFactory.getProcess(command);
     }
 

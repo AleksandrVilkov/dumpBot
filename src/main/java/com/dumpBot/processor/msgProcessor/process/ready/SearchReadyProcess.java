@@ -45,7 +45,7 @@ public class SearchReadyProcess implements IReadyProcess {
     @Override
     public List<SendMessage> execute(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
-        logger.writeInfo("start search ready process for user " + userId);
+        logger.writeInfo("start search ready process for user " + userId, this.getClass());
         User user = userStorage.getUser(userId);
         if (user == null) {
             return sendError(userId);
@@ -54,7 +54,7 @@ public class SearchReadyProcess implements IReadyProcess {
         LastCallback lastCallback;
         try {
             lastCallback = Util.readLastCallback(user.getLastCallback());
-            logger.writeInfo("read user callback: " + lastCallback.toString());
+            logger.writeInfo("read user callback: " + lastCallback.toString(), this.getClass());
         } catch (JsonProcessingException e) {
             logger.writeStackTrace(e);
             return sendError(userId);
@@ -63,11 +63,11 @@ public class SearchReadyProcess implements IReadyProcess {
         Car car = null;
         if (lastCallback.getCarId() != null && !lastCallback.getCarId().equalsIgnoreCase("")) {
             car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
-            logger.writeInfo("find car for user " + user.getLogin());
+            logger.writeInfo("find car for user " + user.getLogin(), this.getClass());
         }
 
         City city = cityStorage.getCityById(user.getRegionId());
-        logger.writeInfo("find city for user " + user.getLogin());
+        logger.writeInfo("find city for user " + user.getLogin(), this.getClass());
         UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, car, city);
         if (accommodationStorage.saveAccommodation(userAccommodation)) {
             updateUser(user);
@@ -101,7 +101,7 @@ public class SearchReadyProcess implements IReadyProcess {
         user.setLastCallback(null);
         user.setClientAction(null);
         userStorage.saveUser(user);
-        logger.writeInfo("callback was clean. Update user successfully");
+        logger.writeInfo("callback was clean. Update user successfully", this.getClass());
     }
 
 

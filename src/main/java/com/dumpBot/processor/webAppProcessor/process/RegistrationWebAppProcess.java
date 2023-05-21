@@ -33,7 +33,7 @@ public class RegistrationWebAppProcess implements WebAppProcess {
                 Integer.parseInt(webAppData.getCityId()),
                 Integer.parseInt(webAppData.getCarId()));
         user.setWaitingMessages(false);
-        logger.writeInfo("New user defined: " + user.toString());
+        logger.writeInfo("New user defined: " + user.toString(), this.getClass());
         user.setUserName(update.getMessage().getFrom().getUserName());
         return userStorage.saveUser(user);
     }

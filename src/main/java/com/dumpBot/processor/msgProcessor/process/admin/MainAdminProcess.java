@@ -41,20 +41,20 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
     @Override
     public List<SendMessage> execute(Update update) {
         User user = userStorage.getUser(String.valueOf(update.getMessage().getFrom().getId()));
-        logger.writeInfo("Start main admin process for " + user.getLogin() + " " + user.getUserName());
+        logger.writeInfo("Start main admin process for " + user.getLogin() + " " + user.getUserName(), this.getClass());
         String adminId = user.getLogin();
         if (!user.getRole().equals(Role.ADMIN_ROLE)) {
-            logger.writeWarning("user " + user.getLogin() + " " + user.getUserName() + "is not ADMIN!");
+            logger.writeWarning("user " + user.getLogin() + " " + user.getUserName() + "is not ADMIN!", this.getClass());
             return sendErr(adminId);
         }
 
         //Если находимся в режиме ожидания - то идем в обработчик текстовых сообщений
         if (user.isWaitingMessages()) {
-            logger.writeInfo("see on text message...");
+            logger.writeInfo("see on text message...", this.getClass());
             TextMsgHandler msgHandler = HandlerFactory.getHandler(update.getMessage());
             return msgHandler.execute(update.getMessage());
         }
-        logger.writeInfo("creating main admin menu..");
+        logger.writeInfo("creating main admin menu..", this.getClass());
         SendMessage helloMsg = new SendMessage(adminId, resources.getMsgs().getAdmin().getWelcome()
                 + " @" + user.getUserName() + "!");
         SendMessage choiceMsg = new SendMessage(adminId, resources.getMsgs().getAdmin().getChoice());
@@ -67,7 +67,6 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
         user.setClientAction(Action.ADMINISTRATION.name());
         user.setWaitingMessages(true);
         userStorage.saveUser(user);
-        logger.writeInfo("admin menu was create. User " + user.getLogin() + " " + user.getUserName() + "will be updated");
         return res;
     }
 

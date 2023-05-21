@@ -46,9 +46,10 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        logger.writeInfo("new update received");
+        logger.writeInfo("new update received", this.getClass());
         if (!Validator.validateUser(update, this, config)) {
             try {
+                logger.writeWarning("user validate error", this.getClass());
                 execute(messageProcessor.createErrAuthMsg(update));
             } catch (TelegramApiException e) {
                 logger.writeStackTrace(e);
@@ -72,7 +73,7 @@ public class Bot extends TelegramLongPollingBot {
             throw new RuntimeException(e);
         }
 
-        for (SendMessage sendMessage: msgs) {
+        for (SendMessage sendMessage : msgs) {
             try {
                 execute(sendMessage);
             } catch (TelegramApiException e) {
@@ -82,27 +83,27 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private void handleCallback(Update update, List<SendMessage> msgs) throws TelegramApiException {
-        logger.writeInfo("new update with callback " + update.getCallbackQuery().getFrom().getId());
-        logger.writeInfo("callback: " + update.getCallbackQuery().getData());
+        logger.writeInfo("new update with callback " + update.getCallbackQuery().getFrom().getId(), this.getClass());
+        logger.writeInfo("callback: " + update.getCallbackQuery().getData(), this.getClass());
         msgs.addAll(buttonCallbackProcessor.startButtonCallbackProcessor(update));
     }
 
     private void handleMsg(Update update, List<SendMessage> msgs) throws TelegramApiException {
         if (update.getMessage().getText() != null) {
             //Смотрим сообщение
-            logger.writeInfo("new update is message from " + update.getMessage().getFrom().getId());
+            logger.writeInfo("new update is message from " + update.getMessage().getFrom().getId(), this.getClass());
             msgs.addAll(messageProcessor.startMessageProcessor(update));
         }
         //смотрим фото
         if (update.getMessage().getPhoto() != null && update.getMessage().getPhoto().size() > 0) {
-            logger.writeInfo("new update is photo from " + update.getMessage().getFrom().getId());
+            logger.writeInfo("new update is photo from " + update.getMessage().getFrom().getId(), this.getClass());
             msgs.addAll(photoProcessor.startPhotoProcessor(update));
         }
 
         //смотрим WebAppData
         if (update.getMessage().getWebAppData() != null) {
             logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId() +
-                    ": " + update.getMessage().getWebAppData().getData());
+                    ": " + update.getMessage().getWebAppData().getData(), this.getClass());
             msgs.addAll(webAppProcessor.startWebAppProcessor(update));
         }
     }

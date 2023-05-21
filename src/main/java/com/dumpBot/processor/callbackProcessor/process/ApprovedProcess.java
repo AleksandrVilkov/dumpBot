@@ -14,7 +14,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
@@ -32,10 +31,8 @@ public class ApprovedProcess implements CallbackProcess {
     Bot bot;
     @Autowired
     ILogger logger;
-
     @Autowired
     Config config;
-
     @Autowired
     IAccommodationStorage accommodationStorage;
     @Autowired
@@ -44,8 +41,9 @@ public class ApprovedProcess implements CallbackProcess {
     @Override
     public List<SendMessage> start(UserAccommodation userAccommodation, Update update) {
         List<SendMessage> result = new ArrayList<>();
-
+        logger.writeInfo("start approved process for accommodation " + userAccommodation.getId(), this.getClass());
         if (!sendToChannel(userAccommodation)) {
+            logger.writeError("send accommodation to channel error", this.getClass());
             return sendErr(update);
         }
 
@@ -69,6 +67,7 @@ public class ApprovedProcess implements CallbackProcess {
         String fromId = String.valueOf(update.getCallbackQuery().getFrom().getId());
         DeleteMessage deleteMessage = new DeleteMessage(fromId, msgId);
         bot.execute(deleteMessage);
+        logger.writeInfo("message " + msgId + "was deleted in chat", this.getClass());
         deleteMsgWithPhotos(msgId, fromId, userAccommodation);
         SendMessage sendMessage = new SendMessage(fromId, resources.getMsgs().getAdmin().getUpd() + " "
                 + userAccommodation.getId()
@@ -78,15 +77,16 @@ public class ApprovedProcess implements CallbackProcess {
     }
 
     private void deleteMsgWithPhotos(int msgId, String fromId, UserAccommodation userAccommodation) throws Exception {
-        //Нужно удалить фото. телеграм апи не дает возможности прекрепить к sendMediaGroup клавиатуру, по этому
-        //подобные сообщения отправляются как группа фото, и за ней тествовое сообщение с кнопками.
-        //С колбеком приходит id сообщения с текстом. айди сообщений с фото неизестны, но мы знаем что они идут строго до сообщения,
-        //с которым пришел колбек и можем их расчитать.
+        /*Нужно удалить фото. телеграм апи не дает возможности прекрепить к sendMediaGroup клавиатуру, по этому
+        подобные сообщения отправляются как группа фото, и за ней тествовое сообщение с кнопками.
+        С колбеком приходит id сообщения с текстом. айди сообщений с фото неизестны,
+        но мы знаем что они идут строго до сообщения,
+        с которым пришел колбек и можем их расчитать.*/
+
         for (int i = 0; i < userAccommodation.getPhotos().size(); i++) {
             int photo = i + 1;
             DeleteMessage deleteMessage = new DeleteMessage(fromId, msgId - photo);
             bot.execute(deleteMessage);
-
         }
     }
 
@@ -130,45 +130,48 @@ public class ApprovedProcess implements CallbackProcess {
     }
 
     private void createAndSendSaleToChannel(UserAccommodation userAccommodation) throws TelegramApiException {
+        long channelId = config.getValidateData().getChannelID();
         if (userAccommodation.getPhotos().size() == 1) {
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setPhoto(new InputFile(userAccommodation.getPhotos().get(0)));
-            sendPhoto.setChatId(config.getValidateData().getChannelID());
+            sendPhoto.setChatId(channelId);
             sendPhoto.setCaption(userAccommodation.getDescription());
             bot.execute(sendPhoto);
-            logger.writeInfo("sale send to channel " + config.getValidateData().getChannelID() + " with 1 photo successfully");
+            logger.writeInfo("sale send to channel " + channelId + " with 1 photo successfully", this.getClass());
         } else {
             SendMediaGroup sendMediaGroup = new SendMediaGroup();
             sendMediaGroup.setMedias(getMedias(userAccommodation));
-            sendMediaGroup.setChatId(config.getValidateData().getChannelID());
+            sendMediaGroup.setChatId(channelId);
             bot.execute(sendMediaGroup);
-            logger.writeInfo("sale send to channel " + config.getValidateData().getChannelID() + " with many photo successfully");
+            logger.writeInfo("sale send to channel " + channelId + " with many photo successfully", this.getClass());
         }
     }
 
     private void createAndSendSearchToChannel(UserAccommodation userAccommodation) throws Exception {
+        long channelID = config.getValidateData().getChannelID();
         if (userAccommodation.getPhotos() == null || userAccommodation.getPhotos().size() == 0) {
-            logger.writeInfo("no photo in user callback");
-            SendMessage sendMessage = new SendMessage(String.valueOf(config.getValidateData().getChannelID()), userAccommodation.getDescription());
+            logger.writeInfo("no photo in accommodation #" + userAccommodation.getId(), this.getClass());
+            SendMessage sendMessage = new SendMessage(String.valueOf(channelID),
+                    userAccommodation.getDescription());
             bot.execute(sendMessage);
-            logger.writeInfo("search send to channel " + config.getValidateData().getChannelID() + " without photo successfully");
+            logger.writeInfo("search send to channel " + channelID + " without photo successfully", this.getClass());
             return;
         }
         if (userAccommodation.getPhotos().size() == 1) {
-            logger.writeInfo("find one photo in callback");
+            logger.writeInfo("find one photo in accommodation #" + userAccommodation.getId(), this.getClass());
             SendPhoto sendPhoto = new SendPhoto();
             sendPhoto.setPhoto(new InputFile(userAccommodation.getPhotos().get(0)));
-            sendPhoto.setChatId(config.getValidateData().getChannelID());
+            sendPhoto.setChatId(channelID);
             sendPhoto.setCaption(userAccommodation.getDescription());
             bot.execute(sendPhoto);
-            logger.writeInfo("search send to channel " + config.getValidateData().getChannelID() + " with 1 photo successfully");
+            logger.writeInfo("search send to channel " + channelID + " with 1 photo successfully", this.getClass());
         } else {
-            logger.writeInfo("find more photo in callback");
+            logger.writeInfo("find more photo in accommodation #" + userAccommodation.getId(), this.getClass());
             SendMediaGroup sendMediaGroup = new SendMediaGroup();
             sendMediaGroup.setMedias(getMedias(userAccommodation));
-            sendMediaGroup.setChatId(config.getValidateData().getChannelID());
+            sendMediaGroup.setChatId(channelID);
             bot.execute(sendMediaGroup);
-            logger.writeInfo("search send to channel " + config.getValidateData().getChannelID() + " with many photo successfully");
+            logger.writeInfo("search send to channel " + channelID + " with many photo successfully", this.getClass());
         }
     }
 
@@ -177,7 +180,7 @@ public class ApprovedProcess implements CallbackProcess {
         userAccommodation.setTopical(false);
         userAccommodation.setCreatedDate(new Date());
         accommodationStorage.saveAccommodation(userAccommodation);
-        logger.writeInfo("userAccommodation " + userAccommodation.getId() + " was updated");
+        logger.writeInfo("accommodation #" + userAccommodation.getId() + " was updated", this.getClass());
     }
 
     private List<InputMedia> getMedias(UserAccommodation userAccommodation) {

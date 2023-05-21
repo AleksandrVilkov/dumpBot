@@ -29,24 +29,24 @@ public class PhotoProcessor extends BaseProcess implements IPhotoProcessor {
     @Override
     public List<SendMessage> startPhotoProcessor(Update update) {
         String userId = String.valueOf(update.getMessage().getFrom().getId());
-        logger.writeInfo("start photo processor for " + userId);
+        logger.writeInfo("start photo processor for " + userId, this.getClass());
         List<String> photos = Collections.singletonList(String.valueOf(update.getMessage().getPhoto().get(0).getFileId()));
         User user = storage.getUser(userId);
         if (user == null) {
-            logger.writeInfo("user is null: userId " + userId);
+            logger.writeInfo("user is null: userId " + userId, this.getClass());
             return Collections.singletonList(new SendMessage(userId,
                     resources.getMsgs().getPhoto().getNoRegistration()));
         }
         String stringLastCallback = user.getLastCallback();
-        logger.writeInfo("found callback from user " + userId + ": " + stringLastCallback);
+        logger.writeInfo("found callback from user " + userId + ": " + stringLastCallback, this.getClass());
         if (stringLastCallback == null) {
-            logger.writeInfo("lastCallback is null: userId " + userId);
+            logger.writeInfo("lastCallback is null: userId " + userId, this.getClass());
             return Collections.singletonList(new SendMessage(userId,
                     resources.getMsgs().getPhoto().getNoAction()));
         }
         try {
             LastCallback lastCallback = Util.readLastCallback(stringLastCallback);
-            logger.writeInfo("callback from user " + userId + " read successfully");
+            logger.writeInfo("callback from user " + userId + " read successfully", this.getClass());
             if (lastCallback.getPhotos() == null) {
                 lastCallback.setPhotos(new ArrayList<>());
             }

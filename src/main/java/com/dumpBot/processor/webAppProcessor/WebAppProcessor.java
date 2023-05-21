@@ -33,7 +33,7 @@ public class WebAppProcessor extends BaseProcess implements IWebAppProcessor {
         WebAppData wpd;
         try {
             wpd = readWebApp(data);
-            logger.writeInfo("received webAppData from " + userId + ": " + data);
+            logger.writeInfo("received webAppData from " + userId + ": " + data, this.getClass());
         } catch (Exception e) {
             logger.writeStackTrace(e);
             return Collections.singletonList(new SendMessage(userId, e.getMessage()));
