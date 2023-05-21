@@ -2,7 +2,10 @@ package com.dumpBot.processor.msgProcessor.process.admin.handlers;
 
 import com.dumpBot.bot.Bot;
 import com.dumpBot.loger.ILogger;
+import com.dumpBot.model.ButtonCallBack;
 import com.dumpBot.model.UserAccommodation;
+import com.dumpBot.model.enums.AccommodationAction;
+import com.dumpBot.resources.Resources;
 import com.dumpBot.storage.IAccommodationStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,20 +30,21 @@ public class NewAccommodationHandler implements TextMsgHandler {
     ILogger logger;
     @Autowired
     Bot bot;
+    @Autowired
+    Resources resources;
 
-    //TODO убрать в ресурсы, отрефакторить
     @Override
     public List<SendMessage> execute(Message message) {
         List<UserAccommodation> inconsistentAccommodation = accommodationStorage.getAllInconsistent();
         List<SendMessage> result = new ArrayList<>();
-        result.add(new SendMessage(String.valueOf(message.getFrom().getId()), "Всего не рассмотренных запросов: " + inconsistentAccommodation.size()));
-        //TODO использовать объект для колбека
+        result.add(new SendMessage(String.valueOf(message.getFrom().getId()),
+                resources.getMsgs().getAdmin().getTotalRequests() + ": " + inconsistentAccommodation.size()));
         for (UserAccommodation userAccommodation : inconsistentAccommodation) {
-                try {
-                    createAndSend(userAccommodation, String.valueOf(message.getFrom().getId()));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
+            try {
+                createAndSend(userAccommodation, String.valueOf(message.getFrom().getId()));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return result;
     }
@@ -48,12 +52,14 @@ public class NewAccommodationHandler implements TextMsgHandler {
 
     private InlineKeyboardMarkup createInlineKeyboardMarkup(UserAccommodation userAccommodation) {
         InlineKeyboardButton a = new InlineKeyboardButton();
-        a.setCallbackData("{\"accommodationId\":" + userAccommodation.getId() + ", " + "\"result\": \"approved\"}");
-        a.setText("Одобрить");
+        ButtonCallBack approveCallBack = new ButtonCallBack(userAccommodation.getId(), AccommodationAction.APPROVED.name());
+        a.setCallbackData(approveCallBack.toString());
+        a.setText(resources.getButtonsText().getApproved());
 
         InlineKeyboardButton b = new InlineKeyboardButton();
-        b.setCallbackData("{\"accommodationId\":" + userAccommodation.getId() + ", " + "\"result\": \"rejected\"}");
-        b.setText("Отклонить");
+        ButtonCallBack rejectedCallBack = new ButtonCallBack(userAccommodation.getId(), AccommodationAction.REJECTED.name());
+        b.setCallbackData(rejectedCallBack.toString());
+        b.setText(resources.getButtonsText().getRejected());
 
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> kr = new ArrayList<>();
@@ -88,17 +94,18 @@ public class NewAccommodationHandler implements TextMsgHandler {
             sendMediaGroup.setMedias(getMedias(userAccommodation));
             sendMediaGroup.setChatId(chatId);
             bot.execute(sendMediaGroup);
+            SendMessage sendMessage = new SendMessage(chatId, userAccommodation.getDescription());
+            sendMessage.setReplyMarkup(createInlineKeyboardMarkup(userAccommodation));
+            bot.execute(sendMessage);
         }
     }
 
-    //TODO прекриплять кнопки к множеству фото. Найки костыль. Есть ошибка при редактировании сообщения с одной фото
     private List<InputMedia> getMedias(UserAccommodation userAccommodation) {
         List<InputMedia> inputMedia = new ArrayList<>();
         boolean isFirst = true;
         for (String photo : userAccommodation.getPhotos()) {
             InputMediaPhoto inputMediaPhoto = new InputMediaPhoto(photo);
             if (isFirst) {
-                inputMediaPhoto.setCaption(userAccommodation.getDescription());
                 isFirst = false;
             }
             inputMedia.add(inputMediaPhoto);

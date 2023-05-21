@@ -13,4 +13,8 @@ public class Errors {
     private String commonError;
     @Value("${resources.errors.authError}")
     private String authError;
+    @Value("${resources.errors.userNameErr}")
+    private String userNameErr;
+    @Value("${resources.errors.notAdminErr}")
+    private String notAdminErr;
 }

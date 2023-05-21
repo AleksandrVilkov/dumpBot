@@ -5,6 +5,8 @@ import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.ButtonCallBack;
 import com.dumpBot.model.UserAccommodation;
+import com.dumpBot.model.enums.AccommodationAction;
+import com.dumpBot.resources.Resources;
 import com.dumpBot.storage.IAccommodationStorage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,12 @@ import java.util.List;
 
 @Component
 public class CallbackProcessor implements IButtonCallbackProcessor {
-    //TODO использовать ресурсы
-
     @Autowired
     ILogger logger;
     @Autowired
     IAccommodationStorage accommodationStorage;
+    @Autowired
+    Resources resources;
 
     @Override
     public List<SendMessage> startButtonCallbackProcessor(Update update) {
@@ -33,10 +35,11 @@ public class CallbackProcessor implements IButtonCallbackProcessor {
         } catch (JsonProcessingException e) {
             logger.writeStackTrace(e);
             return Collections.singletonList(new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
-                    "Упс,  ошибочка"));
+                    resources.getErrors().getCommonError()));
         }
         UserAccommodation ua = accommodationStorage.getById(buttonCallBack.getAccommodationId());
-        CallbackProcess callbackProcess = CallbackProcessFactory.getProcess(buttonCallBack.getResult());
+        AccommodationAction action = Util.findEnumConstant(AccommodationAction.class, buttonCallBack.getResult());
+        CallbackProcess callbackProcess = CallbackProcessFactory.getProcess(action);
         return callbackProcess.start(ua, update);
     }
 }

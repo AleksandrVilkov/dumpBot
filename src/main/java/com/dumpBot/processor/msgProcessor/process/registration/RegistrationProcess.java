@@ -39,12 +39,15 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
         //no use
     }
 
-    //TODO предусмотреть ситуацию, когда "userName":null
     @Override
     public List<SendMessage> execute(Update update) {
         List<SendMessage> result = new ArrayList<>();
-
         String userId = String.valueOf(update.getMessage().getFrom().getId());
+
+        if (update.getMessage().getFrom().getUserName() == null) {
+            return returnErrNullUserName(userId);
+        }
+
         logger.writeInfo("start registration process for user " + userId);
         result.add(new SendMessage(userId, resources.getMsgs().getRegistration().getHello()));
         result.add(new SendMessage(userId, resources.getMsgs().getRegistration().getGo()));
@@ -65,5 +68,10 @@ public class RegistrationProcess extends BaseMsgProcess implements MsgProcess {
         result.add(new SendMessage(userId, resources.getMsgs().getRegistration().getTapRegistration()));
 
         return result;
+    }
+
+    private List<SendMessage> returnErrNullUserName(String userId) {
+        SendMessage sendMessage = new SendMessage(userId, resources.getErrors().getUserNameErr());
+        return Collections.singletonList(sendMessage);
     }
 }

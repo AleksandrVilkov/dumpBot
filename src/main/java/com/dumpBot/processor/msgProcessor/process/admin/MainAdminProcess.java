@@ -7,6 +7,7 @@ import com.dumpBot.model.enums.Role;
 import com.dumpBot.processor.msgProcessor.process.BaseMsgProcess;
 import com.dumpBot.processor.msgProcessor.MsgProcess;
 import com.dumpBot.processor.msgProcessor.process.admin.handlers.TextMsgHandler;
+import com.dumpBot.resources.Resources;
 import com.dumpBot.storage.IUserStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +27,8 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
     IUserStorage userStorage;
     @Autowired
     ILogger logger;
+    @Autowired
+    Resources resources;
 
     @Override
     public void processResultPreviousStep() {
@@ -35,7 +38,6 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
     public void preparationCurrentProcess() {
     }
 
-    //TODO убрать текст в проперти файл
     @Override
     public List<SendMessage> execute(Update update) {
         User user = userStorage.getUser(String.valueOf(update.getMessage().getFrom().getId()));
@@ -53,14 +55,15 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
             return msgHandler.execute(update.getMessage());
         }
         logger.writeInfo("creating main admin menu..");
-        SendMessage helloMsg = new SendMessage(adminId, "Привет, @" + user.getUserName() + "!");
-        SendMessage callToActionMsg = new SendMessage(adminId, "Выбери действие, которое ты хочешь совершить. " +
-                "Помни, люди на тебя надеятся." +
-                "от тебя зависит успех продажи их говна!");
-        callToActionMsg.setReplyMarkup(createKeyBoard());
+        SendMessage helloMsg = new SendMessage(adminId, resources.getMsgs().getAdmin().getWelcome()
+                + " @" + user.getUserName() + "!");
+        SendMessage choiceMsg = new SendMessage(adminId, resources.getMsgs().getAdmin().getChoice());
+        SendMessage rememberMsg = new SendMessage(adminId, resources.getMsgs().getAdmin().getRemember());
+        choiceMsg.setReplyMarkup(createKeyBoard());
         List<SendMessage> res = new ArrayList<>();
         res.add(helloMsg);
-        res.add(callToActionMsg);
+        res.add(choiceMsg);
+        res.add(rememberMsg);
         user.setClientAction(Action.ADMINISTRATION.name());
         user.setWaitingMessages(true);
         userStorage.saveUser(user);
@@ -69,19 +72,14 @@ public class MainAdminProcess extends BaseMsgProcess implements MsgProcess {
     }
 
     private List<SendMessage> sendErr(String id) {
-        SendMessage f = new SendMessage(id, "Что то мне кажется, что ты не похож(а) на админа!");
-        SendMessage s = new SendMessage(id, "А ну быстро свалил отсуда, петушара!");
-        List<SendMessage> res = new ArrayList<>();
-        res.add(f);
-        res.add(s);
-        return res;
+        return Collections.singletonList(new SendMessage(id, resources.getErrors().getNotAdminErr()));
     }
 
     private ReplyKeyboardMarkup createKeyBoard() {
         ReplyKeyboardMarkup.ReplyKeyboardMarkupBuilder keyboard = ReplyKeyboardMarkup.builder();
         List<KeyboardRow> buttons = new ArrayList<>();
-        KeyboardButton newAnnouncements = new KeyboardButton("Новые запросы");
-        KeyboardButton statistics = new KeyboardButton("Статистика");
+        KeyboardButton newAnnouncements = new KeyboardButton(resources.getButtonsText().getNewRequests());
+        KeyboardButton statistics = new KeyboardButton(resources.getButtonsText().getStatistics());
         buttons.add(new KeyboardRow(Collections.singletonList(newAnnouncements)));
         buttons.add(new KeyboardRow(Collections.singletonList(statistics)));
         keyboard.keyboard(buttons);

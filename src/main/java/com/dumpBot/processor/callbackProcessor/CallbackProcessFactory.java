@@ -1,5 +1,6 @@
 package com.dumpBot.processor.callbackProcessor;
 
+import com.dumpBot.model.enums.AccommodationAction;
 import com.dumpBot.processor.callbackProcessor.process.ApprovedProcess;
 import com.dumpBot.processor.callbackProcessor.process.RejectedProcess;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,12 @@ public class CallbackProcessFactory {
         CallbackProcessFactory.r = r;
     }
 
-    public static CallbackProcess getProcess(String s) {
-        //TODO передедать на энамы
-        switch (s) {
-            case "approved" -> {
+    public static CallbackProcess getProcess(AccommodationAction action) {
+        switch (action) {
+            case APPROVED -> {
                 return a;
             }
-            case "SEARCH" -> {
+            case REJECTED -> {
                 return r;
             }
             default -> {

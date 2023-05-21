@@ -6,12 +6,14 @@ import com.dumpBot.loger.ILogger;
 import com.dumpBot.model.UserAccommodation;
 import com.dumpBot.model.enums.AccommodationType;
 import com.dumpBot.processor.callbackProcessor.CallbackProcess;
+import com.dumpBot.resources.Resources;
 import com.dumpBot.storage.IAccommodationStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -36,8 +38,9 @@ public class ApprovedProcess implements CallbackProcess {
 
     @Autowired
     IAccommodationStorage accommodationStorage;
+    @Autowired
+    Resources resources;
 
-    //TODO подклчюить ресурсы
     @Override
     public List<SendMessage> start(UserAccommodation userAccommodation, Update update) {
         List<SendMessage> result = new ArrayList<>();
@@ -64,22 +67,39 @@ public class ApprovedProcess implements CallbackProcess {
     private List<SendMessage> createMsgToAdmin(Update update, UserAccommodation userAccommodation) throws Exception {
         int msgId = update.getCallbackQuery().getMessage().getMessageId();
         String fromId = String.valueOf(update.getCallbackQuery().getFrom().getId());
-        EditMessageText editMessageText = new EditMessageText();
-        editMessageText.setChatId(fromId);
-        editMessageText.setText("UPD: Запрос " + userAccommodation.getId() + " от пользователя "
-                + userAccommodation.getClientLogin() + " успешно отправлен в канал. Пользователю отправлено соответсвующее сообщение");
-        editMessageText.setMessageId(msgId);
-        bot.execute(editMessageText);
-        return new ArrayList<>();
+        DeleteMessage deleteMessage = new DeleteMessage(fromId, msgId);
+        bot.execute(deleteMessage);
+        deleteMsgWithPhotos(msgId, fromId, userAccommodation);
+        SendMessage sendMessage = new SendMessage(fromId, resources.getMsgs().getAdmin().getUpd() + " "
+                + userAccommodation.getId()
+                + " " + resources.getMsgs().getAdmin().getFromUser() + " " + userAccommodation.getClientLogin()
+                + " " + resources.getMsgs().getAdmin().getSuccessApproved());
+        return Collections.singletonList(sendMessage);
     }
 
+    private void deleteMsgWithPhotos(int msgId, String fromId, UserAccommodation userAccommodation) throws Exception {
+        //Нужно удалить фото. телеграм апи не дает возможности прекрепить к sendMediaGroup клавиатуру, по этому
+        //подобные сообщения отправляются как группа фото, и за ней тествовое сообщение с кнопками.
+        //С колбеком приходит id сообщения с текстом. айди сообщений с фото неизестны, но мы знаем что они идут строго до сообщения,
+        //с которым пришел колбек и можем их расчитать.
+        for (int i = 0; i < userAccommodation.getPhotos().size(); i++) {
+            int photo = i + 1;
+            DeleteMessage deleteMessage = new DeleteMessage(fromId, msgId - photo);
+            bot.execute(deleteMessage);
+
+        }
+    }
+
+
     private List<SendMessage> sendErr(Update update) {
-        return Collections.singletonList(new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()), "Произошла ошибка"));
+        return Collections.singletonList(new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()),
+                resources.getErrors().getCommonError()));
     }
 
     private List<SendMessage> createMsgToUser(UserAccommodation userAccommodation) {
-        String text1 = "Твой запрос " + userAccommodation.getId() + " был успешно проверен!";
-        String text2 = "Он размещен в канале, и доступен к просмотру. Найти его можешь в 'ссылка на канал'";
+        String text1 = resources.getMsgs().getAdmin().getSuccessApprovedForUser();
+        String text2 = resources.getMsgs().getAdmin().getSuccessApprovedForUser2()
+                + " " + config.getValidateData().getChannelURL();
         SendMessage f = new SendMessage(userAccommodation.getClientLogin(), text1);
         SendMessage s = new SendMessage(userAccommodation.getClientLogin(), text2);
         List<SendMessage> result = new ArrayList<>();
