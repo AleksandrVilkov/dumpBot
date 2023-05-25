@@ -15,8 +15,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+#      - name: Build with Maven
+#        run: mvn -B package --file pom.xml
       - name: set -eu
         run: set -eu
       - name: mkdir "$HOME/.ssh"
@@ -34,6 +34,6 @@ jobs:
       - name: go to root
         run: cd ..
       - name: go to server dir
-        run: cd cd /home/server
+        run: cd /home/server
       - name: create filename
         run: cat > filename.txt
