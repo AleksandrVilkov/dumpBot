@@ -26,7 +26,7 @@ jobs:
       - name: chmod
         run: chmod 600 "$HOME/.ssh/key"
       - name: connect to server..
-        run: ssh root@85.193.82.129
+        run: ssh -tt root@85.193.82.129
       - name: go to root
         run: cd ..
       - name: go to server dir
