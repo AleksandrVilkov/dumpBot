@@ -31,4 +31,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          run: cd .. && cd /home/server && cat > filename.txt
+          run: cd .. && cd /home/server && cat > filename.txt && rm log.txt
