@@ -15,8 +15,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-#      - name: Build with Maven
-#        run: mvn -B package --file pom.xml
       - name: set -eu
         run: set -eu
       - name: mkdir "$HOME/.ssh"
@@ -25,10 +23,17 @@ jobs:
         run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
       - name: chmod
         run: chmod 600 "$HOME/.ssh/key"
-      - name: executing remote ssh commands using ssh key
+      - name: doing work on the server...
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          script: cd .. && cd /home/server && cat > filename.txt && rm log.txt
+          script: cd .. && 
+                  cd /home/server/dumpBot/ &&
+                  git pull && 
+                  mvn -B package --file pom.xml &&
+                  cd target &&
+                  kill $(lsof -t -i:442) &&
+                  nohup java -jar -Dspring.profiles.active=prod -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 dumpBot-0.0.1-SNAPSHOT.jar &
+
