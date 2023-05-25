@@ -17,7 +17,11 @@ jobs:
           java-version: '17'
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - name: Setup connection to server
-        run: set -eu | mkdir "$HOME/.ssh" |
-
-
+      - name: set -eu
+        run: set -eu
+      - name: mkdir "$HOME/.ssh"
+        run: mkdir "$HOME/.ssh"
+      - name: key
+        run: echo "${{ secrets.key}}" > "$HOME/.ssh/key"
+      - name: chmod
+        run: chmod 600 "$HOME/.ssh/key"
