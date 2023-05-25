@@ -15,7 +15,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-      - name: setup...
+      - name: testing build with Maven
+        run: mvn -B package --file pom.xml
+      - name: setup remote work...
         run: set -eu
       - name: still setting up...
         run: mkdir "$HOME/.ssh"
@@ -38,5 +40,5 @@ jobs:
                   kill $(lsof -t -i:442) ;
                   cp /home/server/dumpBot/target/dumpBot-0.0.1-SNAPSHOT.jar /home/server/ &&
                   cd /home/server/ &&
-                  nohup java -jar -Dspring.profiles.active=prod -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 dumpBot-0.0.1-SNAPSHOT.jar &
+                  java -jar -Dspring.profiles.active=prod -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 dumpBot-0.0.1-SNAPSHOT.jar &;
 
