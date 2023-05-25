@@ -31,9 +31,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-      - name: go to root
-        run: cd ..
-      - name: go to server dir
-        run: cd /home/server
-      - name: create filename
-        run: cat > filename.txt
+          run: cd .. && cd /home/server && cat > filename.txt
