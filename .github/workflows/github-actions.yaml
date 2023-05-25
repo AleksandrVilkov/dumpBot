@@ -25,11 +25,9 @@ jobs:
         run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
       - name: chmod
         run: chmod 600 "$HOME/.ssh/key"
-      - name: connect to server..
-        run: ssh -tt root@85.193.82.129
-      - name: go to root
-        run: cd ..
-      - name: go to server dir
-        run: cd cd /home/server
-      - name: create filename
-        run: cat > filename.txt
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
