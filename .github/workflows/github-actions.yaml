@@ -22,7 +22,7 @@ jobs:
       - name: mkdir "$HOME/.ssh"
         run: mkdir "$HOME/.ssh"
       - name: key
-        run: echo "${{ secrets.key}}" > "$HOME/.ssh/key"
+        run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
       - name: chmod
         run: chmod 600 "$HOME/.ssh/key"
       - name: connect to server..
