@@ -31,7 +31,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-#          script: cd .. &&
-#                  cd /home/server/dumpBot/scripts &&
-#                  ./updateAndStart.sh
+          script: cd .. &&
+                  cd /home/server/dumpBot/scripts &&
+                  ./updateAndStart.sh
 
