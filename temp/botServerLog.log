@@ -15009,6 +15009,29 @@ com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:74)
 java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
 org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Fri Apr 28 15:17:21 MSK 2023: INFO: new update received
+Fri Apr 28 15:17:21 MSK 2023: INFO: new update is message from 436641871
+Fri Apr 28 15:17:21 MSK 2023: INFO: start message processor for 436641871
+Fri Apr 28 15:17:21 MSK 2023: ERROR!: JDBC exception executing SQL [select c1_0.id,c1_0.carid,c1_0.client_action,c1_0.created_date,c1_0.last_callback,c1_0.login,c1_0.region_id,c1_0.role,c1_0.user_name,c1_0.waiting_messages from client c1_0 where c1_0.login=?]; SQL [n/a]
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)
+org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232)
+org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242)
+org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+jdk.proxy2/jdk.proxy2.$Proxy115.findByLogin(Unknown Source)
+com.dumpBot.storage.UserStorage.checkUser(UserStorage.java:30)
+com.dumpBot.processor.msgProcessor.MessageProcessor.startMessageProcessor(MessageProcessor.java:46)
+com.dumpBot.bot.Bot.onUpdateReceived(Bot.java:65)
+java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
 Wed Apr 26 22:16:35 MSK 2023: INFO: new update received
 Wed Apr 26 22:16:35 MSK 2023: INFO: new update is message from 436641871
 Wed Apr 26 22:16:35 MSK 2023: INFO: start message processor for 436641871
@@ -15339,3 +15362,7 @@ Sun May 21 16:37:36 MSK 2023: INFO: new update is message from 436641871
 Sun May 21 16:37:36 MSK 2023: INFO: start message processor for 436641871
 Sun May 21 16:37:36 MSK 2023: INFO: Сommand admin recognized by user 436641871
 Sun May 21 16:37:36 MSK 2023: INFO: Start main admin process for 436641871 asvilkov
+Mon May 29 12:41:23 MSK 2023[class com.dumpBot.bot.Bot]: [INFO] new update received
+Mon May 29 12:41:23 MSK 2023[class com.dumpBot.bot.Bot]: [INFO] new update with callback 436641871
+Mon May 29 12:41:23 MSK 2023[class com.dumpBot.bot.Bot]: [INFO] callback: {"accommodationId":37,"result":"REJECTED"}
+Mon May 29 12:41:23 MSK 2023[class com.dumpBot.processor.callbackProcessor.CallbackProcessor]: [INFO] start processor

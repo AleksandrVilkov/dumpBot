@@ -1,5 +1,8 @@
 package com.dumpBot.storage.entity;
 
+import com.dumpBot.common.Util;
+import com.dumpBot.model.User;
+import com.dumpBot.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,4 +39,20 @@ public class ClientEntity {
     private String clientAction;
     @Column(name = "lastCallback")
     private String lastCallback;
+
+
+    public User toUser() {
+        return new User(
+                this.getId(),
+                this.getUserName(),
+                this.getCreatedDate(),
+                Util.findEnumConstant(Role.class, this.getRole()),
+                this.getLogin(),
+                this.getRegionId(),
+                this.getCarid(),
+                this.isWaitingMessages(),
+                this.getClientAction(),
+                this.getLastCallback()
+        );
+    }
 }

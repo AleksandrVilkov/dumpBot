@@ -17,4 +17,6 @@ public interface ClientRepository extends CrudRepository<ClientEntity, Integer> 
 
     @Query(value = "select * from client", nativeQuery = true)
     List<Object[]> getAll();
+
+    List<ClientEntity> findAllByCarid(int carId);
 }

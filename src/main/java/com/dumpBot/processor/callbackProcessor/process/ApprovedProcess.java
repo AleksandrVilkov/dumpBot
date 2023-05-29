@@ -3,11 +3,13 @@ package com.dumpBot.processor.callbackProcessor.process;
 import com.dumpBot.bot.Bot;
 import com.dumpBot.config.Config;
 import com.dumpBot.loger.ILogger;
+import com.dumpBot.model.User;
 import com.dumpBot.model.UserAccommodation;
 import com.dumpBot.model.enums.AccommodationType;
 import com.dumpBot.processor.callbackProcessor.CallbackProcess;
 import com.dumpBot.resources.Resources;
 import com.dumpBot.storage.IAccommodationStorage;
+import com.dumpBot.storage.IUserStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
@@ -34,6 +36,8 @@ public class ApprovedProcess implements CallbackProcess {
     @Autowired
     Config config;
     @Autowired
+    IUserStorage userStorage;
+    @Autowired
     IAccommodationStorage accommodationStorage;
     @Autowired
     Resources resources;
@@ -59,6 +63,22 @@ public class ApprovedProcess implements CallbackProcess {
         updateUserAccommodation(userAccommodation);
         result.addAll(adminMsgs);
         result.addAll(userMsgs);
+        result.addAll(createNotifyCarOwners(userAccommodation));
+        return result;
+    }
+
+    private List<SendMessage> createNotifyCarOwners(UserAccommodation userAccommodation) {
+        if (userAccommodation.getCar() == null) {
+            return Collections.emptyList();
+        }
+        List<User> users = userStorage.getAllUsersByCarId(userAccommodation.getCar().getId());
+        List<SendMessage> result = new ArrayList<>();
+        for (User user : users) {
+            //TODO убрать в ресурсы
+            SendMessage sendMessage = new SendMessage(user.getLogin(), "Привет, в канале появилась запись, которая возможно подойдет к твоему автомобилю. Зайди, посмотри");
+            result.add(sendMessage);
+        }
+
         return result;
     }
 

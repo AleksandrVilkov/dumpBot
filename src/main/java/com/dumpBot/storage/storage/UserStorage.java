@@ -2,16 +2,19 @@ package com.dumpBot.storage.storage;
 
 import com.dumpBot.common.Util;
 import com.dumpBot.loger.ILogger;
-import com.dumpBot.model.*;
+import com.dumpBot.model.User;
 import com.dumpBot.model.enums.Role;
 import com.dumpBot.storage.IUserStorage;
-import com.dumpBot.storage.entity.*;
-import com.dumpBot.storage.repository.*;
+import com.dumpBot.storage.entity.ClientEntity;
+import com.dumpBot.storage.repository.CarRepository;
+import com.dumpBot.storage.repository.ClientRepository;
+import com.dumpBot.storage.repository.RegionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class UserStorage implements IUserStorage {
@@ -40,18 +43,7 @@ public class UserStorage implements IUserStorage {
     public User getUser(String id) {
         List<ClientEntity> c = clientRepository.findByLogin(id);
         ClientEntity clientEntity = c.get(0);
-        return new User(
-                clientEntity.getId(),
-                clientEntity.getUserName(),
-                clientEntity.getCreatedDate(),
-                Util.findEnumConstant(Role.class, clientEntity.getRole()),
-                clientEntity.getLogin(),
-                clientEntity.getRegionId(),
-                clientEntity.getCarid(),
-                clientEntity.isWaitingMessages(),
-                clientEntity.getClientAction(),
-                clientEntity.getLastCallback()
-        );
+        return clientEntity.toUser();
     }
 
     @Override
@@ -63,6 +55,16 @@ public class UserStorage implements IUserStorage {
             result.add(user);
         }
         return result;
+    }
+
+    @Override
+    public List<User> getAllUsersByCarId(int carId) {
+        List<ClientEntity> clientEntities = clientRepository.findAllByCarid(carId);
+        List<User> users = new ArrayList<>();
+        for (ClientEntity clientEntity : clientEntities) {
+            users.add(clientEntity.toUser());
+        }
+        return users;
     }
 
 
