@@ -6,4 +6,5 @@ public enum Action {
     SALE,
     SEARCH,
     ADMINISTRATION,
+    REJECTED
 }

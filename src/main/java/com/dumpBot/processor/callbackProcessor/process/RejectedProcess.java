@@ -21,9 +21,9 @@ public class RejectedProcess implements CallbackProcess {
     public List<SendMessage> start(UserAccommodation userAccommodation, Update update) {
         //TODO перенести в ресурсы
         String text = "Укажи причину отклонения запроса. Обрати внимание, это сообщение получит автор, и все остальные администраторы.";
-        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getMessage().getFrom().getId()), text);
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getCallbackQuery().getFrom().getId()), text);
         sendMessage.setReplyToMessageId(update.getCallbackQuery().getMessage().getMessageId());
-        User user = userStorage.getUser(String.valueOf(update.getCallbackQuery().getMessage().getFrom().getId()));
+        User user = userStorage.getUser(String.valueOf(update.getCallbackQuery().getFrom().getId()));
         user.setClientAction("REJECTED");
         user.setLastCallback(update.getCallbackQuery().getData());
         userStorage.saveUser(user);

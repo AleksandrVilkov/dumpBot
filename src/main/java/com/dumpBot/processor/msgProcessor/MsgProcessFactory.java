@@ -2,6 +2,7 @@ package com.dumpBot.processor.msgProcessor;
 
 import com.dumpBot.model.enums.Action;
 import com.dumpBot.processor.msgProcessor.process.Command;
+import com.dumpBot.processor.msgProcessor.process.MsgRejectedProcess;
 import com.dumpBot.processor.msgProcessor.process.admin.MainAdminProcess;
 import com.dumpBot.processor.msgProcessor.process.ready.MainReadyProcess;
 import com.dumpBot.processor.msgProcessor.process.registration.RegistrationProcess;
@@ -20,14 +21,21 @@ public class MsgProcessFactory {
 
     private static MsgProcess readyProcess;
     private static MsgProcess adminProcess;
+    private static MsgProcess rejectedProcess;
 
     @Autowired
-    public MsgProcessFactory(RegistrationProcess srp, StartProcess mmp, MainReadyProcess rp, SearchMsgProcess smp, MainAdminProcess ap) {
+    public MsgProcessFactory(RegistrationProcess srp,
+                             StartProcess mmp,
+                             MainReadyProcess rp,
+                             SearchMsgProcess smp,
+                             MainAdminProcess ap,
+                             MsgRejectedProcess mrp) {
         MsgProcessFactory.registration = srp;
         MsgProcessFactory.start = mmp;
         MsgProcessFactory.readyProcess = rp;
         MsgProcessFactory.searchMgsProcess = smp;
         MsgProcessFactory.adminProcess = ap;
+        MsgProcessFactory.rejectedProcess = mrp;
     }
 
     public static MsgProcess getProcess(Command command) {
@@ -60,6 +68,9 @@ public class MsgProcessFactory {
             }
             case ADMINISTRATION -> {
                 return adminProcess;
+            }
+            case REJECTED -> {
+                return rejectedProcess;
             }
             default -> {
                 return defaultProcess;
