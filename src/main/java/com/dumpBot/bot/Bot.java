@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -46,6 +48,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+
+        if (update.getMessage().hasSticker()) {
+            sendEasterEgg(update);
+            return;
+        }
+
         logger.writeInfo("new update received", this.getClass());
         if (!Validator.validateUser(update, this, config)) {
             try {
@@ -105,6 +113,19 @@ public class Bot extends TelegramLongPollingBot {
             logger.writeInfo("new update is webApp from " + update.getMessage().getFrom().getId() +
                     ": " + update.getMessage().getWebAppData().getData(), this.getClass());
             msgs.addAll(webAppProcessor.startWebAppProcessor(update));
+        }
+    }
+    public void sendEasterEgg(Update update) {
+        SendMessage sendMessage = new SendMessage(String.valueOf(update.getMessage().getFrom().getId()),
+                "В жопу себе стикеры засунь, я их не понимаю");
+        SendSticker sendSticker = new SendSticker();
+        sendSticker.setChatId(update.getMessage().getFrom().getId());
+        sendSticker.setSticker(new InputFile("CAACAgIAAxkBAAIVxWR5059UZllJ50QkAlqR75l7KN8xAAL8LAACUsVwS4uxDz6ynF-5LwQ"));
+        try {
+            execute(sendMessage);
+            execute(sendSticker);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
         }
     }
 }
