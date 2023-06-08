@@ -36,7 +36,7 @@ public class SaleWebAppProcess implements WebAppProcess {
         LastCallback lastCallback = new LastCallback();
         lastCallback.setDescription(webAppData.getDescription());
         lastCallback.setPrice(webAppData.getPrice());
-        lastCallback.setCarId(webAppData.getCarId());
+        //lastCallback.setCarId(webAppData.getCarId());
         user.setLastCallback(lastCallback.toString());
         userStorage.saveUser(user);
         logger.writeInfo("user update successfully with data: " + user.toString(), this.getClass());

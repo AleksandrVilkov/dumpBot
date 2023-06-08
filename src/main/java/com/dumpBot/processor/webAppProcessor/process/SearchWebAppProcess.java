@@ -60,7 +60,7 @@ public class SearchWebAppProcess implements WebAppProcess {
         if (wp.getPrice() != null) {
             lastCallback.setPrice(wp.getPrice());
         }
-        lastCallback.setCarId(wp.getCarId());
+        //lastCallback.setCarId(wp.getCarId());
         user.setLastCallback(lastCallback.toString());
         storage.saveUser(user);
     }

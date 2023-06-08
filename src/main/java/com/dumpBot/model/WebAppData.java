@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class WebAppData {
-    private String carId;
+    private List<Car> cars;
     private String cityId;
     private String description;
     private String price;
