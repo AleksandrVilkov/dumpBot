@@ -38,7 +38,7 @@ public class SaleWebAppProcess implements WebAppProcess {
         lastCallback.setDescription(webAppData.getDescription());
         lastCallback.setPrice(webAppData.getPrice());
         for (Car car: webAppData.getCars()) {
-            lastCallback.getPhotos().add(String.valueOf(car.getId()));
+            lastCallback.getCarIds().add(String.valueOf(car.getId()));
         }
         user.setLastCallback(lastCallback.toString());
         userStorage.saveUser(user);

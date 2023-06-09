@@ -16,6 +16,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -60,9 +61,7 @@ public class MsgRejectedProcess extends BaseMsgProcess implements MsgProcess {
         //Сообщение админу, кто отменяет
         result.add(createMsgForAdmin(user.getLogin()));
         //Обновляем запрос
-        accommodation.setRejected(true);
-        accommodation.setTopical(false);
-        accommodationStorage.saveAccommodation(accommodation);
+        updateUserAccommodation(accommodation);
         //Обновляем действия админа
         user.setLastCallback("");
         user.setClientAction(Action.ADMINISTRATION.name());
@@ -73,7 +72,13 @@ public class MsgRejectedProcess extends BaseMsgProcess implements MsgProcess {
 
         return result;
     }
-
+    private void updateUserAccommodation(UserAccommodation userAccommodation) {
+        userAccommodation.setRejected(true);
+        userAccommodation.setTopical(false);
+        userAccommodation.setCreatedDate(new Date());
+        accommodationStorage.saveAccommodation(userAccommodation);
+        logger.writeInfo("accommodation #" + userAccommodation.getId() + " was updated", this.getClass());
+    }
     private SendMessage createMsgForAuthor(String authorId, String adminName, String cause) {
         String text = "Привет! Администратор @" + adminName + " отменил твой запрос по следующей причине: \n" + cause;
         text += "\nПожалуста, подай запрос на размещение заново, исправив ошибки. Если есть вопросы - напиши админу.";

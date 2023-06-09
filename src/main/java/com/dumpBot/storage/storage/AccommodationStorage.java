@@ -2,6 +2,7 @@ package com.dumpBot.storage.storage;
 
 import com.dumpBot.model.UserAccommodation;
 import com.dumpBot.storage.IAccommodationStorage;
+import com.dumpBot.storage.entity.CarAccommodationEntity;
 import com.dumpBot.storage.entity.PhotoEntity;
 import com.dumpBot.storage.entity.UserAccommodationEntity;
 import com.dumpBot.storage.repository.UserAccommodationRepository;
@@ -68,12 +69,26 @@ public class AccommodationStorage implements IAccommodationStorage {
         result.setDescription(accommodation.getDescription());
         result.setType(accommodation.getType().toString());
         Set<PhotoEntity> set = new HashSet<>();
-        for (String photo : accommodation.getPhotos()) {
-            PhotoEntity photoEntity = new PhotoEntity();
-            photoEntity.setUserAccommodationEntity(result);
-            photoEntity.setTelegramId(photo);
-            set.add(photoEntity);
+        if (accommodation.getPhotos() != null) {
+            for (String photo : accommodation.getPhotos()) {
+                PhotoEntity photoEntity = new PhotoEntity();
+                photoEntity.setUserAccommodationEntity(result);
+                photoEntity.setTelegramId(photo);
+                set.add(photoEntity);
+            }
         }
+
+        Set<CarAccommodationEntity> cae = new HashSet<>();
+        if (accommodation.getCarsId() != null) {
+            for (String carId: accommodation.getCarsId()) {
+                CarAccommodationEntity carAccommodationEntity = new CarAccommodationEntity();
+                carAccommodationEntity.setUserAccommodationEntity(result);
+                carAccommodationEntity.setCarId(carId);
+                cae.add(carAccommodationEntity);
+            }
+        }
+
+        result.setCars(cae);
         result.setPhoto(set);
         return result;
     }

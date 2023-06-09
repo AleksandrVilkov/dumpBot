@@ -77,7 +77,7 @@ public class SaleReadyProcess implements IReadyProcess {
         logger.writeInfo("find car for user " + user.getLogin(), this.getClass());
         City city = cityStorage.getCityById(user.getRegionId());
         logger.writeInfo("find city for user " + user.getLogin(), this.getClass());
-        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, new Car(), city);
+        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, cars, city);
         //TODO сохранять все машины к объявлению
         if (accommodationStorage.saveAccommodation(userAccommodation)) {
             updateUser(user);

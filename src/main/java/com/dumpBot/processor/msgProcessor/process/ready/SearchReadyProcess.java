@@ -66,11 +66,9 @@ public class SearchReadyProcess implements IReadyProcess {
            cars.add(car);
            logger.writeInfo("find car for user " + user.getLogin(), this.getClass());
         }
-
-        //TODO отправлять всем владельцам уведомление
         City city = cityStorage.getCityById(user.getRegionId());
         logger.writeInfo("find city for user " + user.getLogin(), this.getClass());
-        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, new Car(), city);
+        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, cars, city);
         if (accommodationStorage.saveAccommodation(userAccommodation)) {
             updateUser(user);
             List<SendMessage> result = new ArrayList<>(getAccommodationMsgForAdmins());
