@@ -54,9 +54,10 @@ public class UserAccommodationEntity {
     private String description;
     @Column(name = "type")
     private String type;
-
     @OneToMany(mappedBy = "userAccommodationEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Set<PhotoEntity> photo;
+    @OneToMany(mappedBy = "userAccommodationEntity", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    Set<CarAccommodationEntity> cars;
 
     public UserAccommodation toUserAccommodation() {
         UserAccommodation userAccommodation = new UserAccommodation();
@@ -75,6 +76,11 @@ public class UserAccommodationEntity {
         for (PhotoEntity photoEntity: this.photo) {
             photos.add(photoEntity.getTelegramId());
         }
+        List<String> carsId = new ArrayList<>();
+        for (CarAccommodationEntity cae: this.cars) {
+            carsId.add(cae.getCarId());
+        }
+        userAccommodation.setCarsId(carsId);
         userAccommodation.setPhotos(photos);
         return userAccommodation;
     }

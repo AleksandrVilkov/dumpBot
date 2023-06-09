@@ -15,7 +15,7 @@ import java.util.List;
 public class UserAccommodation {
     private int id;
     private AccommodationType type;
-    private Car car;
+    private List<String> carsId;
     private Date createdDate;
     private String clientLogin;
     private int clientId;

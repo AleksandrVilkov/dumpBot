@@ -68,10 +68,15 @@ public class ApprovedProcess implements CallbackProcess {
     }
 
     private List<SendMessage> createNotifyCarOwners(UserAccommodation userAccommodation) {
-        if (userAccommodation.getCar() == null) {
+        if (userAccommodation.getCarsId().isEmpty()) {
             return Collections.emptyList();
         }
-        List<User> users = userStorage.getAllUsersByCarId(userAccommodation.getCar().getId());
+
+        List<User> users = new ArrayList<>();
+        for (String id: userAccommodation.getCarsId()) {
+            List<User> us = userStorage.getAllUsersByCarId(Integer.parseInt(id));
+            users.addAll(us);
+        }
         List<SendMessage> result = new ArrayList<>();
         for (User user : users) {
             //TODO убрать в ресурсы
