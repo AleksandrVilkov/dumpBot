@@ -69,11 +69,16 @@ public class SaleReadyProcess implements IReadyProcess {
             return msgs;
         }
 
-        Car car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
+        List<Car> cars = new ArrayList<>();
+        for (String id: lastCallback.getCarIds()) {
+            Car car = carStorage.findCarById(Integer.parseInt(id));
+            cars.add(car);
+        }
         logger.writeInfo("find car for user " + user.getLogin(), this.getClass());
         City city = cityStorage.getCityById(user.getRegionId());
         logger.writeInfo("find city for user " + user.getLogin(), this.getClass());
-        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, car, city);
+        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, new Car(), city);
+        //TODO сохранять все машины к объявлению
         if (accommodationStorage.saveAccommodation(userAccommodation)) {
             updateUser(user);
             logger.writeInfo("User was updated. New user data: \n" + user.toString(), this.getClass());

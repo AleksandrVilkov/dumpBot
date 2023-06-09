@@ -1,6 +1,7 @@
 package com.dumpBot.processor.webAppProcessor.process;
 
 import com.dumpBot.loger.ILogger;
+import com.dumpBot.model.Car;
 import com.dumpBot.model.LastCallback;
 import com.dumpBot.model.User;
 import com.dumpBot.model.WebAppData;
@@ -36,7 +37,9 @@ public class SaleWebAppProcess implements WebAppProcess {
         LastCallback lastCallback = new LastCallback();
         lastCallback.setDescription(webAppData.getDescription());
         lastCallback.setPrice(webAppData.getPrice());
-        //lastCallback.setCarId(webAppData.getCarId());
+        for (Car car: webAppData.getCars()) {
+            lastCallback.getPhotos().add(String.valueOf(car.getId()));
+        }
         user.setLastCallback(lastCallback.toString());
         userStorage.saveUser(user);
         logger.writeInfo("user update successfully with data: " + user.toString(), this.getClass());

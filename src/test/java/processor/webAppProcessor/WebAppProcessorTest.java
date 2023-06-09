@@ -27,7 +27,7 @@ public class WebAppProcessorTest {
         WebAppData webAppData = new WebAppData();
         User from = new User();
         from.setId(436641871L);
-        webAppData.setData("{\"cars\":[{\"id\":37,\"createDate\":null,\"concern\":{\"name\":\"PSA\"},\"model\":{\"name\":\"301\"},\"engine\":{\"name\":\"EB2M\"},\"boltPattern\":{\"name\":null},\"brand\":{\"name\":\"Peugeot\"}},{\"id\":38,\"createDate\":null,\"concern\":{\"name\":\"PSA\"},\"model\":{\"name\":\"301\"},\"engine\":{\"name\":\"DV6DTED\"},\"boltPattern\":{\"name\":null},\"brand\":{\"name\":\"Peugeot\"}},{\"id\":39,\"createDate\":null,\"concern\":{\"name\":\"PSA\"},\"model\":{\"name\":\"301\"},\"engine\":{\"name\":\"EC5\"},\"boltPattern\":{\"name\":null},\"brand\":{\"name\":\"Peugeot\"}}],\"price\":\"4\",\"description\":\"У\",\"action\":\"SALE\"}");
+        webAppData.setData("{\"cars\":[{\"id\":102,\"createDate\":null,\"concern\":{\"name\":\"PSA\"},\"model\":{\"name\":\"DS4\"},\"engine\":{\"name\":\"EP6C\"},\"boltPattern\":{\"name\":null},\"brand\":{\"name\":\"Citroen\"}}],\"price\":\"300\",\"description\":\"Описание\",\"action\":\"SALE\"}");
         webAppData.setButtonText("Продать");
         message.setWebAppData(webAppData);
         message.setFrom(from);

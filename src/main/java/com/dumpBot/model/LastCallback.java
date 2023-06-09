@@ -5,12 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 public class LastCallback {
-    private String carId;
+    private List<String> carIds = new ArrayList<>();
     private String description;
     private String price;
     private List<String> photos;

@@ -60,15 +60,17 @@ public class SearchReadyProcess implements IReadyProcess {
             return sendError(userId);
         }
 
-        Car car = null;
-        if (lastCallback.getCarId() != null && !lastCallback.getCarId().equalsIgnoreCase("")) {
-            car = carStorage.findCarById(Integer.parseInt(lastCallback.getCarId()));
-            logger.writeInfo("find car for user " + user.getLogin(), this.getClass());
+        List<Car> cars = new ArrayList<>();
+        for (String id: lastCallback.getCarIds()) {
+           Car car = carStorage.findCarById(Integer.parseInt(id));
+           cars.add(car);
+           logger.writeInfo("find car for user " + user.getLogin(), this.getClass());
         }
 
+        //TODO отправлять всем владельцам уведомление
         City city = cityStorage.getCityById(user.getRegionId());
         logger.writeInfo("find city for user " + user.getLogin(), this.getClass());
-        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, car, city);
+        UserAccommodation userAccommodation = ReadyUtils.createUserAccommodation(lastCallback, user, new Car(), city);
         if (accommodationStorage.saveAccommodation(userAccommodation)) {
             updateUser(user);
             List<SendMessage> result = new ArrayList<>(getAccommodationMsgForAdmins());
